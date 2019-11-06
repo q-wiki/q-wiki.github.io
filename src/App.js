@@ -1,14 +1,18 @@
 import React from 'react';
+import Container75 from './components/atoms/Container75/Container75'
+import ContainerFullPage from './components/atoms/ContainerFullPage/ContainerFullPage'
+import ContainerHalfPage from './components/atoms/ContainerHalfPage/ContainerHalfPage'
+import {LoremIpsum} from 'react-lorem-ipsum'
+
+import { Grid } from 'react-flexbox-grid';
+
 import './App.css';
-import LandingPage from './components/LandingPage/LandingPage'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <LandingPage></LandingPage>
-      </header>
-    </div>
+      <Grid fluid>
+          <ContainerFullPage backgroundImage={'logo192.png'}></ContainerFullPage>
+      </Grid>
   );
 }
 
