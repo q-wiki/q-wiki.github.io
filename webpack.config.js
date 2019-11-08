@@ -1,15 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
 
-const settings = {
-  distPath: path.join(__dirname, "dist"),
-  srcPath: path.join(__dirname, "src")
-};
-
-function srcPathExtend(subpath) {
-  return path.join(settings.srcPath, subpath)
-}
 module.exports = {
   devtool: 'cheap-module-source-map',
   module: {
@@ -20,24 +11,33 @@ module.exports = {
         loader: 'babel-loader'
       }, {
         test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }, {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
         use: [
-          'style-loader',
-          'css-loader'
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 51200,
+              name: '[name].[ext]',
+              // outputPath: 'images/',
+              // publicPath: path => `./${path}`,
+            }
+          }
         ]
-      },{
+      }, {
         test: /\.scss$/,
         use: [
           "style-loader", {
-            loader: "css-loader",
+            loader: "css-loader"
           }, {
             loader: "postcss-loader",
             options: {
-              plugins: [require("autoprefixer")()],
+              plugins: [require("autoprefixer")()]
             }
           }, {
             loader: "sass-loader",
-            options: {
-            }
+            options: {}
           }
         ]
       }, {
@@ -48,22 +48,8 @@ module.exports = {
             name: "fonts/[name].[ext]"
           }
         }
-      }, {
-        test: /\.(jpe?g|png|gif|svg|ico)$/i,
-        use: [
-          {
-            loader: "file-loader",
-            options: {
-              outputPath: "assets/"
-            }
-          }
-        ]
       }
     ]
   },
-  plugins: [
-      new HtmlWebpackPlugin({
-          template: 'index.html'
-      })
-  ]
+  plugins: [new HtmlWebpackPlugin({template: 'index.html'})]
 }

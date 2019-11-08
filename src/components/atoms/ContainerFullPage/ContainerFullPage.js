@@ -6,9 +6,7 @@ import './containerFullPage.scss';
 
 function ContainerFullPage(props) {
     return (
-        <Row style={{
-            backgroundImage: 'url("logo192.png")'
-        }}>
+        <Row>
             <Col xs={12} md={12}>
                 {props.children}
             </Col>
