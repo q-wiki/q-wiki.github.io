@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
 import Icon from '../../atoms/Icon/Icon'
-import Icons from '../../atoms/Icons/Icons'
 import Heading from '../../atoms/Heading/Heading'
 import Paragraph from '../../atoms/Paragraph/Paragraph'
 
@@ -21,7 +20,7 @@ const Wrapper = styled.div`
 
 const Card = ({ headline, content, icon, ...props }) => (
   <Wrapper {...props}>
-    <Icons icon={"documents"} width={200} height={200}/>
+    <Icon icon={"documents"}/>
     <Heading type="H2" pallete="black">{headline}</Heading>
     <Paragraph>{content}</Paragraph>
 
