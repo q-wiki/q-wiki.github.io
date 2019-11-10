@@ -6,12 +6,18 @@ const fontColors = {
   black: '#000000',
 };
 
+const fontWeight = {
+  bold: 'bold',
+  normal: 'normal'
+};
+
 const Text = styled.p`
 display: inline-block;
 text-align: ${props => (props.left ? 'left' : 'center')};
 font-size: 14px;
 line-height: ${props => props.height || 18}px;
 color: ${props => fontColors[props.pallete]};
+font-weight: ${props => fontWeight[props.fontWeight]};
 `;
 
 const Paragraph = ({ children, ...props }) => (
@@ -23,11 +29,13 @@ children: PropTypes.node,
 height: PropTypes.number,
 size: PropTypes.string,
 pallete: PropTypes.string,
-left: PropTypes.string,
+left: PropTypes.bool,
+fontWeight: PropTypes.string,
 };
 
 Paragraph.defaultProps = {
 pallete: 'black',
+fontWeight: 'normal',
 };
 
 export default Paragraph;

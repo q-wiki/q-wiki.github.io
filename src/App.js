@@ -21,28 +21,14 @@ function App() {
   return (
       <Grid fluid>
           <ContainerFullPage>
-            <LoremIpsum/>
-              <br></br>
-              <br></br>
-             <Icon icon="documents" width={90} height={90}/>
+             <Paragraph>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Paragraph>
                <br></br>
                <br></br>
-               <Heading type="H2" pallete="turqoise">
-                 Sup
-               </Heading>
-               <br></br>
-               <br></br>
-               <Paragraph>
-                 <LoremIpsum/>
-               </Paragraph>
-               <br></br>
-               <br></br>
-               <Paragraph>
-                 <LoremIpsum/>
-               </Paragraph>
-               <br></br>
-               <br></br>
-               <Card headline={'Ich bin eine Headline'} content={'Hello my name is Antonia'} icon="documents"/>
+               <Paragraph left>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Paragraph>
+               <Card
+                 headline={'About\nUs'}
+                 content={'Learn more about the project and the students working on it '}
+                 icon="documents"/>
           </ContainerFullPage>
       </Grid>
   );
