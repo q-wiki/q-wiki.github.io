@@ -21,7 +21,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --port 4000 --compress --mode development",
     "dev": "webpack --mode development --progress",
-    "deploy": "gh-pages -b master -d build",
+    "deploy": "gh-pages -b master -d dist",
     "build": "webpack --mode production --progress"
   },
   "eslintConfig": {
