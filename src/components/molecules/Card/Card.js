@@ -2,9 +2,10 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 
-import Icon from 'components/atoms/Icon'
-import Heading from './components/atoms/Heading'
-import Paragraph from './components/atoms/Paragraph'
+import Icon from '../../atoms/Icon/Icon'
+import Icons from '../../atoms/Icons/Icons'
+import Heading from '../../atoms/Heading/Heading'
+import Paragraph from '../../atoms/Paragraph/Paragraph'
 
 const Wrapper = styled.div`
   width: 250px;
@@ -20,7 +21,7 @@ const Wrapper = styled.div`
 
 const Card = ({ headline, content, icon, ...props }) => (
   <Wrapper {...props}>
-    <Icon icon="{icon}"/>
+    <Icons icon={"documents"} width={200} height={200}/>
     <Heading type="H2" pallete="black">{headline}</Heading>
     <Paragraph>{content}</Paragraph>
 
