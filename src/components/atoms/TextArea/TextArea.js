@@ -6,13 +6,13 @@ import './textArea.scss';
 
 const TextArea = ({ ...props }) => (
     <div className="textarea input-effect">
-        <textarea className="effect-20" type="text" placeholder="">
+        <textarea className="effect-20" placeholder="">
         </textarea>
         <label>{props.placeholder}</label>
         <span className="focus-border">
            <i></i>
         </span>
-        <div class="pull-tab"></div>
+        <div className="pull-tab"></div>
     </div>
 );
 

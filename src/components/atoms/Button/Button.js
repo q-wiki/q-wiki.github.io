@@ -3,17 +3,14 @@ import PropTypes from 'prop-types';
 
 import './button.scss';
 
-const Button = ({ ...props }) => (
-    <div className="dropdown input-effect">
-        <button>
-            click me
-        </button>
-    </div>
+const Button = ({children, ...props }) => (
+   <button className="btn draw-border">
+       {children}
+   </button>
 );
 
 Button.propTypes = {
-    placeholder: PropTypes.string,
-    options: PropTypes.array,
+    children: PropTypes.string
 };
 
 Button.defaultProps = {

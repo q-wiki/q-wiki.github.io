@@ -12,10 +12,17 @@ select{
   height: 100%;
   box-sizing: border-box;
   letter-spacing: 1px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  outline: 0;
+  box-shadow: none;
+  background-image: none;
 }
 
-:focus {
-  outline: none;
+select::-ms-expand {
+  display: none;
 }
 
 .dropdown {
@@ -24,6 +31,24 @@ select{
   margin: 20px 0 0 0;
 
   position: relative;
+
+  &::after {
+    content: '\25BC';
+    position: absolute;
+    color: $qwikiLightBlue;
+    height: 100%;
+    top: 30%;
+    right: -10px;
+    padding: 0 1em;
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+  }
+  &:hover::after {
+    color: $qwikiDarkBlue;
+  }
 
   select{
     resize: vertical;

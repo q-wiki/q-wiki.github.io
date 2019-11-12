@@ -29,35 +29,36 @@ function App() {
       <Grid fluid>
           <ContainerFullPage>
             <div style={{display:"flex", flexDirection:"row", alignItems:"center"}}>
-              Is the reported Problem valid?
+              Do you like cats?
               <Checkbox>
                 Yes
               </Checkbox>
               <Checkbox>
-                No
+                Yeah
               </Checkbox>
               <Checkbox>
-                Not sure
+                Not sure, but yes
               </Checkbox>
             </div>
           </ContainerFullPage>
           <br/>
           <ContainerFullPage>
-            <p>Option marked as correct Answer*</p>
-            <TextField placeholder={"Correct Option"}/>
+            <p>Tell me a cute cat name</p>
+            <TextField placeholder={"Mizie or Captain Snuggles or ..."}/>
           </ContainerFullPage>
           <br/>
           <ContainerFullPage>
-            <p>Leave a comment</p>
-            <TextArea placeholder={"Comment"}/>
+            <p>Tell me how much you like cats</p>
+            <TextArea placeholder={"I like cats because ..."}/>
           </ContainerFullPage>
           <br/>
           <ContainerFullPage>
-              <p>Select the type of problem</p>
-              <Dropdown placeholder="Please select an option" options={["Answer incorrect", "Duplicate options", "Wikidata data incorrect"]}/>
+              <p>Select a cat mood</p>
+              <Dropdown placeholder="Please select an option" options={["Snuggly", "Hungry", "Fierce", "Sleepy", "Wanne break stuff", "Miauuuuuuuuu"]}/>
           </ContainerFullPage>
+          <br/>
           <ContainerFullPage>
-              <Button/>
+              <Button>Send Cat Pics</Button>
           </ContainerFullPage>
       </Grid>
   );

@@ -5,10 +5,10 @@ import './dropdown.scss';
 
 const Dropdown = ({ ...props }) => (
     <div className="dropdown input-effect">
-        <select required className="effect-20">
-            <option value="" disabled selected/>
+        <select required className="effect-20" defaultValue="default">
+            <option key="1000" value="default"/>
             {props.options.map((item, i) =>
-                <option value={i}>{item}</option>
+                <option key={i} value={i}>{item}</option>
             )}
         </select>
         <label>{props.placeholder}</label>
