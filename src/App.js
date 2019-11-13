@@ -12,6 +12,9 @@ import {
 import { Grid } from 'react-flexbox-grid';
 import ContainerFullPage from './components/atoms/ContainerFullPage/ContainerFullPage'
 
+// NOTE: We will want to customize the standard theme later on
+// See: https://react.semantic-ui.com/theming/
+import 'semantic-ui-css/semantic.min.css'
 import './App.css';
 
 // our routes 👩‍🔧
@@ -21,8 +24,6 @@ import LandingPage from './components/organisms/LandingPage/LandingPage'
 import ReportPage from './components/organisms/ReportPage/ReportPage'
 import SparqlPage from './components/organisms/SparqlPage/SparqlPage'
 import NotFoundPage from './components/organisms/NotFoundPage/NotFoundPage'
-
-console.log(AboutPage, LandingPage, ReportPage, SparqlPage, NotFoundPage)
 
 // define app, start the router and we're good to go 👩‍🚀
 

@@ -13,6 +13,8 @@
     "react-flexbox-grid": "^2.1.2",
     "react-lorem-ipsum": "^1.4.4",
     "react-router-dom": "^5.1.2",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.88.1",
     "styled-components": "^4.4.1",
     "styled-theme": "^0.3.3",
     "styled-tools": "^1.7.1",
@@ -22,7 +24,7 @@
   "scripts": {
     "start": "webpack-dev-server --open --port 4000 --compress --mode development",
     "dev": "webpack --mode development --progress",
-    "deploy": "gh-pages -b master -d dist",
+    "deploy": "gh-pages -b master -d dist -m $(git rev-parse --short HEAD)",
     "build": "webpack --mode production --progress"
   },
   "eslintConfig": {
