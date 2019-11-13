@@ -14,6 +14,7 @@ import TextField from './components/atoms/TextField/TextField'
 import TextArea from './components/atoms/TextArea/TextArea'
 import Dropdown from './components/atoms/Dropdown/Dropdown'
 import Button from './components/atoms/Button/Button'
+import AddItemList from './components/atoms/AddItemList/AddItemList'
 //Molecules:
 import Card from './components/molecules/Card/Card'
 
@@ -55,6 +56,11 @@ function App() {
           <ContainerFullPage>
               <p>Select a cat mood</p>
               <Dropdown placeholder="Please select an option" options={["Snuggly", "Hungry", "Fierce", "Sleepy", "Wanne break stuff", "Miauuuuuuuuu"]}/>
+          </ContainerFullPage>
+          <br/>
+          <ContainerFullPage>
+              <p>Add cat moods</p>
+              <AddItemList placeholder="Think of some cat moods"></AddItemList>
           </ContainerFullPage>
           <br/>
           <ContainerFullPage>

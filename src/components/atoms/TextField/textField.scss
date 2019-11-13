@@ -17,9 +17,22 @@ input[type="text"] {
   outline: none;
 }
 
+.textfieldWrapper{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 30rem;
+}
+.iconWrapper{
+  position: absolute;
+  bottom: 0.25rem;
+  right: 0.3rem;
+  img{
+  }
+}
+
 .textfield {
   float: left;
-  width: 30rem;
   margin: 20px 0 0 0;
   position: relative;
 
@@ -109,6 +122,3 @@ input[type="text"] {
     transition: 0.3s;
   }
 }
-
-
-
