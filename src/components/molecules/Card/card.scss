@@ -1,8 +1,10 @@
+@import "../../../../src/assets/variables.scss";
+
 .card-container{
   width: 160px;
   height: 248px;
   padding: 2px 15px 2px 15px;
-  background-color: #509E9E;
+  background-color: $qwikiLightBlue;
   display: flex;
   flex-direction: column;
   justify-content: center;

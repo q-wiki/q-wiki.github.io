@@ -3,6 +3,7 @@ import styled, {css} from 'styled-components';
 import PropTypes from 'prop-types';
 
 import './heading.scss';
+import  '../../../../src/assets/variables.scss';
 
 const getFontSize = type => {
   switch (type) {
@@ -15,13 +16,12 @@ const getFontSize = type => {
   }
 };
 const fontColors = {
-  black: '#000000',
-  brightGreen: '#E9EDDE',
-  white: '#FFFFFF',
-  turqoise: '#509E9E',
-  darkTurqoise: '#024040',
-  darkYellow: '#B79123',
-  darkRed: '#7D2F0E'
+  white: '$white',
+  black: '$black',
+  qwikiLightBlue: '$qwikiLightBlue',
+  qwikiDarkBlue: '$qwikiDarkBlue',
+  qwikiOrange: 'qwikiOrange',
+  qwikiDarkRed: '#qwikiDarkRed'
 };
 
 const Text = styled.h2 `
@@ -62,11 +62,11 @@ Heading.propTypes = {
   pallete: PropTypes.oneOf([
     'black',
     'white',
-    'brightGreen',
-    'turqoise',
-    'darkTurqoise',
-    'darkYellow',
-    'darkRed'
+    'qwikiLightBlue',
+    'qwikiDarkBlue',
+    'qwikiOrange',
+    'qwikiDarkRed',
+
   ]),
   children: PropTypes.node,
   underlined: PropTypes.bool,
