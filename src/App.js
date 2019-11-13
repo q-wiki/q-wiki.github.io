@@ -4,29 +4,17 @@ import {
   HashRouter as Router,
   Link,
   Switch,
-  Route,
-  useParams
+  Route
 } from 'react-router-dom'
 
-import Container75 from './components/atoms/Container75/Container75'
-import ContainerFullPage from './components/atoms/ContainerFullPage/ContainerFullPage'
-import ContainerHalfPage from './components/atoms/ContainerHalfPage/ContainerHalfPage'
-
-
-import Icon from './components/atoms/Icon/Icon'
-import Heading from './components/atoms/Heading/Heading'
-import Paragraph from './components/atoms/Paragraph/Paragraph'
-
-
-import Card from './components/molecules/Card/Card'
-
-import {LoremIpsum} from 'react-lorem-ipsum'
+// layout components
 
 import { Grid } from 'react-flexbox-grid';
+import ContainerFullPage from './components/atoms/ContainerFullPage/ContainerFullPage'
 
 import './App.css';
 
-// configure router 🔧
+// our routes 👩‍🔧
 
 import AboutPage from './components/organisms/AboutPage/AboutPage'
 import LandingPage from './components/organisms/LandingPage/LandingPage'
@@ -34,24 +22,9 @@ import ReportPage from './components/organisms/ReportPage/ReportPage'
 import SparqlPage from './components/organisms/SparqlPage/SparqlPage'
 import NotFoundPage from './components/organisms/NotFoundPage/NotFoundPage'
 
-const routes = {
-  '': LandingPage,
-  'about': AboutPage,
-  'report': ReportPage,
-  'questions': SparqlPage
-}
+console.log(AboutPage, LandingPage, ReportPage, SparqlPage, NotFoundPage)
 
-/**
- * Checks which route is currently active and renders it as configured in the
- * `route` constant above. If it doesn't match any route a 404 page is rendered.
- */
-function ContentArea() {
-  const { page } = useParams()
-  const Organism = routes[page] || NotFoundPage
-  return <Organism />
-}
-
-// define app, start the router and we're good to go
+// define app, start the router and we're good to go 👩‍🚀
 
 function App() {
   return (
@@ -68,28 +41,23 @@ function App() {
           </ul>
         </nav>
         <ContainerFullPage>
-          <LoremIpsum/>
-          <br></br>
-          <br></br>
-          <Icon icon="documents" width={90} height={90}/>
-          <br></br>
-          <br></br>
-          <Heading type="H2" pallete="turqoise">
-            Sup
-          </Heading>
-          <br></br>
-          <br></br>
-          <Paragraph>
-            <LoremIpsum/>
-          </Paragraph>
-          <br></br>
-          <br></br>
-          <Paragraph>
-            <LoremIpsum/>
-          </Paragraph>
-          <br></br>
-          <br></br>
-          <Card headline={'Ich bin eine Headline'} content={'Hello my name is Antonia'} icon="documents"/>
+          <Switch>
+            <Route exact path='/'>
+              <LandingPage />
+            </Route>
+            <Route path='/about'>
+              <AboutPage />
+            </Route>
+            <Route path='/report'>
+              <ReportPage />
+            </Route>
+            <Route path='/questions'>
+              <SparqlPage />
+            </Route>
+            <Route path='*'>
+              <NotFoundPage />
+            </Route>
+          </Switch>
         </ContainerFullPage>
       </Grid>
     </Router>
