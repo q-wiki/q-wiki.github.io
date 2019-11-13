@@ -6,7 +6,7 @@ import './icon.scss';
 import  variables from '../../../../src/assets/variables.scss';
 
 
-const fontColors = {
+const svgColors = {
   white: variables.white,
   black: variables.black,
   qwikiLightBlue: variables.qwikiLightBlue,
@@ -20,10 +20,10 @@ const Wrapper = styled.span`
   height: ${props => props.height}px;
   display: inline-block;
   box-sizing: border-box;
-  color: ${props => fontColors[props.pallete]};
+  color: ${props => svgColors[props.pallete]};
   & > svg {
-    fill: ${props => fontColors[props.pallete]};
-    stroke: ${props => fontColors[props.pallete]};
+    fill: ${props => svgColors[props.pallete]};
+    stroke: ${props => svgColors[props.pallete]};
     width: 100%;
     height: 100%;
   }
@@ -45,7 +45,7 @@ Icon.propTypes = {
     'qwikiLightBlue',
     'qwikiDarkBlue',
     'qwikiOrange',
-    'qwikiDarkRed',  
+    'qwikiDarkRed',
   ]),
 }
 
