@@ -3,7 +3,7 @@ import styled, {css} from 'styled-components';
 import PropTypes from 'prop-types';
 
 import './heading.scss';
-import  '../../../../src/assets/variables.scss';
+import  variables from '../../../../src/assets/variables.scss';
 
 const getFontSize = type => {
   switch (type) {
@@ -16,12 +16,12 @@ const getFontSize = type => {
   }
 };
 const fontColors = {
-  white: '$white',
-  black: '$black',
-  qwikiLightBlue: '$qwikiLightBlue',
-  qwikiDarkBlue: '$qwikiDarkBlue',
-  qwikiOrange: 'qwikiOrange',
-  qwikiDarkRed: '#qwikiDarkRed'
+  white: variables.white,
+  black: variables.black,
+  qwikiLightBlue: variables.qwikiLightBlue,
+  qwikiDarkBlue: variables.qwikiDarkBlue,
+  qwikiOrange: variables.qwikiOrange,
+  qwikiDarkRed: variables.qwikiDarkRed,
 };
 
 const Text = styled.h2 `

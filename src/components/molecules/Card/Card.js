@@ -8,10 +8,10 @@ import Paragraph from '../../atoms/Paragraph/Paragraph'
 
 import './card.scss';
 
-const Card = ({ headline, content, icon, ...props }) => (
+const Card = ({ headline, content, icon,  ...props }) => (
   <div className="card-container" {...props}>
     <Icon  icon={"documents"} height={92}/>
-    <Heading  type="H2" pallete="black" underlined={true} twoLined>{headline}</Heading>
+    <Heading  type="H2" underlined={true} twoLined>{headline}</Heading>
     <Paragraph fontWeight="bold">{content}</Paragraph>
   </div>
 );

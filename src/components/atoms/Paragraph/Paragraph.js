@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-import  '../../../../src/assets/variables.scss';
+import variables from '../../../../src/assets/variables.scss';
 
 const fontColors = {
-  white: '$white',
-  black: '$black',
+  white: variables.white,
+  black: variables.black,
 };
 
 const fontWeight = {

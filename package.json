@@ -16,6 +16,7 @@
     "styled-theme": "^0.3.3",
     "styled-tools": "^1.7.1",
     "svg-url-loader": "^3.0.2",
+    "tabs": "^0.2.0",
     "url-loader": "^1.1.2"
   },
   "scripts": {
