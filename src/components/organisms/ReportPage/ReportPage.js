@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
 
-import { Message, Form } from 'semantic-ui-react'
+import { Message, Icon, Form } from 'semantic-ui-react'
 import Heading from '../../atoms/Heading/Heading'
 import Paragraph from '../../atoms/Paragraph/Paragraph'
+
+import TagList from '../../molecules/TagList/TagList'
+
+// TODO: Form validation
 
 /**
  * Gives a list of options of what might be wrong, depending on the
@@ -15,19 +19,13 @@ function problemOptions (minigameType) {
     {
       key: 'wrongAnswer',
       value: 'wrongAnswer',
-      text: (minigameType === 'sorting')
-        ? 'The order shown as the answer is incorrect'
-        : 'The suggested answer is incorrect'
+      text: `The suggested ${(minigameType === 'sorting') ? 'order' : 'answer'} is incorrect`
     },
     {key: 'duplicates', value: 'duplicates', text: 'An option was offered multiple times'},
     {key: 'other', value: 'other', text: 'Other (please specify)'}
   ]
 
   return options
-}
-
-function validateForm (form) {
-
 }
 
 // TODO: Simulate a pre-filled form
@@ -52,8 +50,9 @@ function ReportForm () {
         options={problemOptions(minigameType)}
         onChange={(_, {value}) => setProblem(value)} />
     </Form.Group>
-    {problem && <Form.Group><Form.TextArea label='Specify problem *' placeholder='Specify problem' /></Form.Group>}
-    {/* TODO: Add fields to drill down on the problem */}
+    {problem === 'other' && <Form.Group><Form.TextArea label='Specify problem *' placeholder='Specify problem' /></Form.Group>}
+    <Form.Input label='Minigame task*' placeholder='A description of the question / task given in the minigame' />
+    <TagList label='Given options *' placeholder='Add an option by pressing enter' tagName='answerOptions' />
     <Form.Group><Form.TextArea label='Additional comments' placeholder='Anything else you want to add?' /></Form.Group>
     <Paragraph>Required fields are marked with *</Paragraph>
     <Form.Button primary>Submit</Form.Button>
@@ -66,9 +65,12 @@ export default function ReportPage() {
     <Paragraph>Join the community and leave a suggestion. Together we can provide as much knowledge as possible!</Paragraph>
 
     <Heading type='H2'>Did you find an error in a question?</Heading>
-    <Message>
-      <Message.Header>Hint</Message.Header>
-      <p>If you notice this during a game, there's a button to report problems that will fill out this form for you!</p>
+    <Message icon info>
+      <Icon name='info' />
+      <Message.Content>
+        <Message.Header>Hint</Message.Header>
+        <p>If you notice this during a game, click the in-game button. It makes filling out this form much quicker!</p>
+      </Message.Content>
     </Message>
     <ReportForm />
   </>
