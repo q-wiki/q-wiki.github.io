@@ -7,6 +7,7 @@ import ContainerHalfPage from './components/atoms/ContainerHalfPage/ContainerHal
 import Icon from './components/atoms/Icon/Icon'
 import Heading from './components/atoms/Heading/Heading'
 import Paragraph from './components/atoms/Paragraph/Paragraph'
+import Tab from './components/atoms/Tabs/Tab'
 
 
 import Card from './components/molecules/Card/Card'
@@ -14,6 +15,7 @@ import Card from './components/molecules/Card/Card'
 import {LoremIpsum} from 'react-lorem-ipsum'
 
 import { Grid } from 'react-flexbox-grid';
+
 
 import './App.css';
 
@@ -30,6 +32,9 @@ function App() {
                  content={'Learn more about the project and the students working on it '}
                  icon="documents"/>
           </ContainerFullPage>
+          <Container75>
+            <Tab/>
+          </Container75>
       </Grid>
   );
 }

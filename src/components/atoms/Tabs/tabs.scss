@@ -1,0 +1,26 @@
+@import "../../../../src/assets/variables.scss";
+
+.tab, .tab:active{
+  background-color: $qwikiMiddleBlue;
+  text-align: center;
+  flex-grow: 1;
+  border-right-color: $qwikiDarkBlue;
+  border-right-width: 2px;
+  font-weight: bold;
+
+}
+
+.tab:last-child  {
+  border-right-width: 0px;
+}
+
+
+.RRT__tab--selected, .RRT__tab--selected:focus{
+    background-color: $qwikiLightBlue !important;
+    color: $white;
+}
+
+
+.panel {
+  background-color: $qwikiGreen;
+}
