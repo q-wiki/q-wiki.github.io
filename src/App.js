@@ -1,38 +1,65 @@
 import React, { Component } from 'react'
 
-import {LoremIpsum} from 'react-lorem-ipsum'
+import {
+  // NOTE: We use the hash router because it's easer to setup with gh-pages
+  HashRouter as Router,
+  Link,
+  Switch,
+  Route
+} from 'react-router-dom'
 
-//Atoms:
-import Icon from './components/atoms/Icon/Icon'
-import Heading from './components/atoms/Heading/Heading'
-import Paragraph from './components/atoms/Paragraph/Paragraph'
-import Tab from './components/atoms/Tabs/Tab'
-import Container75 from './components/atoms/Container75/Container75'
-import ContainerFullPage from './components/atoms/ContainerFullPage/ContainerFullPage'
-import ContainerHalfPage from './components/atoms/ContainerHalfPage/ContainerHalfPage'
-import Checkbox from './components/atoms/Checkbox/Checkbox'
-import TextField from './components/atoms/TextField/TextField'
-import TextArea from './components/atoms/TextArea/TextArea'
-import Dropdown from './components/atoms/Dropdown/Dropdown'
-import Button from './components/atoms/Button/Button'
-import AddItemList from './components/atoms/AddItemList/AddItemList'
-//Molecules:
-import Card from './components/molecules/Card/Card'
-
-//Organisms:
-
+// layout components
 
 import { Grid } from 'react-flexbox-grid';
-
+import ContainerFullPage from './components/atoms/ContainerFullPage/ContainerFullPage'
 
 import './App.css';
 
+// our routes 👩‍🔧
+
+import AboutPage from './components/organisms/AboutPage/AboutPage'
+import LandingPage from './components/organisms/LandingPage/LandingPage'
+import ReportPage from './components/organisms/ReportPage/ReportPage'
+import SparqlPage from './components/organisms/SparqlPage/SparqlPage'
+import NotFoundPage from './components/organisms/NotFoundPage/NotFoundPage'
+
+// define app, start the router and we're good to go 👩‍🚀
+
 function App() {
   return (
+    <Router>
       <Grid fluid>
-          <ContainerFullPage>
-          </ContainerFullPage>
+        {/* NOTE: Given the current folder structure you probably want to move this
+            into a component */}
+        <nav>
+          <ul>
+            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/about'>About</Link></li>
+            <li><Link to='/report'>Report a Problem</Link></li>
+            <li><Link to='/questions'>Add a Question</Link></li>
+          </ul>
+        </nav>
+        <ContainerFullPage>
+          <Switch>
+            <Route exact path='/'>
+              <LandingPage />
+            </Route>
+            <Route path='/about'>
+              <AboutPage />
+            </Route>
+            <Route path='/report'>
+              <ReportPage />
+            </Route>
+            <Route path='/questions'>
+              <SparqlPage />
+            </Route>
+            <Route path='*'>
+              <NotFoundPage />
+            </Route>
+          </Switch>
+        </ContainerFullPage>
       </Grid>
+    </Router>
   );
 }
 
