@@ -76,8 +76,8 @@ Heading.propTypes = {
 Heading.defaultProps = {
   type: 'H2',
   pallete: 'black',
-  twoLined: 'false',
-  underlined: 'false'
+  twoLined: false,
+  underlined: false
 };
 
 export default Heading;
