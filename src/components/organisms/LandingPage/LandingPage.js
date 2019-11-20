@@ -8,10 +8,13 @@ import ContainerHalfPage from '../../atoms/ContainerHalfPage/ContainerHalfPage'
 import Icon from '../../atoms/Icon/Icon'
 import Heading from '../../atoms/Heading/Heading'
 import Paragraph from '../../atoms/Paragraph/Paragraph'
+import MainLogo from '../../atoms/MainLogo/MainLogo'
 
 import Card from '../../molecules/Card/Card'
 
 import {LoremIpsum} from 'react-lorem-ipsum'
+
+
 
 export default function LandingPage() {
   return (
@@ -22,22 +25,18 @@ export default function LandingPage() {
       <Icon icon="documents" width={90} height={90}/>
       <br></br>
       <br></br>
-      <Heading type="H2" pallete="turqoise">
+      <Heading type="H2" pallete="qwikiDarkBlue">
         Sup
       </Heading>
       <br></br>
       <br></br>
-      <Paragraph>
-        <LoremIpsum/>
-      </Paragraph>
       <br></br>
-      <br></br>
-      <Paragraph>
-        <LoremIpsum/>
-      </Paragraph>
       <br></br>
       <br></br>
       <Card headline={'Ich bin eine Headline'} content={'Hello my name is Antonia'} icon="documents"/>
+      <br></br>
+      <br></br>
+      <MainLogo/>
     </>
   );
 }

@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "private": true,
   "dependencies": {
+    "eslint-config-react-app": "^5.0.2",
     "gh-pages": "^2.1.1",
     "node-sass": "^4.13.0",
     "raw-loader": "^3.1.0",
