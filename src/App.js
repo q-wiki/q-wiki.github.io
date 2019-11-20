@@ -1,18 +1,26 @@
 import React, { Component } from 'react'
-import Container75 from './components/atoms/Container75/Container75'
-import ContainerFullPage from './components/atoms/ContainerFullPage/ContainerFullPage'
-import ContainerHalfPage from './components/atoms/ContainerHalfPage/ContainerHalfPage'
 
+import {LoremIpsum} from 'react-lorem-ipsum'
 
+//Atoms:
 import Icon from './components/atoms/Icon/Icon'
 import Heading from './components/atoms/Heading/Heading'
 import Paragraph from './components/atoms/Paragraph/Paragraph'
 import Tab from './components/atoms/Tabs/Tab'
-
-
+import Container75 from './components/atoms/Container75/Container75'
+import ContainerFullPage from './components/atoms/ContainerFullPage/ContainerFullPage'
+import ContainerHalfPage from './components/atoms/ContainerHalfPage/ContainerHalfPage'
+import Checkbox from './components/atoms/Checkbox/Checkbox'
+import TextField from './components/atoms/TextField/TextField'
+import TextArea from './components/atoms/TextArea/TextArea'
+import Dropdown from './components/atoms/Dropdown/Dropdown'
+import Button from './components/atoms/Button/Button'
+import AddItemList from './components/atoms/AddItemList/AddItemList'
+//Molecules:
 import Card from './components/molecules/Card/Card'
 
-import {LoremIpsum} from 'react-lorem-ipsum'
+//Organisms:
+
 
 import { Grid } from 'react-flexbox-grid';
 
@@ -23,18 +31,7 @@ function App() {
   return (
       <Grid fluid>
           <ContainerFullPage>
-             <Paragraph>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Paragraph>
-               <br></br>
-               <br></br>
-               <Paragraph left>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</Paragraph>
-               <Card
-                 headline={'About\nUs'}
-                 content={'Learn more about the project and the students working on it '}
-                 icon="documents"/>
           </ContainerFullPage>
-          <Container75>
-            <Tab/>
-          </Container75>
       </Grid>
   );
 }

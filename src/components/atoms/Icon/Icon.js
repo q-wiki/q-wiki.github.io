@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import './icon.scss';
 import  variables from '../../../../src/assets/variables.scss';
 
-
 const svgColors = {
   white: variables.white,
   black: variables.black,
