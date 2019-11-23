@@ -8,6 +8,7 @@ import {
   Route
 } from 'react-router-dom'
 
+
 // layout components
 
 import { Grid } from 'react-flexbox-grid';
@@ -27,39 +28,39 @@ import NotFoundPage from './components/organisms/NotFoundPage/NotFoundPage'
 
 function App() {
   return (
-    <Router>
-      <Grid fluid>
-        {/* NOTE: Given the current folder structure you probably want to move this
-            into a component */}
-        <nav>
-          <ul>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to='/about'>About</Link></li>
-            <li><Link to='/report'>Report a Problem</Link></li>
-            <li><Link to='/questions'>Add a Question</Link></li>
-          </ul>
-        </nav>
-        <ContainerFullPage>
-          <Switch>
-            <Route exact path='/'>
-              <LandingPage />
-            </Route>
-            <Route path='/about'>
-              <AboutPage />
-            </Route>
-            <Route path='/report'>
-              <ReportPage />
-            </Route>
-            <Route path='/questions'>
-              <SparqlPage />
-            </Route>
-            <Route path='*'>
-              <NotFoundPage />
-            </Route>
-          </Switch>
-        </ContainerFullPage>
-      </Grid>
-    </Router>
+      <Router>
+        <Grid fluid>
+          {/* NOTE: Given the current folder structure you probably want to move this
+              into a component */}
+          <nav>
+            <ul>
+              <li><Link to='/'>Home</Link></li>
+              <li><Link to='/about'>About</Link></li>
+              <li><Link to='/report'>Report a Problem</Link></li>
+              <li><Link to='/questions'>Add a Question</Link></li>
+            </ul>
+          </nav>
+          <ContainerFullPage>
+            <Switch>
+              <Route exact path='/'>
+                <LandingPage />
+              </Route>
+              <Route path='/about'>
+                <AboutPage />
+              </Route>
+              <Route path='/report'>
+                <ReportPage />
+              </Route>
+              <Route path='/questions'>
+                <SparqlPage />
+              </Route>
+              <Route path='*'>
+                <NotFoundPage />
+              </Route>
+            </Switch>
+          </ContainerFullPage>
+        </Grid>
+      </Router>
   );
 }
 

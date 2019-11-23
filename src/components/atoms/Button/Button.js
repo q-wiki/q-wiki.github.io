@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './button.scss';
 
 const Button = ({children, ...props }) => (
-   <button className="btn draw-border">
+   <button className="btn draw-border" onClick={props.onClick}>
        {children}
    </button>
 );
