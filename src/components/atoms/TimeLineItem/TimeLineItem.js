@@ -8,7 +8,7 @@ import Paragraph from '../Paragraph/Paragraph'
 const TimeLineItem = ({  ...props }) => (
   <div {...props}>
     <Heading  palette="qwikiDarkBlue" type="H2">Headline</Heading>
-    <Paragraph fontWeight="bold">blubb</Paragraph>
+    <Paragraph fontWeight="bold">Testing</Paragraph>
   </div>
 );
 
