@@ -5,13 +5,30 @@ import PropTypes from 'prop-types'
 import Heading from '../Heading/Heading'
 import Paragraph from '../Paragraph/Paragraph'
 
-const TimeLineItem = ({  ...props }) => (
-  <div {...props}>
-    <div>
-    <Heading  pallete="qwikiDarkBlue" type="H2">The Task</Heading>
+import './timeLineItem.scss';
+
+const TimeLineItem = ({ headline, content, textAlign,  ...props }) => (
+
+props.alignmentRight ?
+  <div className="timeLineItem_container">
+    <div className="timeLineItem_header h_right">
+      <Heading pallete="qwikiDarkBlue" type="H2">
+        {headline}
+      </Heading>
     </div>
-    <div>
-    <Paragraph textAlign="left">The original group consisted of 6 master Students. As part of our masters program in International Media and Programming at the HTW Berlin, we were tasked to create a game in collaboration with Wikidata. During the summer semester of 2019 we worked several months to realize the project.</Paragraph>
+    <div className="timeLineItem_paragraph p_right">
+      <Paragraph textAlign="right">{content}</Paragraph>
+    </div>
+  </div>
+  :
+  <div className="timeLineItem_container">
+    <div className="timeLineItem_header h_left">
+      <Heading pallete="qwikiDarkBlue" type="H2">
+        {headline}
+      </Heading>
+    </div>
+    <div className="timeLineItem_paragraph p_left">
+      <Paragraph textAlign="left">{content}</Paragraph>
     </div>
   </div>
 );
