@@ -7,8 +7,12 @@ import Paragraph from '../Paragraph/Paragraph'
 
 const TimeLineItem = ({  ...props }) => (
   <div {...props}>
-    <Heading  palette="qwikiDarkBlue" type="H2">Headline</Heading>
-    <Paragraph fontWeight="bold">blubb</Paragraph>
+    <div>
+    <Heading  pallete="qwikiDarkBlue" type="H2">The Task</Heading>
+    </div>
+    <div>
+    <Paragraph textAlign="left">The original group consisted of 6 master Students. As part of our masters program in International Media and Programming at the HTW Berlin, we were tasked to create a game in collaboration with Wikidata. During the summer semester of 2019 we worked several months to realize the project.</Paragraph>
+    </div>
   </div>
 );
 
