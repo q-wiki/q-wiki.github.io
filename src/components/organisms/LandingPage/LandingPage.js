@@ -14,6 +14,7 @@ import Tab from '../../atoms/Tabs/Tab'
 
 
 import Card from '../../molecules/Card/Card'
+import Slideshow from '../../molecules/Slideshow/Slideshow'
 
 import {LoremIpsum} from 'react-lorem-ipsum'
 
@@ -58,6 +59,7 @@ export default function LandingPage() {
       </div>
       <br></br>
       <br></br>
+      <Slideshow/>
 
     </>
   );
