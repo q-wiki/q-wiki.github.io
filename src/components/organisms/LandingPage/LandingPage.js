@@ -10,6 +10,8 @@ import Heading from '../../atoms/Heading/Heading'
 import Paragraph from '../../atoms/Paragraph/Paragraph'
 import MainLogo from '../../atoms/MainLogo/MainLogo'
 import TimeLineItem from '../../atoms/TimeLineItem/TimeLineItem'
+import Tab from '../../atoms/Tabs/Tab'
+
 
 import Card from '../../molecules/Card/Card'
 
@@ -40,7 +42,12 @@ export default function LandingPage() {
       <MainLogo/>
       <br></br>
       <br></br>
+      <Tab/>
+      <br></br>
+      <br></br>
       <TimeLineItem/>
+      <br></br>
+      <br></br>
 
     </>
   );

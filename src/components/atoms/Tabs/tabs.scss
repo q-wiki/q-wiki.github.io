@@ -25,26 +25,3 @@
   background-color: $qwikiGreen;
   padding: 0;
 }
-
-
-//Accordion
-
-
-
-.accordionButtonTitle {
-display:inline;
-}
-
-.accordionButtonTitle span{
-float:right;
-}
-
-.accordion__button {
-  width: initial;
-  background-color: $qwikiGreen;
-  border-bottom: 1px solid $qwikiGrey;
-}
-
-.accordion__button:hover, .accordion__button:focus{
-  background-color: $qwikiGreenDarker;
-}
