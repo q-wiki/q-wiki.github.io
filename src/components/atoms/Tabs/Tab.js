@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import Tabs from 'react-responsive-tabs';
 
