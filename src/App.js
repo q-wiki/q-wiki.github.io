@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import {
   // NOTE: We use the hash router because it's easer to setup with gh-pages
   HashRouter as Router,
@@ -12,9 +13,6 @@ import {
 import { Grid } from 'react-flexbox-grid';
 import ContainerFullPage from './components/atoms/ContainerFullPage/ContainerFullPage'
 
-// NOTE: We will want to customize the standard theme later on
-// See: https://react.semantic-ui.com/theming/
-import 'semantic-ui-css/semantic.min.css'
 import './App.css';
 
 // our routes 👩‍🔧

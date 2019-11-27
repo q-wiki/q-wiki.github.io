@@ -1,8 +1,9 @@
 import React, {useState, useRef} from 'react'
 import PropTypes from 'prop-types'
 
-import {Button, Form, Input} from 'semantic-ui-react'
 import {pick, omit} from 'lodash'
+
+import Button from '../../atoms/Button/Button'
 
 /**
  * Provides a list of tags that's influenced by a delete button next to each
@@ -39,20 +40,20 @@ export default function TagList (props) {
   }
 
   return <>
-    <Form.Field>
+    <div>
       <label>{inputProps.label}</label>
-      <Input
+      <input
         disabled={tags.length >= maxTags}
         onKeyPress={handleKeyPress}
         ref={input}
         type='text' {...omit(inputProps, ['label'])} />
-    </Form.Field>
-    <Form.Group>
+    </div>
+    <div>
       {tags.map((tag, i) => <span key={`tag-elem-${i}`}>
         <Button icon='delete' labelPosition='right' content={tag.label} onClick={e => removeLabel(e, i)} />
-        <Form.Input type='hidden' name={`${props.tagName}[]`} value={tag.value} />
+        <input type='hidden' name={`${props.tagName}[]`} value={tag.value} />
       </span>)}
-    </Form.Group>
+    </div>
   </>
 }
 

@@ -1,0 +1,22 @@
+@import "../../../../src/assets/variables.scss";
+
+
+.double-underline-container{
+  display:flex;
+  flex-direction: column;
+
+  .double-underline-thick{
+    align-self: center;
+    padding-top: 6px;
+    border-bottom: 3px solid $qwikiGreen;
+    width: 85px;
+  }
+
+  .double-underline-thin{
+    align-self: center;
+    margin: 0px;
+    padding-top: 5px;
+    border-bottom: 2px solid $qwikiGreen;
+    width: 53px;
+  }
+}

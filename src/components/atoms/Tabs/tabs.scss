@@ -1,0 +1,50 @@
+@import "../../../../src/assets/variables.scss";
+
+.tab, .tab:active, .tab:focus{
+  background-color: $qwikiMiddleBlue;
+  text-align: center;
+  flex-grow: 1;
+  border-right-color: $qwikiDarkBlue;
+  border-right-width: 2px;
+  font-weight: bold;
+
+}
+
+.tab:last-child  {
+  border-right-width: 0px;
+}
+
+
+.RRT__tab--selected, .RRT__tab--selected:focus{
+    background-color: $qwikiLightBlue !important;
+    color: $white;
+}
+
+
+.panel {
+  background-color: $qwikiGreen;
+  padding: 0;
+}
+
+
+//Accordion
+
+
+
+.accordionButtonTitle {
+display:inline;
+}
+
+.accordionButtonTitle span{
+float:right;
+}
+
+.accordion__button {
+  width: initial;
+  background-color: $qwikiGreen;
+  border-bottom: 1px solid $qwikiGrey;
+}
+
+.accordion__button:hover, .accordion__button:focus{
+  background-color: $qwikiGreenDarker;
+}
