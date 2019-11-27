@@ -1,6 +1,6 @@
 import React from 'react'
 import Heading from '../../atoms/Heading/Heading'
-import SparqlEditor from '../../atoms/SparqlEditor/SparqlEditor'
+import WikidataQueryEditor from '../../molecules/WikidataQueryEditor/WikidataQueryEditor'
 
 // this is just here to show how the SparqlEditor can be used
 const exampleQuery = `
@@ -20,9 +20,10 @@ SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en" 
 export default function SparqlPage() {
   return <>
     <Heading type='H1'>The Stars are Sparqling tonight ✨</Heading>
-    <iframe src='https://giphy.com/embed/jrutBd1N7ZhsINAPzs' width='480' height='268' frameBorder='0' class='giphy-embed' allowFullScreen></iframe><p><a href='https://giphy.com/gifs/wow-amazing-jake-jrutBd1N7ZhsINAPzs'>via GIPHY</a></p>
-    <SparqlEditor>
+    <WikidataQueryEditor
+      onQueryResult={(...args) => console.log('query result', args)}
+      onQueryFailure={(...args) => console.log('query failure', args)}>
       {exampleQuery}
-    </SparqlEditor>
+    </WikidataQueryEditor>
   </>
 }
