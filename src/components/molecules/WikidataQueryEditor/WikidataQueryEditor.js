@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types';
 import Button from '../../atoms/Button/Button'
 import SparqlEditor from '../../atoms/SparqlEditor/SparqlEditor'
@@ -14,6 +14,9 @@ const wikidataQueryPrefixes = {
   wdt: 'http://www.wikidata.org/prop/direct/',
   wd: 'http://www.wikidata.org/entity/'
 }
+
+const wikidataQueryUiLink = query =>
+  `https://query.wikidata.org/#${encodeURIComponent(query)}`
 
 const WikidataQueryEditor = ({ children, onQueryResult, onQueryFailure }) => {
   // YASQE is the query editor we use under the hood; we can get an instance
@@ -32,6 +35,11 @@ const WikidataQueryEditor = ({ children, onQueryResult, onQueryFailure }) => {
     }
   }
 
+  const openQueryUi = e => {
+    e.preventDefault()
+    window.open(wikidataQueryUiLink(yasqe.current.getValue()))
+  }
+
   useEffect(() => {
     // YASQE has been succesfully set up!
     yasqe.current.addPrefixes(wikidataQueryPrefixes)
@@ -46,7 +54,7 @@ const WikidataQueryEditor = ({ children, onQueryResult, onQueryFailure }) => {
         bigger form. */}
     <Button onClick={_ => yasqe.current.query()}>Submit</Button>
     {' or '}
-    <a href="#">try this query on query.wikidata.org</a>
+    <a href='#' onClick={openQueryUi}>try this query on query.wikidata.org</a>
   </>
 }
 
