@@ -12,19 +12,25 @@ import MainLogo from '../../atoms/MainLogo/MainLogo'
 import TimeLineItem from '../../atoms/TimeLineItem/TimeLineItem'
 import Tab from '../../atoms/Tabs/Tab'
 
-
 import Card from '../../molecules/Card/Card'
+import CardMember from '../../molecules/CardMember/CardMember'
 import Slideshow from '../../molecules/Slideshow/Slideshow'
-import MultiCarousel from '../../molecules/MultiCarousel/MultiCarousel'
 
 import {LoremIpsum} from 'react-lorem-ipsum'
 
-
+const images = [
+  '../../../../src/assets/images/member-1.png',
+  '../../../../src/assets/images/member-2.png',
+  '../../../../src/assets/images/member-3.png',
+  '../../../../src/assets/images/member-4.png',
+  '../../../../src/assets/images/member-5.png',
+  '../../../../src/assets/images/member-6.png',
+];
 
 export default function LandingPage() {
   return (
     <>
-      <MultiCarousel/>
+      <CardMember link="https://github.com/AntoniaBe" backgroundImage={images[5]} headline={'Antonia Berger'} content={'Frontend Developer'}/>
       <br></br>
       <br></br>
       <LoremIpsum/>
