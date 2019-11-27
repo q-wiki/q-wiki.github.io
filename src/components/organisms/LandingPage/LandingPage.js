@@ -15,6 +15,7 @@ import Tab from '../../atoms/Tabs/Tab'
 
 import Card from '../../molecules/Card/Card'
 import Slideshow from '../../molecules/Slideshow/Slideshow'
+import MultiCarousel from '../../molecules/MultiCarousel/MultiCarousel'
 
 import {LoremIpsum} from 'react-lorem-ipsum'
 
@@ -23,6 +24,9 @@ import {LoremIpsum} from 'react-lorem-ipsum'
 export default function LandingPage() {
   return (
     <>
+      <MultiCarousel/>
+      <br></br>
+      <br></br>
       <LoremIpsum/>
       <br></br>
       <br></br>
