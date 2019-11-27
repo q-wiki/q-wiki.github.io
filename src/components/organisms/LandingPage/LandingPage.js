@@ -47,7 +47,7 @@ export default function LandingPage() {
       <br></br>
       <br></br>
       <br></br>
-      <Card headline={'Ich bin eine Headline'} content={'Hello my name is Antonia'} icon="documents"/>
+      <Card routingLink="/report" headline={'Ich bin eine Headline'} content={'Hello my name is Antonia'} icon="documents"/>
       <br></br>
       <br></br>
       <MainLogo/>
