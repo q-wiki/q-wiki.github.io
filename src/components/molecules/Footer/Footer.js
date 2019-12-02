@@ -15,10 +15,10 @@ const Footer = () => (
       Copyrights @ 2020 Wikidata
     </Heading>
     <div>
-      <a href="/" target="_blank"><Paragraph pallete="white">Privacy Policy</Paragraph></a>
-      <a href="/" target="_blank"><Paragraph pallete="white">Site Map</Paragraph></a>
-      <a href="/" target="_blank"><Paragraph pallete="white">Contact</Paragraph></a>
-      <a href="/" target="_blank"><Paragraph pallete="white">Terms of Use</Paragraph></a>
+      <Paragraph pallete="white"><a href="/" target="_blank">Privacy Policy</a></Paragraph>
+      <Paragraph pallete="white"><a href="/" target="_blank">Site Map</a></Paragraph>
+      <Paragraph pallete="white"><a href="/" target="_blank">Contact</a></Paragraph>
+      <Paragraph pallete="white"><a href="/" target="_blank">Terms of Use</a></Paragraph>
     </div>
     </Row>
   </Container75>
