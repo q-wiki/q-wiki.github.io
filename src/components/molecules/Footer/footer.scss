@@ -1,0 +1,18 @@
+@import "../../../../src/assets/variables.scss";
+
+.footer-container{
+  padding: 32px;
+  background-color:$qwikiDarkBlue;
+
+  p {
+    padding: 8px;
+  }
+
+  a {
+        text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}

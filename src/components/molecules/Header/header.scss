@@ -1,0 +1,21 @@
+@import "../../../../src/assets/variables.scss";
+
+.header-container{
+
+
+
+  .header-first{
+    padding: 15px;
+    background-color:$qwikiGreen;
+
+    .content-left, .content-right {
+      display: flex;
+      flex-direction: row;
+
+    p {
+        margin-left: 5px;
+      }
+
+    }
+  }
+}
