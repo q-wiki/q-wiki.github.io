@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   }
 `;
 const CardMember = ({ headline, link, content, backgroundImage, ...props }) => (
-  <a href={link} target="_blank">
+  <a className="link" href={link} target="_blank">
     <Wrapper
       className="cardMember_container"
       {...{ backgroundImage }}

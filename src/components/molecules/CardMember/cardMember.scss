@@ -1,5 +1,9 @@
 @import "../../../../src/assets/variables.scss";
 
+
+.link {
+  text-decoration: none;
+}
 .cardMember_container {
   background-repeat: no-repeat;
   background-position: center center;
@@ -10,7 +14,9 @@
   flex-direction: column;
   justify-content: flex-end;
 
-
+  .double-underline-container{
+    margin-top: -3px;
+  }
 
 
   .cardMember_container_content {
