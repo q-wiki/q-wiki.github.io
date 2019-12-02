@@ -11,6 +11,7 @@ import Paragraph from '../../atoms/Paragraph/Paragraph'
 import MainLogo from '../../atoms/MainLogo/MainLogo'
 import TimeLineItem from '../../atoms/TimeLineItem/TimeLineItem'
 import Tab from '../../atoms/Tabs/Tab'
+import MenuItem from  '../../atoms/MenuItem/MenuItem'
 
 import Card from '../../molecules/Card/Card'
 import CardMember from '../../molecules/CardMember/CardMember'
@@ -31,7 +32,8 @@ export default function LandingPage() {
   return (
     <>
       <CardMember link="https://github.com/AntoniaBe" backgroundImage={images[5]} headline={'Antonia Berger'} content={'Frontend Developer'}/>
-      <br></br>
+      <MenuItem linkTitle="Home" link="/" />
+    <br></br>
       <br></br>
       <LoremIpsum/>
       <br></br>
