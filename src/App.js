@@ -12,6 +12,7 @@ import {
 
 import { Grid } from 'react-flexbox-grid';
 import ContainerFullPage from './components/atoms/ContainerFullPage/ContainerFullPage'
+import Menu from './components/molecules/Menu/Menu'
 
 import './App.css';
 
@@ -31,14 +32,7 @@ function App() {
       <Grid fluid>
         {/* NOTE: Given the current folder structure you probably want to move this
             into a component */}
-        <nav>
-          <ul>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to='/about'>About</Link></li>
-            <li><Link to='/report'>Report a Problem</Link></li>
-            <li><Link to='/questions'>Add a Question</Link></li>
-          </ul>
-        </nav>
+            <Menu/>
         <ContainerFullPage>
           <Switch>
             <Route exact path='/'>
@@ -50,7 +44,7 @@ function App() {
             <Route path='/report'>
               <ReportPage />
             </Route>
-            <Route path='/questions'>
+            <Route path='/contribute'>
               <SparqlPage />
             </Route>
             <Route path='*'>
