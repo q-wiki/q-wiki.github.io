@@ -25,10 +25,12 @@ const Header = () => (
       </Container75>
     </div>
       <Container75>
-    <Row center="xs">
+        <div className="header-last">
+    <Row between="xs">
     <MainLogo/>
     <Menu/>
     </Row>
+  </div>
       </Container75>
   </div>
 

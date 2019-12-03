@@ -1,9 +1,6 @@
 @import "../../../../src/assets/variables.scss";
 
 .header-container{
-
-
-
   .header-first{
     padding: 15px;
     background-color:$qwikiGreen;
@@ -18,4 +15,13 @@
 
     }
   }
+}
+
+@media only screen and (max-width: 1195px) {
+.header-last{
+  .between-xs  {
+    justify-content: center;
+  }
+}
+
 }

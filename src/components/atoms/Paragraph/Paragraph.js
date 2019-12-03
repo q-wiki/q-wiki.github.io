@@ -31,7 +31,8 @@ Paragraph.propTypes = {
 textAlign:PropTypes.oneOf([
   'left',
   'center',
-  'right'
+  'right',
+  'justify'
 ]),
 children: PropTypes.node,
 height: PropTypes.number,
