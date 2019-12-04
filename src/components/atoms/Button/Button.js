@@ -6,7 +6,7 @@ import Icon from '../Icon/Icon'
 import './button.scss';
 
 const Button = ({children, ...props }) => (
-   <button className={`btn draw-border ${props.icon != null ? 'has-icon' : ''}`} onClick={props.onClick}>
+   <button className={`btn draw-border ${props.icon != null ? 'has-icon' : ''} ${props.small ? 'is-small' : ''}`} onClick={props.onClick}>
      {children}
      {/* You can configure an optional item; everything in props.icon will just be passed further down */}
      {props.icon != null &&
