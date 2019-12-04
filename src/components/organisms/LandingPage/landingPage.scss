@@ -1,18 +1,8 @@
 @import "../../../../src/assets/variables.scss";
 
-.landingpage_cards-container {
+.landingpage_cards {
       margin: 40px 0px 40px 0px;
       padding: 10px;
-}
-
-@media only screen and (min-width: 768px) {
-  .landingpage_cards-container {
-        //margin: 40px;
-  }
-}
-
-.qwiki_info-container{
-  flex-wrap: wrap;
 }
 
 .qwiki_info-img-container, .qwiki_info-text-container {
@@ -20,12 +10,23 @@ flex:  1 ;
 }
 
 .qwiki_info-text-container_content{
-  padding: 30px;
-  width: 62%;
+  padding-left: 35px;
+  padding-right: 35px;
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.empty-space {
+  height: 10px;
+  width:100%; clear:both;
 }
 
 .qwiki_info-heading{
   display: flex;
+  padding-top: 10px;
 
   div:nth-child(2){
     h2 {
@@ -33,6 +34,57 @@ flex:  1 ;
       background-image:linear-gradient($qwikiOrange,$qwikiLightBlue);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      position: relative;
+      bottom: 15px;
+      left: 3px;
     }
   }
+}
+
+.download-qrCode {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 33px;
+
+  p {
+    margin-top: 33px;
+    padding-right: 19px;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .col-md-8 {
+flex-basis: 100% !important;
+max-width: 100% !important;
+width: 100% !important;
+  }
+
+  .qwiki_info-text-container_content{
+    width: auto;
+}
+}
+
+@media only screen and (max-width: 872px) {
+
+  .landingpage_cards-container {
+
+    .between-xs{
+      justify-content: center;
+    }
+  }
+
+}
+
+@media only screen and (max-width: 662px) {
+.qwiki_info-container {
+  .qwiki_info-heading {
+    padding-top: 20px;
+  }
+  .row {
+      flex-direction: column;
+  }
+
+}
+
 }

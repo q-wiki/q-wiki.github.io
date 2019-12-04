@@ -41,36 +41,39 @@ export default function LandingPage() {
     <>
       <Slideshow/>
       <Container75>
-      <Row between="xs">
       <div className="landingpage_cards-container">
+      <Row between="xs">
+      <div className="landingpage_cards">
       <Card isLinkExtern link={firstCardsDataLandingPageElement.link} headline={firstCardsDataLandingPageElement.heading} content={firstCardsDataLandingPageElement.text} icon={firstCardsDataLandingPageElement.icon}/>
       </div>
       {
         cardsDataLandingPage.map((cardsData, index) =>
-        <div key={index} className="landingpage_cards-container">
+        <div key={index} className="landingpage_cards">
         <Card  routingLink={cardsData.link} headline={cardsData.heading} content={cardsData.text} icon={cardsData.icon}/>
         </div>
       )}
       </Row>
+        </div>
       </Container75>
-      <Row >
-
+      <div className="qwiki_info-container">
+      <Row>
         <Image className="qwiki_info-img-container" backgroundSrc={qWikiInfo[0].screenshotSrc}/>
         <div className="qwiki_info-text-container">
-            <div className="qwiki_info-text-container_content">
+          <div className="qwiki_info-text-container_content">
           <div className="qwiki_info-heading">
               <Heading  pallete="qwikiLightBlue" type="H1">{qWikiInfo[0].heading1}</Heading>
               <Heading  className="qwiki" type="H1">{qWikiInfo[0].heading2}</Heading>
           </div>
-          <div>
               <Paragraph textAlign="justify">{qWikiInfo[0].text}</Paragraph>
+            <div className="empty-space"></div>
+            <div className="download-qrCode">
+            <Paragraph textAlign="justify">{qWikiInfo[0].downloadText}</Paragraph>
+          <Image className="qwiki_info-qrCode-img" width={200} backgroundSrc={qWikiInfo[0].qrCode}/>
           </div>
-          <div>
-            {qWikiInfo[0].downloadText}
           </div>
-          </div>
-          </div>
+        </div>
       </Row>
+      </div>
 
       <CardMember link="https://github.com/AntoniaBe" backgroundImage={images[5]} headline={'Antonia Berger'} content={'Frontend Developer'}/>
 

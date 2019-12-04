@@ -32,8 +32,6 @@ function App() {
   return (
     <Router>
       <Grid fluid>
-        {/* NOTE: Given the current folder structure you probably want to move this
-            into a component */}
         <ContainerFullPage>
             <Header/>
           <Switch>
