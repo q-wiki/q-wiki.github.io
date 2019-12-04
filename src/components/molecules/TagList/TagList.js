@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 
 import {pick, omit} from 'lodash'
 
+import TextField from '../../atoms/TextField/TextField'
 import Button from '../../atoms/Button/Button'
 
 /**
@@ -42,11 +43,10 @@ export default function TagList (props) {
   return <>
     <div>
       <label>{inputProps.label}</label>
-      <input
+      <TextField
         disabled={tags.length >= maxTags}
         onKeyPress={handleKeyPress}
-        ref={input}
-        type='text' {...omit(inputProps, ['label'])} />
+        {...omit(inputProps, ['label'])} />
     </div>
     <div>
       {tags.map((tag, i) => <span key={`tag-elem-${i}`}>

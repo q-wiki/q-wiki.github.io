@@ -1,8 +1,12 @@
 import React, { useState } from 'react'
+import {Col, Row} from 'react-flexbox-grid'
 
 import Button from '../../atoms/Button/Button'
+import Dropdown from '../../atoms/Dropdown/Dropdown'
 import Heading from '../../atoms/Heading/Heading'
 import Paragraph from '../../atoms/Paragraph/Paragraph'
+import TextArea from '../../atoms/TextArea/TextArea'
+import TextField from '../../atoms/TextField/TextField'
 
 import TagList from '../../molecules/TagList/TagList'
 
@@ -34,7 +38,7 @@ function Report () {
   const [problem, setProblem] = useState('')
 
   return <form onSubmit={form => console.log('form submitted with data', form)}>
-    <select
+    <Dropdown
       label='Minigame type *'
       placeholder='Minigame type'
       options={[
@@ -42,7 +46,7 @@ function Report () {
         {key: 'multipleChoice', value: 'multipleChoice', text: 'Multiple Choice'},
       ]}
       onChange={(_, {value}) => setMinigameType(value)} />
-    <select
+    <Dropdown
       disabled={minigameType === ''}
       label={`What's wrong? *`}
       placeholder={`What's wrong?`}
@@ -50,11 +54,11 @@ function Report () {
       onChange={(_, {value}) => setProblem(value)} />
     {problem === 'other' &&
       <div>
-        <textarea label='Specify problem *' placeholder='Specify problem' />
+        <TextArea label='Specify problem *' placeholder='Specify problem' />
       </div>}
-    <input label='Minigame task*' placeholder='A description of the question / task given in the minigame' />
+    <TextField label='Minigame task*' placeholder='A description of the question / task given in the minigame' />
     <TagList label='Given options *' placeholder='Add an option by pressing enter' tagName='answerOptions' />
-    <textarea label='Additional comments' placeholder='Anything else you want to add?' />
+    <TextArea label='Additional comments' placeholder='Anything else you want to add?' />
     <Paragraph>Required fields are marked with *</Paragraph>
     <Button>Submit</Button>
   </form>

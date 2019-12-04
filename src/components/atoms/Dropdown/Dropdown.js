@@ -8,7 +8,7 @@ const Dropdown = ({ ...props }) => (
         <select required className="effect-20" defaultValue="default">
             <option key="1000" value="default"/>
             {props.options.map((item, i) =>
-                <option key={i} value={i}>{item}</option>
+                <option key={item.key || i} value={item.value || item.text}>{item.text}</option>
             )}
         </select>
         <label>{props.placeholder}</label>
