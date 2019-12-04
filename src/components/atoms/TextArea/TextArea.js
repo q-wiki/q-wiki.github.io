@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import TextField from '../TextField/TextField';
 
 import './textArea.scss';
 
-const TextArea = ({ ...props }) => (
+const TextArea = props => (
     <div className="textarea input-effect">
         <textarea className="effect-20" placeholder="">
+        {props.children}
         </textarea>
         <label>{props.placeholder}</label>
         <span className="focus-border">
@@ -18,10 +18,11 @@ const TextArea = ({ ...props }) => (
 
 TextArea.propTypes = {
     placeholder: PropTypes.string,
+    onChange: PropTypes.func,
+    onKeyPress: PropTypes.func
 };
 
 TextArea.defaultProps = {
-
 };
 
 export default TextArea;
