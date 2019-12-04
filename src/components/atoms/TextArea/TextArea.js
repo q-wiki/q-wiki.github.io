@@ -18,10 +18,11 @@ const TextArea = props => (
 
 TextArea.propTypes = {
     placeholder: PropTypes.string,
+    onChange: PropTypes.func,
+    onKeyPress: PropTypes.func
 };
 
 TextArea.defaultProps = {
-
 };
 
 export default TextArea;

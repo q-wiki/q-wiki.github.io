@@ -5,8 +5,8 @@ import './dropdown.scss';
 
 const Dropdown = ({ ...props }) => (
     <div className="dropdown input-effect">
-        <select required className="effect-20" defaultValue="default">
-            <option key="1000" value="default"/>
+        <select required className="effect-20" defaultValue='' onChange={props.onChange}>
+            <option key="1000" value=''/>
             {props.options.map((item, i) =>
                 <option key={item.key || i} value={item.value || item.text}>{item.text}</option>
             )}
@@ -20,11 +20,12 @@ const Dropdown = ({ ...props }) => (
 
 Dropdown.propTypes = {
     placeholder: PropTypes.string,
+    onChange: PropTypes.func,
     options: PropTypes.array,
 };
 
 Dropdown.defaultProps = {
-
+    onChange: Function.prototype
 };
 
 export default Dropdown;

@@ -23,14 +23,12 @@ const TextField = ({children, ...props }) => (
 TextField.propTypes = {
     placeholder: PropTypes.string,
     children: PropTypes.node,
-    onChange: PropTypes.function,
-    onKeyPress: PropTypes.function,
+    onChange: PropTypes.func,
+    onKeyPress: PropTypes.func,
     value: PropTypes.string,
 };
 
 TextField.defaultProps = {
-  onChange: Function.prototype,
-  onKeyPress: Function.prototype
 };
 
 export default TextField;
