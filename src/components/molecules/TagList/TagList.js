@@ -20,11 +20,11 @@ export default function TagList (props) {
 
   // clear input and add a tag when pressing enter
   const handleKeyPress = (e) => {
-    const inputRef = input.current.inputRef.current
-    if (e.key === 'Enter' && tags.length < maxTags && inputRef.value !== '') {
-      setTags(tags.concat([{ label: inputRef.value, value: inputRef.value }]))
-      inputRef.value = ''
+    if (e.key === 'Enter' && tags.length < maxTags && input.current.value !== '') {
+      setTags(tags.concat([{ label: input.current.value, value: input.current.value }]))
+      input.current.value = ''
       e.stopPropagation()
+      e.preventDefault()
     }
   }
 
@@ -42,15 +42,17 @@ export default function TagList (props) {
 
   return <>
     <div>
-      <label>{inputProps.label}</label>
       <TextField
         disabled={tags.length >= maxTags}
+        ref={input}
         onKeyPress={handleKeyPress}
         {...omit(inputProps, ['label'])} />
     </div>
     <div>
       {tags.map((tag, i) => <span key={`tag-elem-${i}`}>
-        <Button icon='delete' labelPosition='right' content={tag.label} onClick={e => removeLabel(e, i)} />
+        <Button icon={{ icon: 'delete' }} onClick={e => removeLabel(e, i)}>
+          {tag.label}
+        </Button>
         <input type='hidden' name={`${props.tagName}[]`} value={tag.value} />
       </span>)}
     </div>
