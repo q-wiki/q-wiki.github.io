@@ -75,6 +75,15 @@
   font: 700 1.2rem 'Roboto Slab', sans-serif;
   padding: 1em 2em;
   letter-spacing: 0.05rem;
+
+  &.is-small {
+    padding: 0.6em 0.9em;
+    font-weight: 500;
+    font-size: 1rem;
+  }
+
+  &.has-icon span {
+    // this centers the icon vertically
+    vertical-align: -15%;
+  }
 }
-
-
