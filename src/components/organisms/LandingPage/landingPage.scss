@@ -71,6 +71,35 @@ flex:  1 ;
 
 }
 
+.activities-container, .wikidata-container {
+  flex: 1;
+  padding-top: 30px;
+}
+
+.activities-container{
+  padding-right: 30px;
+}
+
+.wikidata-container {
+
+    padding-left: 30px;
+
+}
+.iFrame-container{
+  overflow: hidden;
+   margin-top: 15px;
+
+  .iFrame-content {
+    height: 650px;
+    width: 100%;
+  }
+
+  iframe {
+    overflow:hidden;
+  }
+}
+
+
 @media only screen and (max-width: 508px) {
 .numberDisplay {
   height: auto;

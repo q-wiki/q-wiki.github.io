@@ -22,6 +22,7 @@ import NumberDisplay from '../../molecules/NumberDisplay/NumberDisplay'
 import { cardsDataLandingPage, qWikiInfo, numberDisplay } from '../../../../src/constants/constants'
 
 import { Row, Col } from 'react-flexbox-grid';
+import Iframe from 'react-iframe'
 
 const images = [
   '../../../../src/assets/images/member-1.png',
@@ -85,10 +86,25 @@ export default function LandingPage() {
       </Row>
     </Container75>
     </div>
+    <Row>
+      <div className="activities-container">
+        <Tab/>
+      </div>
+      <div className="wikidata-container">
+        <Heading  pallete="qwikiLightBlue" type="H1">Wikidata Entry of the Day</Heading>
+        <div className="iFrame-container">
+        <Iframe url="https://www.wikidata.org/wiki/Special:Random"
+        className="iFrame-content"
+        frameBorder="0"
+        display="initial"
+        position="relative"/>
+      </div>
+      </div>
+    </Row>
 
       <CardMember link="https://github.com/AntoniaBe" backgroundImage={images[5]} headline={'Antonia Berger'} content={'Frontend Developer'}/>
 
-<Tab/>
+
 
 <div>
 <TimeLineItem
