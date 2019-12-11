@@ -24,6 +24,27 @@ export const cardsDataLandingPage= [
 ]
 
 
+export const numberDisplay= [
+  { icon:"question",
+    heading1:"30000000000",
+    heading2:"Questions",
+  },
+  { icon:"categories",
+    heading1:"7",
+    heading2:"Categories",
+  } ,
+{ icon:"matches",
+  heading1:"30000",
+  heading2:"Matches",
+} ,
+{ icon:"contributions",
+  heading1:"750",
+  heading2:"Contributions",
+} ,
+]
+
+
+
 export const qWikiInfo= [
   {
     heading1: "We are ",

@@ -17,8 +17,9 @@ import Image from  '../../atoms/Image/Image'
 import Card from '../../molecules/Card/Card'
 import CardMember from '../../molecules/CardMember/CardMember'
 import Slideshow from '../../molecules/Slideshow/Slideshow'
+import NumberDisplay from '../../molecules/NumberDisplay/NumberDisplay'
 
-import { cardsDataLandingPage, qWikiInfo } from '../../../../src/constants/constants'
+import { cardsDataLandingPage, qWikiInfo, numberDisplay } from '../../../../src/constants/constants'
 
 import { Row, Col } from 'react-flexbox-grid';
 
@@ -74,6 +75,16 @@ export default function LandingPage() {
         </div>
       </Row>
       </div>
+      <div className="numberDisplay">
+      <Container75>
+      <Row between="xs">
+        {
+          numberDisplay.map((numberDisplayData, index) =>
+            <NumberDisplay key={index} icon={numberDisplayData.icon} headline1={numberDisplayData.heading1} headline2={numberDisplayData.heading2}/>
+        )}
+      </Row>
+    </Container75>
+    </div>
 
       <CardMember link="https://github.com/AntoniaBe" backgroundImage={images[5]} headline={'Antonia Berger'} content={'Frontend Developer'}/>
 

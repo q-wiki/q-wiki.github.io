@@ -53,6 +53,26 @@ flex:  1 ;
   }
 }
 
+.numberDisplay {
+  height: 10%;
+  background: linear-gradient(to bottom, rgba(3, 93 ,93, 0.75), rgba(3, 93 ,93, 0.75)), url("../../../../src/assets/images/slide-1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .row {
+    height: 100% !important;
+    align-items: center;
+  }
+
+}
+
+@media only screen and (max-width: 508px) {
+.numberDisplay {
+  height: auto;
+}
+}
+
 @media only screen and (max-width: 1300px) {
   .col-md-8 {
 flex-basis: 100% !important;
@@ -67,7 +87,8 @@ width: 100% !important;
 
 @media only screen and (max-width: 872px) {
 
-  .landingpage_cards-container {
+
+  .landingpage_cards-container, .numberDisplay  {
 
     .between-xs{
       justify-content: center;
