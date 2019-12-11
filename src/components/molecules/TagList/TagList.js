@@ -50,7 +50,7 @@ export default function TagList (props) {
     </div>
     <div>
       {tags.map((tag, i) => <span key={`tag-elem-${i}`}>
-        <Button icon={{ icon: 'delete' }} onClick={e => removeLabel(e, i)}>
+        <Button small icon={{ icon: 'delete', pallete: 'qwikiOrange' }} onClick={e => removeLabel(e, i)}>
           {tag.label}
         </Button>
         <input type='hidden' name={`${props.tagName}[]`} value={tag.value} />
