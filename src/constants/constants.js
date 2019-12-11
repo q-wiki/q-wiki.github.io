@@ -1,22 +1,22 @@
 
 
 export const cardsDataLandingPage= [
-  { icon:"doucments",
+  { icon:"wikidata-logo",
     heading: "About\nWikidata",
     link:"https://www.wikidata.org/",
     text: "Learn more about Wikidata, millions of data sets and people behind it"
   },
-  { icon:"doucments",
+  { icon:"team",
     heading: "About\nUs",
     link:"/about",
     text: "Learn more about the project and the students working on it"
   } ,
-{ icon:"doucments",
+{ icon:"report-problem",
   heading:"Report\nProblems",
   link:"/report",
   text: "Found any wrong or broken questions? We can fix them"
 } ,
-{ icon:"doucments",
+{ icon:"sparql-community",
   heading: "SPARQL\nCommunity",
   link:"/contribute",
   text: "Help create new queries and millions of possible questions"

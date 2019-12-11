@@ -17,7 +17,7 @@ const Card = ({ headline, content, icon, isLinkExtern, link, routingLink,  ...pr
   isLinkExtern ?
   <a href={link} target="_blank">
   <div className="card-container" {...props}>
-    <Icon  icon={"documents"}  height={92}/>
+    <Icon  icon={icon}  height={92}/>
     <Heading  type="H2" underlined={true} twoLined>{headline}</Heading>
     <Paragraph fontWeight="bold">{content}</Paragraph>
   </div>
@@ -25,7 +25,7 @@ const Card = ({ headline, content, icon, isLinkExtern, link, routingLink,  ...pr
  :
  <Link to={routingLink}>
  <div className="card-container" {...props}>
-   <Icon  icon={"documents"}  height={92}/>
+   <Icon  icon={icon}  height={92}/>
    <Heading  type="H2" underlined={true} twoLined>{headline}</Heading>
    <Paragraph fontWeight="bold">{content}</Paragraph>
  </div>
