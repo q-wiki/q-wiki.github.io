@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
+import Loadable from 'react-loadable'
 import Heading from '../../atoms/Heading/Heading'
-import WikidataQueryEditor from '../../molecules/WikidataQueryEditor/WikidataQueryEditor'
 
 // this is just here to show how the SparqlEditor can be used
 const exampleQuery = `
@@ -17,9 +17,20 @@ SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en" 
 }
 `
 
+// TODO: This could probably be a nice molecule
+function LoadingComponent ({ loadingText='Loading… 📂' }) {
+  return <>
+    <p>{loadingText}</p>
+  </>
+}
+
+const WikidataQueryEditor = Loadable({
+  loader: () => import(/* webpackChunkName: "queryEditor" */ '../../molecules/WikidataQueryEditor/WikidataQueryEditor'),
+  loading: LoadingComponent 
+})
+
 export default function SparqlPage() {
   const [response, setResponse] = useState(null)
-
   return <>
     <Heading type='H1'>The Stars are Sparqling tonight ✨</Heading>
     <WikidataQueryEditor
