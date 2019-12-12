@@ -1,0 +1,23 @@
+# See:
+# - https://github.com/Ryan-Gordon/Create-React-App-Travis/blob/a0a11ba445202b0aaacb3cbda2179b0ab5650568/.travis.yml
+# - https://docs.travis-ci.com/user/deployment/pages/
+# - https://docs.npmjs.com/cli/ci
+
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+  - "$HOME/.npm"
+scripts:
+  - npm ci
+  - npm run build
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $TRAVIS_GH_PAGES # This is set as a repo secret
+  keep_history: true
+  local_dir: dist
+  on:
+    branch: develop
+  target_branch: master
