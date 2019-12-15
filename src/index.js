@@ -5,14 +5,15 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'mobx-react'
-import dataStore from './stores/dataStore'
+import DataStore from './stores/DataStore'
+import MinigameStore from './stores/MinigameStore'
 
-const stores = {
-	dataStore
-}
+
+const dStore = new DataStore();
+const mStore = new MinigameStore();
 
 ReactDOM.render(
-  <Provider {...stores}>
+  <Provider dataStore={dStore} minigameStore={mStore}>
     <App />
   </Provider>,
   document.getElementById('root'));

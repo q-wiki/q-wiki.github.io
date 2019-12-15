@@ -1,0 +1,42 @@
+@import "../../../../src/assets/variables.scss";
+.minigame_container{
+  background-image: linear-gradient(0deg, rgba(2, 64, 64, 0.7), rgba(2, 64, 64, 0.7)), url("../../../../src/assets/images/background.jpg");
+  background-size: cover;
+  position: relative;
+  text-align: center;
+  width: 40rem;
+  height: 25rem;
+  display: flex;
+  align-items: center;
+
+  .minigame_content{
+    width: 100%;
+
+    .minigame_question{
+      background-color: white;
+      padding: 0.4rem;
+    }
+
+    .container_option{
+      padding:0;
+      padding-bottom: 0.2rem;
+    }
+
+    .minigame_question{
+      padding: 0.5rem;
+      margin-bottom: 0.6rem;
+    }
+    .sorting_number{
+      padding: 2px;
+      p {
+        background-color: $white;
+        text-align: center;
+        font-size: 18px;
+        width: 26px;
+        height: 26px;
+        border-radius: 100px;
+        border: 1px solid $black;
+      }
+    }
+  }
+}

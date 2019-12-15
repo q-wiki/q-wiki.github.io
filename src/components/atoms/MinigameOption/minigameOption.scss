@@ -1,0 +1,39 @@
+@import "../../../../src/assets/variables.scss";
+
+.minigame_option{
+  position: relative;
+  background-color:white;
+  padding: 5px;
+  text-align: left;
+  &:hover{
+    &.option_inactive{
+      -moz-transition:background-color .2s ease-in;
+      -o-transition:background-color .2s ease-in;
+      -webkit-transition:background-color .2s ease-in;
+      transition:background-color .2s ease-in;
+      background-color:$qwikiGrey;
+    }
+    &.option_active{
+      -moz-transition:background-color .2s ease-in;
+      -o-transition:background-color .2s ease-in;
+      -webkit-transition:background-color .2s ease-in;
+      transition:background-color .2s ease-in;
+      background-color:$qwikiMiddleBlue;
+    }
+  }
+  &:active{
+    -o-box-shadow: 2px 2px 5px $qwikiLightBlue;
+    -webkit-box-shadow: 2px 2px 5px $qwikiLightBlue;
+    -moz-box-shadow: 2px 2px 5px $qwikiLightBlue;
+    shadow: 2px 2px 5px $qwikiLightBlue;
+  }
+  &.option_active{
+    background-color: $qwikiLightBlue;
+    &.result_false{
+      background-color: green;
+    }
+    &.result_true{
+      background-color: red;
+    }
+  }
+}

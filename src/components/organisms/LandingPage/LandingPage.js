@@ -1,21 +1,12 @@
 import React from 'react';
+import Icon from '../../atoms/Icon/Icon'
+import Button from '../../atoms/Button/Button'
+import { inject, observer } from 'mobx-react'
+import Minigame from '../../molecules/Minigame/Minigame'
 import './landingPage.scss';
 
-import Container75 from '../../atoms/Container75/Container75'
-import ContainerFullPage from '../../atoms/ContainerFullPage/ContainerFullPage'
-import ContainerHalfPage from '../../atoms/ContainerHalfPage/ContainerHalfPage'
-
-import Icon from '../../atoms/Icon/Icon'
-import Heading from '../../atoms/Heading/Heading'
-import Paragraph from '../../atoms/Paragraph/Paragraph'
-import Button from '../../atoms/Button/Button'
-
-import Card from '../../molecules/Card/Card'
-
-import {LoremIpsum} from 'react-lorem-ipsum'
-import { inject, observer } from 'mobx-react'
-
 @inject('dataStore')
+@inject('minigameStore')
 @observer
 export default class LandingPage extends React.Component{
   onClick(){
@@ -26,23 +17,30 @@ export default class LandingPage extends React.Component{
         dataStore.icon = "add";
     }
   }
+    onClickMore(){
+        const minigameStore = this.props.minigameStore;
+        minigameStore.minigames[0].minigameType = "New";
+    }
 
   render() {
     const dataStore = this.props.dataStore;
+    const minigameStore = this.props.minigameStore;
     return (
         <>
-          <br/>  <br/>
-          The DataStore value for "icon" is "{dataStore.icon}"
-          <br/>  <br/>
-          The resulting icon is:
-          <br/>  <br/>
-          <Icon icon={dataStore.icon} width={90} height={90}/>
-          <br/>  <br/>
-          Now lets change the value in the store, click the button!
-          <br/>  <br/>
-          <Button onClick={this.onClick.bind(this)}>Change dataStore value of "icon" to a different value</Button>
-          <br/>  <br/>
-          The icon above as well as the text should have changed
+            <br/>  <br/>
+            The DataStore value for "icon" is "{dataStore.icon}"
+            <br/>  <br/>
+            The resulting icon is:
+            <br/>  <br/>
+            <Icon icon={dataStore.icon} width={90} height={90}/>
+            <br/>  <br/>
+            Now lets change the value in the store, click the button!
+            <br/>  <br/>
+            <Button onClick={this.onClick.bind(this)}>Change dataStore value of "icon" to a different value</Button>
+            <br/>  <br/>
+            The icon above as well as the text should have changed
+            <br/>  <br/>
+            <Minigame minigameData={minigameStore.minigames[2]}/>
         </>
       );
   }
