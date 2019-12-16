@@ -5,7 +5,7 @@ import './textField.scss';
 
 const TextField = React.forwardRef(({children, ...props }, ref) => (
   <div className="textfieldWrapper textfield input-effect">
-    <input className="effect-20" type="text" ref={ref} onChange={props.onChange} onKeyPress={props.onKeyPress} />
+    <input name={props.name} className="effect-20" type="text" ref={ref} onKeyPress={props.onKeyPress} />
     <label>{props.placeholder}</label>
     <span className="focus-border">
     <i/>

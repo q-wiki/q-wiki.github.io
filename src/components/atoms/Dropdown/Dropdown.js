@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import './dropdown.scss';
 
-const Dropdown = ({ ...props }) => (
+const Dropdown = React.forwardRef((props, ref) => (
     <div className="dropdown input-effect">
-        <select required className="effect-20" defaultValue='' onChange={props.onChange}>
+        <select name={props.name} ref={ref} required className="effect-20" defaultValue=''>
             <option key="1000" value=''/>
             {props.options.map((item, i) =>
                 <option key={item.key || i} value={item.value || item.text}>{item.text}</option>
@@ -16,7 +16,7 @@ const Dropdown = ({ ...props }) => (
            <i/>
         </span>
     </div>
-);
+))
 
 Dropdown.propTypes = {
     placeholder: PropTypes.string,

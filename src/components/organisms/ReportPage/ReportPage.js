@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import useForm from 'react-hook-form'
 import {Col, Row} from 'react-flexbox-grid'
 
 import Button from '../../atoms/Button/Button'
@@ -35,42 +36,54 @@ function problemOptions (minigameType) {
 
 // TODO: Simulate a pre-filled form
 function Report () {
-  const [minigameType, setMinigameType] = useState('')
-  const [problem, setProblem] = useState('')
+  const {register, handleSubmit} = useForm()
 
-  return <form onSubmit={form => console.log('form submitted with data', form)}>
+  return <form onSubmit={handleSubmit(form => console.log('form submitted with data', form))}>
     <Row>
       <Col xs>
         <Dropdown
+          name='minigameType'
           placeholder='Minigame type *'
           options={[
             {key: 'sorting', value: 'sorting', text: 'Sorting'},
             {key: 'multipleChoice', value: 'multipleChoice', text: 'Multiple Choice'},
           ]}
-          onChange={e => setMinigameType(e.target.value)} />
+          ref={register} />
       </Col>
       <Col xs>
         <Dropdown
-          disabled={minigameType === ''}
+          name='problem'
+          disabled={/* minigameType === '' */ false}
           placeholder={`What's wrong? *`}
-          options={problemOptions(minigameType)}
-          onChange={e => setProblem(e.target.value)} />
+          options={problemOptions(/* minigameType */)}
+          ref={register} />
       </Col>
     </Row>
-    {problem === 'other' &&
+    {/*problem === 'other'*/ false &&
       <Row>
         <Col xs>
           <div>
-            <TextArea placeholder='Specify problem *' />
+            <TextArea
+              name='problemDescription'
+              placeholder='Specify problem *'
+              ref={register} />
           </div>
         </Col>
       </Row>}
     <Row>
       <Col xs>
-        <TextField placeholder='What was the question / task given in the minigame *' />
+        <TextField
+          name='givenTask'
+          placeholder='What was the question / task given in the minigame *'
+          ref={register} />
       </Col>
       <Col xs>
-        <TagList placeholder='Provided answers *' tagName='answerOptions' />
+        {/* TODO: How will this be validated? */}
+        <TagList
+          name='givenAnswers'
+          placeholder='Provided answers *'
+          tagName='answerOptions'
+          register={register} />
       </Col>
     </Row>
     <Row>
