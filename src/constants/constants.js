@@ -23,6 +23,37 @@ export const cardsDataLandingPage= [
 } ,
 ]
 
+export const headerContributePage = [
+  { 
+    heading: "Contribute Questions",
+    text: "Some text here"
+  }
+]
+
+export const cardsDataContributePage = [
+  { icon:"documents",
+    heading: "SPARQL\nDocumentation",
+    link:"https://www.mediawiki.org/wiki/Wikidata_Query_Service/User_Manual",
+    text: "Documentation for advanced users that goes beyond the first steps"
+  },
+  { icon:"sparql-tutorial",
+    heading: "SPARQL\nTutorial",
+    link:"https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial",
+    text: "Learn SPARQL with Wikidatas beginner-friendly course for SPARQL"
+  } ,
+{ icon:"implemented-queries",
+  heading:"Implemented\nSPARQL Queries",
+  link:"/implementedSparqlQueries",
+  text: "Check out our already implemented SPARQL queries and try them out!"
+} ,
+{ icon:"add",
+  heading: "Create new\nSPARQL Queries",
+  link:"/createNewSparqlQueries",
+  text: "Help us create more  SPARQL queries and check out what others already submited!"
+} ,
+]
+
+
 
 export const numberDisplay= [
   { icon:"question",
