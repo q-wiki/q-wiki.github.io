@@ -77,7 +77,38 @@ flex:  1 ;
 }
 
 .activities-container{
+  background-color: $qwikiGreen;
   padding-right: 30px;
+
+  h2 {
+    text-align: right;
+    padding-bottom: 10px;
+  }
+
+.recently-reported-problems-container{
+
+.recently-reported-problems-content {
+      background-color: $qwikiDarkGray;
+      display: flex;
+
+      span{
+        padding: 15px;
+
+        path {
+          fill: $qwikiDarkBlue;
+        }
+      }
+      .report-display-container {
+    flex: 1;
+      }
+}
+
+}
+
+
+  .latest-query-container, .recently-reported-problems-container {
+    padding-top: 15px;
+  }
 }
 
 .wikidata-container {

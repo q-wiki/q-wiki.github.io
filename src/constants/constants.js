@@ -24,7 +24,7 @@ export const cardsDataLandingPage= [
 ]
 
 export const headerContributePage = [
-  { 
+  {
     heading: "Contribute Questions",
     text: "Some text here"
   }

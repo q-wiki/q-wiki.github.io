@@ -16,6 +16,8 @@ import Image from  '../../atoms/Image/Image'
 import Card from '../../molecules/Card/Card'
 import Slideshow from '../../molecules/Slideshow/Slideshow'
 import NumberDisplay from '../../molecules/NumberDisplay/NumberDisplay'
+import ReportDisplay from '../../molecules/ReportDisplay/ReportDisplay'
+import WikidataQueryEditor from '../../molecules/WikidataQueryEditor/WikidataQueryEditor'
 
 import { cardsDataLandingPage, qWikiInfo, numberDisplay } from '../../../../src/constants/constants'
 
@@ -24,6 +26,21 @@ import Iframe from 'react-iframe'
 
 
 const firstCardsDataLandingPageElement = cardsDataLandingPage.shift();
+
+// this is just here to show how the SparqlEditor can be used
+const exampleQuery = `
+#Cats, with pictures
+#added before 2016-10
+
+#defaultView:ImageGrid
+SELECT ?item ?itemLabel ?pic
+WHERE
+{
+?item wdt:P31 wd:Q146 .
+?item wdt:P18 ?pic
+SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en" }
+}
+`
 
 export default function LandingPage() {
 
@@ -78,16 +95,37 @@ export default function LandingPage() {
     </div>
     <Row>
       <div className="activities-container">
-        <Tab/>
+      <Heading  pallete="qwikiLightBlue" type="H1">Current Activities</Heading>
+      <div className="latest-query-container">
+        <Heading  pallete="qwikiLightBlue" type="H2">Latest Query</Heading>
+        <ReportDisplay>
+          <WikidataQueryEditor
+            onQueryResult={(...args) => console.log('query result', args)}
+            onQueryFailure={(...args) => console.log('query failure', args)}>
+            {exampleQuery}
+          </WikidataQueryEditor>
+        </ReportDisplay>
+      </div>
+      <div className="recently-reported-problems-container">
+        <Heading  pallete="qwikiLightBlue" type="H2">Recently Reported Problems</Heading>
+        <div className="recently-reported-problems-content">
+          <Icon  pallete="qwikiDarkBlue" icon={"report-problem"}  width={192}/>
+          <ReportDisplay>
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+          </ReportDisplay>
+        </div>
+
+      </div>
       </div>
       <div className="wikidata-container">
         <Heading  pallete="qwikiLightBlue" type="H1">Wikidata Entry of the Day</Heading>
         <div className="iFrame-container">
-        <Iframe url="https://www.wikidata.org/wiki/Special:Random"
-        className="iFrame-content"
-        frameBorder="0"
-        display="initial"
-        position="relative"/>
+          <Iframe url="https://www.wikidata.org/wiki/Special:Random"
+className="iFrame-content"
+frameBorder="0"
+display="initial"
+position="relative"/>
+
       </div>
       </div>
     </Row>
