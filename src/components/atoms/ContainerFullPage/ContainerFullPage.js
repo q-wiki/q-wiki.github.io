@@ -6,7 +6,7 @@ import './containerFullPage.scss';
 
 function ContainerFullPage(props) {
     return (
-        <Row>
+        <Row className="page-container">
             <Col xs={12} md={12}>
                 {props.children}
             </Col>

@@ -1,18 +1,20 @@
 import React, { Component } from 'react'
 
 import {
-  // NOTE: We use the hash router because it's easer to setup with gh-pages
-  HashRouter as Router,
-  Link,
-  Switch,
-  Route
+    // NOTE: We use the hash router because it's easer to setup with gh-pages
+    HashRouter as Router,
+    Link,
+    Switch,
+    Route
 } from 'react-router-dom'
-
 
 // layout components
 
 import { Grid } from 'react-flexbox-grid';
 import ContainerFullPage from './components/atoms/ContainerFullPage/ContainerFullPage'
+import Container75 from './components/atoms/Container75/Container75'
+import Header from './components/molecules/Header/Header'
+import Footer from './components/molecules/Footer/Footer'
 
 import './App.css';
 
@@ -23,45 +25,47 @@ import LandingPage from './components/organisms/LandingPage/LandingPage'
 import ReportPage from './components/organisms/ReportPage/ReportPage'
 import SparqlPage from './components/organisms/SparqlPage/SparqlPage'
 import NotFoundPage from './components/organisms/NotFoundPage/NotFoundPage'
+import CreateNewQueriesPage from './components/organisms/CreateNewQueriesPage/CreateNewQueriesPage'
+import ImplementedQueriesPage from './components/organisms/ImplementedQueriesPage/ImplementedQueriesPage'
 
 // define app, start the router and we're good to go 👩‍🚀
 
 function App() {
-  return (
-      <Router>
-        <Grid fluid>
-          {/* NOTE: Given the current folder structure you probably want to move this
-              into a component */}
-          <nav>
-            <ul>
-              <li><Link to='/'>Home</Link></li>
-              <li><Link to='/about'>About</Link></li>
-              <li><Link to='/report'>Report a Problem</Link></li>
-              <li><Link to='/questions'>Add a Question</Link></li>
-            </ul>
-          </nav>
-          <ContainerFullPage>
-            <Switch>
-              <Route exact path='/'>
-                <LandingPage />
-              </Route>
-              <Route path='/about'>
-                <AboutPage />
-              </Route>
-              <Route path='/report'>
-                <ReportPage />
-              </Route>
-              <Route path='/questions'>
-                <SparqlPage />
-              </Route>
-              <Route path='*'>
-                <NotFoundPage />
-              </Route>
-            </Switch>
-          </ContainerFullPage>
-        </Grid>
-      </Router>
-  );
+    return (
+        <Router>
+            <Grid fluid>
+                <ContainerFullPage>
+                    <div className="pageContent">
+                        <Header/>
+                        <Switch>
+                            <Route exact path='/'>
+                                <LandingPage />
+                            </Route>
+                            <Route path='/about'>
+                                <AboutPage />
+                            </Route>
+                            <Route path='/report'>
+                                <ReportPage />
+                            </Route>
+                            <Route path='/contribute'>
+                                <SparqlPage />
+                            </Route>
+                            <Route path='/implementedSparqlQueries'>
+                                <ImplementedQueriesPage />
+                            </Route>
+                            <Route path='/createNewSparqlQueries'>
+                                <CreateNewQueriesPage />
+                            </Route>
+                            <Route path='*'>
+                                <NotFoundPage />
+                            </Route>
+                        </Switch>
+                    </div>
+                    <Footer/>
+                </ContainerFullPage>
+            </Grid>
+        </Router>
+    );
 }
 
 export default App;

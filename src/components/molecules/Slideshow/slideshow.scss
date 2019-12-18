@@ -1,0 +1,25 @@
+@import "../../../../src/assets/variables.scss";
+
+.control-arrow {
+  background-color: $qwikiDarkBlue !important;
+  height: 45px;
+  width: 45px;
+  top: 50% !important;
+  z-index: 10;
+  text-align: center;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.control-next {
+    margin-right: 20px;
+}
+
+.control-prev {
+    margin-left: 20px;
+}

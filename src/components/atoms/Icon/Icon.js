@@ -21,8 +21,6 @@ const Wrapper = styled.span`
   box-sizing: border-box;
   color: ${props => svgColors[props.pallete]};
   & > svg {
-    fill: ${props => svgColors[props.pallete]};
-    stroke: ${props => svgColors[props.pallete]};
     width: 100%;
     height: 100%;
   }

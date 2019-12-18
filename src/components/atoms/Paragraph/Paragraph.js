@@ -16,7 +16,7 @@ const fontWeight = {
 
 const Text = styled.p`
 display: inline-block;
-text-align: ${props => (props.left ? 'left' : 'center')};
+text-align: ${props => props.textAlign};
 font-size: 14px;
 line-height: ${props => props.height || 18}px;
 color: ${props => fontColors[props.pallete]};
@@ -28,6 +28,12 @@ const Paragraph = ({ children, ...props }) => (
 );
 
 Paragraph.propTypes = {
+textAlign:PropTypes.oneOf([
+  'left',
+  'center',
+  'right',
+  'justify'
+]),
 children: PropTypes.node,
 height: PropTypes.number,
 size: PropTypes.string,
@@ -37,6 +43,7 @@ fontWeight: PropTypes.string,
 };
 
 Paragraph.defaultProps = {
+textAlign:'center',
 pallete: 'black',
 fontWeight: 'normal',
 };
