@@ -55,7 +55,7 @@ function App() {
             </Route>
             <Route path='/createNewSparqlQueries'>
               <CreateNewQueriesPage />
-            </Route>
+            </Route>*
             <Route path='*'>
               <NotFoundPage />
             </Route>
