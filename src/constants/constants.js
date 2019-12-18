@@ -72,17 +72,21 @@ export const numberDisplay= [
 } ,
 ]
 
+import infoScreenshot from "../assets/images/screenshot-1.jpg"
+import infoQrCode from "../assets/images/qr-code.jpg"
+
 export const qWikiInfo= [
   {
     heading1: "We are ",
     heading2:"Q-Wiki",
     text: "Q-Wiki is a strategy game for two players. The aim of the game is to conquer as much territory as you can in a limited time. The game pulls its data directly from wikidata. Generating millions of different questions in many categories from Geography to History. Do you have what it takes to conquer the map?",
     downloadText:"Download the game from the google play store now!",
-    screenshotSrc: "../../../../src/assets/images/screenshot-1.jpg",
-    qrCode: "../../../../src/assets/images/qr-code.jpg",
+    screenshotSrc: infoScreenshot,
+    qrCode: infoQrCode,
   }
 ]
 
+import aboutUsMemberOne from "../assets/images/member-1.png"
 
 export const aboutUsData = [
 {
@@ -91,49 +95,49 @@ export const aboutUsData = [
       heading: "Antonia Berger",
       link:"https://github.com/AntoniaBe",
       text: "Frontend Developer",
-      image: "../../../../src/assets/images/member-1.png",
+      image: aboutUsMemberOne,
     },
     {
       heading: "Jennifer Lindner",
       link:"https://github.com/JennyLin1995",
       text: "Frontend Developer",
-      image: "../../../../src/assets/images/member-2.png",
+      image: aboutUsMemberOne,
     } ,
   {
     heading:"Malte Götz",
     link:"https://github.com/maltegoetz",
     text: "Backend Developer",
-    image: "../../../../src/assets/images/member-3.png",
+    image: aboutUsMemberOne,
   } ,
   {
     heading: "Eko Supardjo",
     link:"https://github.com/EkoSHtw",
     text: "Backend Developer",
-    image: "../../../../src/assets/images/member-1.png",
+    image: aboutUsMemberOne,
   },
   {
     heading: "Jonas Fichtmüller",
     link:"https://github.com/golemmoja",
     text: "Backend Developer",
-    image: "../../../../src/assets/images/member-1.png",
+    image: aboutUsMemberOne,
   },
   {
     heading: "David",
     link:"https://github.com/davidmllr",
     text: "Frontend Developer",
-    image: "../../../../src/assets/images/member-1.png",
+    image: aboutUsMemberOne,
   },
   {
     heading: "Arne",
     link:"https://github.com/heyarne",
     text: "Backend/Frontend Developer",
-    image: "../../../../src/assets/images/member-1.png",
+    image: aboutUsMemberOne,
   },
   {
     heading: "Laura",
     link:"https://github.com/chibbs",
     text: "Backend Developer",
-    image: "../../../../src/assets/images/member-1.png",
+    image: aboutUsMemberOne,
   },
 ],
 wikidata:[
@@ -141,13 +145,13 @@ wikidata:[
     heading: "Antonia Berger",
     link:"https://github.com/AntoniaBe",
     text: "Frontend Developer",
-    image: "../../../../src/assets/images/member-1.png",
+    image: aboutUsMemberOne,
   },
   {
     heading: "SPARQL\nTutorial",
     link:"https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial",
     text: "Learn SPARQL with Wikidatas beginner-friendly course for SPARQL",
-    image: "../../../../src/assets/images/member-1.png",
+    image: aboutUsMemberOne,
   }
 ],
 htw:[
@@ -155,13 +159,13 @@ htw:[
     heading: "Antonia Berger",
     link:"https://github.com/AntoniaBe",
     text: "Frontend Developer",
-    image: "../../../../src/assets/images/member-1.png",
+    image: aboutUsMemberOne,
   },
   {
     heading: "SPARQL\nTutorial",
     link:"https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial",
     text: "Learn SPARQL with Wikidatas beginner-friendly course for SPARQL",
-    image: "../../../../src/assets/images/member-1.png",
+    image: aboutUsMemberOne,
   }
 ],
 }
