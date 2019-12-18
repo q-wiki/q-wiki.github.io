@@ -7,27 +7,22 @@ import './slideshow.scss';
 
 //This is an example how to use the slideshow component
 
-const slideImages = [
-  '../../../../src/assets/images/slide-1.jpg',
-  '../../../../src/assets/images/slide-1.jpg',
-  '../../../../src/assets/images/slide-1.jpg'
-];
+import slide1 from '../../../../src/assets/images/slide-1.jpg'
 
 const Slideshow = () => {
     return (
       <Carousel infiniteLoop={true} autoPlay={true} transitionTime={500} interval={5000} showThumbs={false} showStatus={false}>
                 <div>
-                    <img src={slideImages[0]} />
+                    <img src={slide1} />
                 </div>
                 <div>
-                    <img src={slideImages[1]} />
+                    <img src={slide1} />
                 </div>
                 <div>
-                    <img src={slideImages[2]} />
+                    <img src={slide1} />
                 </div>
             </Carousel>
     )
 }
-
 
 export default Slideshow;
