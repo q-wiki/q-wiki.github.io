@@ -34,7 +34,8 @@
     "start": "webpack-dev-server --open --port 4000 --compress --mode development",
     "dev": "webpack --mode development --progress",
     "deploy": "gh-pages -b master -d dist -m $(git rev-parse --short HEAD)",
-    "build": "webpack --mode production --progress"
+    "build": "webpack --mode production --progress",
+    "analyze": "webpack --mode production --progress --profile --json > bundle-analysis.json && webpack-bundle-analyzer bundle-analysis.json"
   },
   "eslintConfig": {
     "extends": "react-app"
