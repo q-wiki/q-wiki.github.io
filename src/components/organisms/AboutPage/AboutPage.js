@@ -38,12 +38,12 @@ export default function AboutPage() {
   </div>
   </div>
   <div className="members-container">
-      <Heading  pallete="qwikiDarkBlue" type="H1">The Q-Wiki Team</Heading>
+      <Heading type="H1">The Q-Wiki Team</Heading>
     <Row center="xs">
     {
       aboutUsData[0].members.map((aboutUsData, index) =>
-      <div className="members">
-      <CardMember key={index} link={aboutUsData.link} backgroundImage={aboutUsData.image} headline={aboutUsData.heading} content={aboutUsData.text}/>
+      <div key={index} className="members">
+      <CardMember link={aboutUsData.link} backgroundImage={aboutUsData.image} headline={aboutUsData.heading} content={aboutUsData.text}/>
       </div>
   )}
     </Row>
