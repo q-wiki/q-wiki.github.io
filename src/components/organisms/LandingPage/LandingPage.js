@@ -98,13 +98,8 @@ export default function LandingPage() {
       <Heading  pallete="qwikiLightBlue" type="H1">Current Activities</Heading>
       <div className="latest-query-container">
         <Heading  pallete="qwikiLightBlue" type="H2">Latest Query</Heading>
-        <ReportDisplay>
-          <WikidataQueryEditor
-            onQueryResult={(...args) => console.log('query result', args)}
-            onQueryFailure={(...args) => console.log('query failure', args)}>
-            {exampleQuery}
-          </WikidataQueryEditor>
-        </ReportDisplay>
+        <ReportDisplay/>
+
       </div>
       <div className="recently-reported-problems-container">
         <Heading  pallete="qwikiLightBlue" type="H2">Recently Reported Problems</Heading>
