@@ -29,11 +29,11 @@
   }
   &.option_active{
     background-color: $qwikiLightBlue;
-    &.result_false{
-      background-color: green;
-    }
-    &.result_true{
-      background-color: red;
-    }
+  }
+  &.result_false{
+    background-color: $qwikiFalseRed;
+  }
+  &.result_true{
+    background-color: $qwikiCorrectGreen;
   }
 }

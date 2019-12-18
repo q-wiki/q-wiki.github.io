@@ -15,13 +15,13 @@ export default class Minigame extends React.Component{
             type: props.minigameData.minigameType,
             options: [],
             answer: [],
-            results: [],
             checked: false,
         };
         for(var i = 0; i<this.state.minigame.options.length; i++){
             const content = {};
             content.text = this.state.minigame.options[i]
             content.active = false;
+            content.result = null;
             this.state.options.push(content);
         }
     }
@@ -82,21 +82,42 @@ export default class Minigame extends React.Component{
         this.setState({checked: true});
         let answer = this.state.answer;
         let correct = this.state.minigame.answer;
-        let results = [];
-        for(let i = 0; i<answer.length; i++){
-            if(answer[i]==correct[i]){
-                results.push(true);
+        let options = this.state.options;
+        if(this.state.type == "sorting"){
+            for(let i = 0; i<options.length; i++){
+                if(answer.indexOf(options[i].text)==correct.indexOf(options[i].text)){
+                    options[i].result = true;
+                }else{
+                    options[i].result = false;
+                }
+            }
+        }else if(this.state.type == "mc"){
+            if(answer[0]==correct[0]){
+                for(let i = 0; i < options.length; i++){
+                    if(options[i].text == answer[0]){
+                        options[i].result = true;
+                    }
+                }
             }else{
-                results.push(false);
+                for(let i = 0; i < options.length; i++){
+                    if(options[i].text == answer[0]){
+                        options[i].result = false;
+                        console.log("Set False");
+                    }
+                    if(options[i].text == correct[0]){
+                        options[i].result = true;
+                        console.log("Set true");
+                    }
+                }
             }
         }
         this.setState({
-            results: results,
+            options: options,
         });
     }
 
     render() {
-        return(
+      return(
             <>
                 <div className="minigame_container">
                     <div className="minigame_content" >
@@ -109,7 +130,7 @@ export default class Minigame extends React.Component{
                         <Row className="minigame_options" between="md">
                             <Col md={1} />
                             <Col md={this.state.type=="sorting"?9:10} className="container_option">
-                                <MinigameOption result={this.state.checked?this.state.results[this.state.answer.indexOf(this.state.options[0].text)]:null} id={0} onClick={((e) => this.onClickHandler(e))} active={this.state.options[0].active}>
+                                <MinigameOption result={this.state.options[0].result} id={0} onClick={((e) => this.onClickHandler(e))} active={this.state.options[0].active}>
                                     {this.state.options[0].text}
                                 </MinigameOption>
                             </Col>
@@ -123,7 +144,7 @@ export default class Minigame extends React.Component{
                         <Row className="minigame_options" between="md">
                             <Col md={1} />
                             <Col md={this.state.type=="sorting"?9:10} className="container_option">
-                                <MinigameOption result={this.state.checked?this.state.results[this.state.answer.indexOf(this.state.options[1].text)]:null} id={1} onClick={((e) => this.onClickHandler(e))} active={this.state.options[1].active}>
+                                <MinigameOption result={this.state.options[1].result} id={1} onClick={((e) => this.onClickHandler(e))} active={this.state.options[1].active}>
                                     {this.state.options[1].text}
                                 </MinigameOption>
                             </Col>
@@ -137,7 +158,7 @@ export default class Minigame extends React.Component{
                         <Row className="minigame_options" between="md">
                             <Col md={1} />
                             <Col md={this.state.type=="sorting"?9:10} className="container_option">
-                                <MinigameOption result={this.state.checked?this.state.results[this.state.answer.indexOf(this.state.options[2].text)]:null} id={2} onClick={((e) => this.onClickHandler(e))} active={this.state.options[2].active}>
+                                <MinigameOption result={this.state.options[2].result} id={2} onClick={((e) => this.onClickHandler(e))} active={this.state.options[2].active}>
                                     {this.state.options[2].text}
                                 </MinigameOption>
                             </Col>
@@ -151,7 +172,7 @@ export default class Minigame extends React.Component{
                         <Row className="minigame_options" between="md">
                             <Col md={1} />
                             <Col md={this.state.type=="sorting"?9:10} className="container_option">
-                                <MinigameOption result={this.state.checked?this.state.results[this.state.answer.indexOf(this.state.options[3].text)]:null} id={3} onClick={((e) => this.onClickHandler(e))} active={this.state.options[3].active}>
+                                <MinigameOption result={this.state.options[3].result} id={3} onClick={((e) => this.onClickHandler(e))} active={this.state.options[3].active}>
                                     {this.state.options[3].text}
                                 </MinigameOption>
                             </Col>

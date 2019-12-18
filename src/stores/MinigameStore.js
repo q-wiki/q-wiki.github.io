@@ -12,7 +12,7 @@ export default class MinigameStore {
         {
             minigameType: "mc",
             question: "What is right?",
-            options: ["wrong", "right", "wrong", "wrong"],
+            options: ["wrong1", "right", "wrong2", "wrong3"],
             answer: ["right"]
         },
         {

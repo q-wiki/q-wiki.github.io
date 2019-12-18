@@ -40,7 +40,7 @@ export default class LandingPage extends React.Component{
             <br/>  <br/>
             The icon above as well as the text should have changed
             <br/>  <br/>
-            <Minigame minigameData={minigameStore.minigames[2]}/>
+            <Minigame minigameData={minigameStore.minigames[1]}/>
         </>
       );
   }
