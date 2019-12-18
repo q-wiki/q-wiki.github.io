@@ -9,7 +9,12 @@ import TimeLineItem from '../../atoms/TimeLineItem/TimeLineItem'
 
 import { aboutUsData } from '../../../../src/constants/constants'
 
+import { Row, Col } from 'react-flexbox-grid';
+
 export default function AboutPage() {
+
+  console.log(aboutUsData[0].members[0].heading);
+
   return <>
     <div className="about-us-container">
       <div className="history-container">
@@ -33,7 +38,15 @@ export default function AboutPage() {
   </div>
   </div>
   <div className="members-container">
-      <CardMember link={aboutUsData[0].link} backgroundImage={aboutUsData[0].image} headline={aboutUsData[0].heading} content={aboutUsData[0].text}/>
+      <Heading  pallete="qwikiDarkBlue" type="H1">The Q-Wiki Team</Heading>
+    <Row center="xs">
+    {
+      aboutUsData[0].members.map((aboutUsData, index) =>
+      <div className="members">
+      <CardMember key={index} link={aboutUsData.link} backgroundImage={aboutUsData.image} headline={aboutUsData.heading} content={aboutUsData.text}/>
+      </div>
+  )}
+    </Row>
   </div>
   </div>
   </>

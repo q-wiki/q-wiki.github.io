@@ -83,7 +83,60 @@ export const qWikiInfo= [
   }
 ]
 
+
 export const aboutUsData = [
+{
+  members: [
+    {
+      heading: "Antonia Berger",
+      link:"https://github.com/AntoniaBe",
+      text: "Frontend Developer",
+      image: "../../../../src/assets/images/member-1.png",
+    },
+    {
+      heading: "Jennifer Lindner",
+      link:"https://github.com/JennyLin1995",
+      text: "Frontend Developer",
+      image: "../../../../src/assets/images/member-2.png",
+    } ,
+  {
+    heading:"Malte Götz",
+    link:"https://github.com/maltegoetz",
+    text: "Backend Developer",
+    image: "../../../../src/assets/images/member-3.png",
+  } ,
+  {
+    heading: "Eko Supardjo",
+    link:"https://github.com/EkoSHtw",
+    text: "Backend Developer",
+    image: "../../../../src/assets/images/member-1.png",
+  },
+  {
+    heading: "Jonas Fichtmüller",
+    link:"https://github.com/golemmoja",
+    text: "Backend Developer",
+    image: "../../../../src/assets/images/member-1.png",
+  },
+  {
+    heading: "David",
+    link:"https://github.com/davidmllr",
+    text: "Frontend Developer",
+    image: "../../../../src/assets/images/member-1.png",
+  },
+  {
+    heading: "Arne",
+    link:"https://github.com/heyarne",
+    text: "Backend/Frontend Developer",
+    image: "../../../../src/assets/images/member-1.png",
+  },
+  {
+    heading: "Laura",
+    link:"https://github.com/chibbs",
+    text: "Backend Developer",
+    image: "../../../../src/assets/images/member-1.png",
+  },
+],
+wikidata:[
   {
     heading: "Antonia Berger",
     link:"https://github.com/AntoniaBe",
@@ -95,20 +148,26 @@ export const aboutUsData = [
     link:"https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial",
     text: "Learn SPARQL with Wikidatas beginner-friendly course for SPARQL",
     image: "../../../../src/assets/images/member-1.png",
-  } ,
-{
-  heading:"Implemented\nSPARQL Queries",
-  link:"/implementedSparqlQueries",
-  text: "Check out our already implemented SPARQL queries and try them out!",
-  image: "../../../../src/assets/images/member-1.png",
-} ,
-{
-  heading: "Create new\nSPARQL Queries",
-  link:"/createNewSparqlQueries",
-  text: "Help us create more  SPARQL queries and check out what others already submited!",
-  image: "../../../../src/assets/images/member-1.png",
-} ,
-]
+  }
+],
+htw:[
+  {
+    heading: "Antonia Berger",
+    link:"https://github.com/AntoniaBe",
+    text: "Frontend Developer",
+    image: "../../../../src/assets/images/member-1.png",
+  },
+  {
+    heading: "SPARQL\nTutorial",
+    link:"https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial",
+    text: "Learn SPARQL with Wikidatas beginner-friendly course for SPARQL",
+    image: "../../../../src/assets/images/member-1.png",
+  }
+],
+}
+];
+
+
 
 
 export const qWikiHistory = [

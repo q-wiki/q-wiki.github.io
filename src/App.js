@@ -35,6 +35,7 @@ function App() {
     <Router>
       <Grid fluid>
         <ContainerFullPage>
+          <div className="pageContent">
             <Header/>
           <Switch>
             <Route exact path='/'>
@@ -59,6 +60,7 @@ function App() {
               <NotFoundPage />
             </Route>
           </Switch>
+          </div>
           <Footer/>
         </ContainerFullPage>
       </Grid>
