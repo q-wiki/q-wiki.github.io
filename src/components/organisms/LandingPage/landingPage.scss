@@ -5,6 +5,10 @@
       padding: 10px;
 }
 
+.qwiki_info-container {
+
+  padding-bottom: 60px;
+}
 .qwiki_info-img-container, .qwiki_info-text-container {
 flex:  1 ;
 }
@@ -53,6 +57,86 @@ flex:  1 ;
   }
 }
 
+.numberDisplay {
+  height: 280px;
+  background: linear-gradient(to bottom, rgba(3, 93 ,93, 0.75), rgba(3, 93 ,93, 0.75)), url("../../../../src/assets/images/slide-1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .row {
+    height: 100% !important;
+    align-items: center;
+  }
+
+}
+
+.activities-container, .wikidata-container {
+  flex: 1;
+  padding-top: 30px;
+}
+
+.activities-container{
+  background-color: $qwikiGreen;
+  padding-right: 30px;
+
+  h2 {
+    text-align: right;
+    padding-bottom: 10px;
+  }
+
+.recently-reported-problems-container{
+
+.recently-reported-problems-content {
+      background-color: $qwikiDarkGray;
+      display: flex;
+
+      span{
+        padding: 15px;
+
+        path {
+          fill: $qwikiDarkBlue;
+        }
+      }
+      .report-display-container {
+    flex: 1;
+      }
+}
+
+}
+
+
+  .latest-query-container, .recently-reported-problems-container {
+    padding-top: 15px;
+  }
+}
+
+.wikidata-container {
+
+    padding-left: 30px;
+
+}
+.iFrame-container{
+  overflow: hidden;
+   margin-top: 15px;
+
+  .iFrame-content {
+    height: 650px;
+    width: 100%;
+  }
+
+  iframe {
+    overflow:hidden;
+  }
+}
+
+
+@media only screen and (max-width: 508px) {
+.numberDisplay {
+  height: auto;
+}
+}
+
 @media only screen and (max-width: 1300px) {
   .col-md-8 {
 flex-basis: 100% !important;
@@ -67,7 +151,8 @@ width: 100% !important;
 
 @media only screen and (max-width: 872px) {
 
-  .landingpage_cards-container {
+
+  .landingpage_cards-container, .numberDisplay  {
 
     .between-xs{
       justify-content: center;

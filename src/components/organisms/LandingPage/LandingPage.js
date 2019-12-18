@@ -9,29 +9,38 @@ import Icon from '../../atoms/Icon/Icon'
 import Heading from '../../atoms/Heading/Heading'
 import Paragraph from '../../atoms/Paragraph/Paragraph'
 import MainLogo from '../../atoms/MainLogo/MainLogo'
-import TimeLineItem from '../../atoms/TimeLineItem/TimeLineItem'
 import Tab from '../../atoms/Tabs/Tab'
 import MenuItem from  '../../atoms/MenuItem/MenuItem'
 import Image from  '../../atoms/Image/Image'
 
 import Card from '../../molecules/Card/Card'
-import CardMember from '../../molecules/CardMember/CardMember'
 import Slideshow from '../../molecules/Slideshow/Slideshow'
+import NumberDisplay from '../../molecules/NumberDisplay/NumberDisplay'
+import ReportDisplay from '../../molecules/ReportDisplay/ReportDisplay'
+import WikidataQueryEditor from '../../molecules/WikidataQueryEditor/WikidataQueryEditor'
 
-import { cardsDataLandingPage, qWikiInfo } from '../../../../src/constants/constants'
+import { cardsDataLandingPage, qWikiInfo, numberDisplay } from '../../../../src/constants/constants'
 
 import { Row, Col } from 'react-flexbox-grid';
+import Iframe from 'react-iframe'
 
-const images = [
-  '../../../../src/assets/images/member-1.png',
-  '../../../../src/assets/images/member-2.png',
-  '../../../../src/assets/images/member-3.png',
-  '../../../../src/assets/images/member-4.png',
-  '../../../../src/assets/images/member-5.png',
-  '../../../../src/assets/images/member-6.png',
-];
 
 const firstCardsDataLandingPageElement = cardsDataLandingPage.shift();
+
+// this is just here to show how the SparqlEditor can be used
+const exampleQuery = `
+#Cats, with pictures
+#added before 2016-10
+
+#defaultView:ImageGrid
+SELECT ?item ?itemLabel ?pic
+WHERE
+{
+?item wdt:P31 wd:Q146 .
+?item wdt:P18 ?pic
+SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en" }
+}
+`
 
 export default function LandingPage() {
 
@@ -74,24 +83,52 @@ export default function LandingPage() {
         </div>
       </Row>
       </div>
+      <div className="numberDisplay">
+      <Container75>
+      <Row between="xs">
+        {
+          numberDisplay.map((numberDisplayData, index) =>
+            <NumberDisplay key={index} icon={numberDisplayData.icon} headline1={numberDisplayData.heading1} headline2={numberDisplayData.heading2}/>
+        )}
+      </Row>
+    </Container75>
+    </div>
+    <Row>
+      <div className="activities-container">
+      <Heading  pallete="qwikiLightBlue" type="H1">Current Activities</Heading>
+      <div className="latest-query-container">
+        <Heading  pallete="qwikiLightBlue" type="H2">Latest Query</Heading>
+        <ReportDisplay>
+          <WikidataQueryEditor
+            onQueryResult={(...args) => console.log('query result', args)}
+            onQueryFailure={(...args) => console.log('query failure', args)}>
+            {exampleQuery}
+          </WikidataQueryEditor>
+        </ReportDisplay>
+      </div>
+      <div className="recently-reported-problems-container">
+        <Heading  pallete="qwikiLightBlue" type="H2">Recently Reported Problems</Heading>
+        <div className="recently-reported-problems-content">
+          <Icon  pallete="qwikiDarkBlue" icon={"report-problem"}  width={192}/>
+          <ReportDisplay>
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+          </ReportDisplay>
+        </div>
 
-      <CardMember link="https://github.com/AntoniaBe" backgroundImage={images[5]} headline={'Antonia Berger'} content={'Frontend Developer'}/>
+      </div>
+      </div>
+      <div className="wikidata-container">
+        <Heading  pallete="qwikiLightBlue" type="H1">Wikidata Entry of the Day</Heading>
+        <div className="iFrame-container">
+          <Iframe url="https://www.wikidata.org/wiki/Special:Random"
+className="iFrame-content"
+frameBorder="0"
+display="initial"
+position="relative"/>
 
-<Tab/>
-
-<div>
-<TimeLineItem
-  headline={'The Task'}
-  content={'The original group consisted of 6 master Students. As part of our masters program in International Media and Programming at the HTW Berlin, we were tasked to create a game in collaboration with Wikidata. During the summer semester of 2019 we worked several months to realize the project.'}
-  />
-<TimeLineItem
-  alignmentRight
-  headline={'The End of the Beginning'}
-  content={'The result at the end of the semester was recieved positively, promising a good foundation onto which new teams could build upon. Not just amongst Wikidata but also from professors at the HTW, which lead to the continuation of the project during the next semester. While the original team mostly returned to the project, we also welcomed 2 new members to help us perfect the game'}
-  />
-</div>
-<br></br>
-<br></br>
+      </div>
+      </div>
+    </Row>
 
     </>
   );

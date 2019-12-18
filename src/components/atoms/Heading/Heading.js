@@ -22,6 +22,7 @@ const fontColors = {
   qwikiDarkBlue: variables.qwikiDarkBlue,
   qwikiOrange: variables.qwikiOrange,
   qwikiDarkRed: variables.qwikiDarkRed,
+  qwikiGreen: variables.qwikiGreen,
 };
 
 const Text = styled.h2 `

@@ -25,6 +25,8 @@ import LandingPage from './components/organisms/LandingPage/LandingPage'
 import ReportPage from './components/organisms/ReportPage/ReportPage'
 import SparqlPage from './components/organisms/SparqlPage/SparqlPage'
 import NotFoundPage from './components/organisms/NotFoundPage/NotFoundPage'
+import CreateNewQueriesPage from './components/organisms/CreateNewQueriesPage/CreateNewQueriesPage'
+import ImplementedQueriesPage from './components/organisms/ImplementedQueriesPage/ImplementedQueriesPage'
 
 // define app, start the router and we're good to go 👩‍🚀
 
@@ -46,6 +48,12 @@ function App() {
             </Route>
             <Route path='/contribute'>
               <SparqlPage />
+            </Route>
+            <Route path='/implementedSparqlQueries'>
+              <ImplementedQueriesPage />
+            </Route>
+            <Route path='/createNewSparqlQueries'>
+              <CreateNewQueriesPage />
             </Route>
             <Route path='*'>
               <NotFoundPage />
