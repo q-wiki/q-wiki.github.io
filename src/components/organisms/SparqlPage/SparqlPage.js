@@ -13,8 +13,6 @@ const firstCardsDataContributePageElement = cardsDataContributePage.shift();
 const secondCardsDataContributePageElement = cardsDataContributePage.shift();
 
 export default function SparqlPage() {
-
-
   return <>
   <div className="contribute-header ">
     <Heading  pallete="qwikiGreen" type="H1">{headerContributePage[0].heading}</Heading>

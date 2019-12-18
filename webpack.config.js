@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = {
   devtool: "cheap-module-source-map",
@@ -61,5 +62,8 @@ module.exports = {
       }
     ]
   },
-  plugins: [new HtmlWebpackPlugin({ template: "index.html" })]
+  plugins: [
+    new HtmlWebpackPlugin({ template: "index.html" }),
+    new BundleAnalyzerPlugin({ analyzerMode: 'static' })
+  ]
 };
