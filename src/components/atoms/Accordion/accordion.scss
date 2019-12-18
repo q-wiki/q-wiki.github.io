@@ -1,0 +1,29 @@
+@import "../../../../src/assets/variables.scss";
+
+.accordionButtonTitle {
+display:inline;
+}
+
+.accordionButtonTitle span{
+float:right;
+}
+
+@media only screen and (max-width: 535px) {
+
+  .accordionButtonTitle span{
+  float: none;
+  margin-left: 25px;
+  display: block;
+  }
+
+}
+
+.accordion__button {
+  width: initial;
+  background-color: $qwikiGreen;
+  border-bottom: 1px solid $qwikiGrey;
+}
+
+.accordion__button:hover, .accordion__button:focus{
+  background-color: $qwikiGreenDarker;
+}

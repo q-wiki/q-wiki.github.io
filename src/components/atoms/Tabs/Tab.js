@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react'
 import Tabs from 'react-responsive-tabs';
 
@@ -15,7 +14,10 @@ import {
 
 
 import './tabs.scss';
+import '../../atoms/Accordion/accordion.scss';
 
+
+//This is an example how to use the Tab and Accordion Components
 
 const accordionContent= [ {
   title: 'Wrong correct answer',

@@ -1,0 +1,14 @@
+@import "../../../../src/assets/variables.scss";
+
+.menuItem {
+    color: $black;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 8px;
+    font-size: 18px;
+}
+
+.menuItem:hover {
+  color: $qwikiLightBlue;
+}
