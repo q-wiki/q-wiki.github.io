@@ -120,12 +120,6 @@ Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod 
       <div className="wikidata-container">
         <Heading  pallete="qwikiLightBlue" type="H1">Wikidata Entry of the Day</Heading>
         <div className="iFrame-container">
-          <Iframe url="https://www.wikidata.org/wiki/Special:Random"
-className="iFrame-content"
-frameBorder="0"
-display="initial"
-position="relative"/>
-
       </div>
       </div>
     </Row>

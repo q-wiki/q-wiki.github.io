@@ -38,7 +38,7 @@ function App() {
           <div className="pageContent">
             <Header/>
           <Switch>
-            <Route exact path='/'>
+          *<Route exact path='/'>
               <LandingPage />
             </Route>
             <Route path='/about'>
