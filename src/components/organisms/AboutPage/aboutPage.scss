@@ -16,3 +16,57 @@
     padding: 15px;
   }
 }
+
+
+.timeline-container {
+  position: relative;
+  width: 50%;
+
+.timeline-content-container {
+  padding: 10px 40px;
+position: relative;
+background-color: inherit;
+width: 50%;
+}
+
+.timeline-content-container::after {
+  content: '';
+  position: absolute;
+  width: 31px;
+  height: 31px;
+  right: -17px;
+  background-color: $qwikiGreen;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  left: 50%;
+}
+
+.right::after {
+  left: -16px;
+}
+
+.timeline-content {
+  position: relative;
+  top: -9px;
+  left: -14px;
+}
+}
+
+.timeline-container::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  background-color: white;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  margin-left: -3px;
+}
