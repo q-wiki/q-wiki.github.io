@@ -53,6 +53,12 @@ export const cardsDataContributePage = [
 } ,
 ]
 
+export const minigameTypes=[
+  {title:"Multiple Choice"},
+    {title:"Sorting"},
+    {title:"Image Guess"}
+]
+
 export const numberDisplay= [
   { icon:"question",
     heading1:"30000000000",
