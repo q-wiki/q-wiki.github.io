@@ -1,0 +1,19 @@
+@import "../../../../src/assets/variables.scss";
+
+.numberDisplay-container {
+  display:flex;
+padding: 10px;
+width: 218px;
+}
+
+.numberDisplay-content {
+  padding: 10px;
+}
+
+.numberDisplay-container:nth-child(1) {
+
+  .numberDisplay-content {
+    margin-left: -14px;
+  }
+
+}

@@ -24,8 +24,7 @@ module.exports = {
           {
             loader: "url-loader",
             options: {
-              limit: 51200,
-              name: "[name].[ext]"
+              limit: 8192
               // outputPath: 'images/',
               // publicPath: path => `./${path}`,
             }
@@ -62,5 +61,7 @@ module.exports = {
       }
     ]
   },
-  plugins: [new HtmlWebpackPlugin({ template: "index.html" })]
+  plugins: [
+    new HtmlWebpackPlugin({ template: "index.html" })
+  ]
 };

@@ -1,0 +1,46 @@
+@import "../../../../src/assets/variables.scss";
+
+
+.link {
+  text-decoration: none;
+}
+.cardMember_container {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  width: 225px;
+  height: 285px;
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  .double-underline-container{
+    margin-top: -3px;
+  }
+
+
+  .cardMember_container_content {
+    padding: 10px;
+    opacity: 0;
+
+    .double-underline-thick {
+      align-self: flex-start;
+      border-bottom: 3px solid $white;
+      width: 190px;
+    }
+
+    .double-underline-thin {
+      align-self: flex-start;
+      border-bottom: 2px solid $white;
+      width: 112px;
+    }
+  }
+}
+
+
+.cardMember_container:hover {
+
+  .cardMember_container_content {
+    opacity: 1;
+  }
+}

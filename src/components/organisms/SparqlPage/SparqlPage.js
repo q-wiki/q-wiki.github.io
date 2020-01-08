@@ -1,52 +1,44 @@
-import React, {useState} from 'react'
+import React from 'react'
+import './sparqlPage.scss';
+
+import Container75 from '../../atoms/Container75/Container75'
+import Card from '../../molecules/Card/Card'
 import Heading from '../../atoms/Heading/Heading'
-import WikidataQueryEditor from '../../molecules/WikidataQueryEditor/WikidataQueryEditor'
+import Paragraph from '../../atoms/Paragraph/Paragraph'
+import { Row, Col } from 'react-flexbox-grid';
 
-// this is just here to show how the SparqlEditor can be used
-const exampleQuery = `
-#Cats, with pictures
-#added before 2016-10
+import { cardsDataContributePage, headerContributePage } from '../../../../src/constants/constants'
 
-#defaultView:ImageGrid
-SELECT ?item ?itemLabel ?pic
-WHERE
-{
-?item wdt:P31 wd:Q146 .
-?item wdt:P18 ?pic
-SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en" }
-}
-`
+const firstCardsDataContributePageElement = cardsDataContributePage.shift();
+const secondCardsDataContributePageElement = cardsDataContributePage.shift();
 
 export default function SparqlPage() {
-  const [response, setResponse] = useState(null)
-
   return <>
-    <Heading type='H1'>The Stars are Sparqling tonight ✨</Heading>
-    <WikidataQueryEditor
-      onQueryResult={response => setResponse(response)}
-      onQueryFailure={(...args) => console.log('query failure', args)}>
-      {exampleQuery}
-    </WikidataQueryEditor>
+  <div className="contribute-header ">
+    <Heading  pallete="qwikiGreen" type="H1">{headerContributePage[0].heading}</Heading>
+    <Paragraph textAlign="justify">{headerContributePage[0].text}</Paragraph>
+</div>
 
-    {/* NOTE: This is only here for demonstrative purposes */}
-    {response != null &&
-      <>
-        <Heading type='H2'>Query response</Heading>
-        <table>
-          <thead>
-            <tr>
-              {response.head.vars.map(label => <td>{label}</td>)}
-            </tr>
-          </thead>
-          <tbody>
-            {response.results.bindings.map(binding =>
-              <tr>
-                <td colspan='3'><pre>{JSON.stringify(binding)}</pre></td>
-              </tr>
-            )}
-          </tbody>
-        </table>
-      </>
-    }
+  <div className="contribute-content">
+  <Container75>
+  <div className="landingpage_cards-container">
+  <Row between="xs">
+  <div className="landingpage_cards">
+      <Card isLinkExtern link={firstCardsDataContributePageElement.link} headline={firstCardsDataContributePageElement.heading} content={firstCardsDataContributePageElement.text} icon={firstCardsDataContributePageElement.icon}/>
+    </div>
+      <div className="landingpage_cards">
+    <Card isLinkExtern link={secondCardsDataContributePageElement.link} headline={secondCardsDataContributePageElement.heading} content={secondCardsDataContributePageElement.text} icon={secondCardsDataContributePageElement.icon}/>
+</div>
+
+  {
+    cardsDataContributePage.map((cardsData, index) =>
+    <div key={index} className="landingpage_cards">
+    <Card  routingLink={cardsData.link} headline={cardsData.heading} content={cardsData.text} icon={cardsData.icon}/>
+    </div>
+  )}
+  </Row>
+    </div>
+  </Container75>
+</div>
   </>
 }
