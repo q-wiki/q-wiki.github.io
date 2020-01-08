@@ -22,9 +22,12 @@ export default function AboutPage() {
       <div className="history-container">
         <Container75>
       <Heading  pallete="white" type="H1">The original Q-Wiki Project</Heading>
-      </Container75>
-      <Row>
+    </Container75>
+    <div className="timeline-master-container">
+      <div className="timeline-first-container">
+        <div className="col-xs-0 col-md-2"></div>
       <div className="timeline-container">
+
 
         {
            qWikiHistory[0].firstPart.map((firstPart, index) =>
@@ -38,27 +41,36 @@ export default function AboutPage() {
              </div>
            </div>
       )}
+
       </div>
-        <Image  width={700} backgroundSrc={qWikiHistory[0].screenshots[0].src}/>
-    </Row>
-    <Row>
+      <div className="timeline-img-container">
+        <Image  className="timeline-img" width={800} backgroundSrc={qWikiHistory[0].screenshots[0].src}/>
+      </div>
+</div>
+    <div className="timeline-second-container">
+        <div className="timeline-img-container">
           <Image  width={700} backgroundSrc={qWikiHistory[0].screenshots[1].src}/>
-          <div className="timeline-container">
+        </div>
+        <div className="timeline-container">
 
             {
                qWikiHistory[0].secondPart.map((secondPart, index) =>
 
-               <div key={index} className="timeline-content-container right">
+               <div key={index} className="timeline-content-container left">
                  <div className="timeline-content">
                    <TimeLineItem
                      headline={secondPart.heading}
                      content={secondPart.text}
+                     alignmentRight
                      />
                  </div>
                </div>
           )}
           </div>
-        </Row>
+            <div className="col-xs-0 col-md-2"></div>
+        </div>
+        </div>
+
   </div>
   <div className="members-container">
       <Heading type="H1">The Q-Wiki Team</Heading>
