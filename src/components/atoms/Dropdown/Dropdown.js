@@ -5,11 +5,11 @@ import './dropdown.scss';
 
 const Dropdown = React.forwardRef((props, ref) => (
     <div className="dropdown input-effect">
-        <select name={props.name} ref={ref} required className="effect-20" defaultValue=''>
+        <select name={props.name} ref={ref} defaultValue={props.defaultValue} required className="effect-20" defaultValue=''>
             <option key="1000" value=''/>
             {
                 props.options.map((item, i) =>
-                <option key={i} value={item.id || item.title}>{item.title}</option>
+                <option key={item.key || i} value={item.id || item.value || item.text || item}>{item.text || item}</option>
             )}
         </select>
         <label>{props.placeholder}</label>

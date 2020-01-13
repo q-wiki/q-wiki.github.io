@@ -7,7 +7,7 @@ import './checkbox.scss';
 const Checkbox = ({ children, ...props }) => (
         <label className={"checkbox"}>
             {children}
-            <input type="checkbox"/>
+            <input type="checkbox" defaultValue={props.defaultValue} />
         </label>
 );
 

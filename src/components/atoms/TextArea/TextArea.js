@@ -5,7 +5,7 @@ import './textArea.scss';
 
 const TextArea = React.forwardRef((props, ref) => (
     <div className="textarea input-effect">
-        <textarea name={props.name} ref={ref} className="effect-20" placeholder="">
+        <textarea name={props.name} ref={ref} defaultValue={props.defaultValue} className="effect-20" placeholder="">
         {props.children}
         </textarea>
         <label>{props.placeholder}</label>
