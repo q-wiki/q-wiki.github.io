@@ -17,26 +17,6 @@ import TagList from '../../molecules/TagList/TagList'
 
 // TODO:  validation
 
-/**
- * Gives a list of options of what might be wrong, depending on the
- * minigame type
- * @param String minigameType
- * @return Object[]
- */
-function problemOptions (minigameType) {
-  let options = [
-    {
-      key: 'wrongAnswer',
-      value: 'wrongAnswer',
-      text: `The suggested ${(minigameType === 'sorting') ? 'order' : 'answer'} is incorrect`
-    },
-    {key: 'duplicates', value: 'duplicates', text: 'An option was offered multiple times'},
-    {key: 'other', value: 'other', text: 'Other (please specify)'}
-  ]
-
-  return options
-}
-
 const mockFetch = (_) => {
   // FIXME: There's a problem with missing CORS headers; for the time being we
   // just use mock data from the service until it's fixed.
@@ -50,12 +30,12 @@ const mockFetch = (_) => {
 
 function Report () {
   const params = useParams()
-
-  const {register, handleSubmit, setValue} = useForm()
+  const {register, handleSubmit} = useForm()
 
   // fetch details about minigame if a minigame the route is called with a minigame id
   const [loading, setLoading] = useState(params.minigameId != null)
   const [defaultValues, setDefaultValues] = useState({})
+  const [reportType, setReportType] = useState('')
 
   if (loading) {
     // fetch(config.API_URL + '/api/Platform/Minigame/' + params.minigameId)
@@ -65,9 +45,10 @@ function Report () {
         console.log('Server responded', res)
         const minigameTypes = ['', 'sorting', 'multipleChoice']
         setDefaultValues({
-          'minigameType': minigameTypes[res.type],
-          'taskDescription': res.taskDescription,
-          'answerOptions': res.answerOptions.map(option => ({label: option}))
+          minigameType: minigameTypes[res.type],
+          taskDescription: res.taskDescription,
+          answerOptions: res.answerOptions.map(option => ({label: option})),
+          correctAnswer: res.correctAnswer.join(', ')
         })
         setLoading(false)
       })
@@ -95,14 +76,35 @@ function Report () {
             </Col>
             <Col xs>
               <Dropdown
-                name='problem'
-                disabled={/* minigameType === '' */ false}
+                name='reportType'
                 placeholder={`What's wrong? *`}
-                options={problemOptions(/* minigameType */)}
+                options={[
+                  {value: 'wrongAnswer', text: 'The suggested answer is incorrect'},
+                  {value: 'duplicates', text: 'An option was offered multiple times'},
+                  {value: 'other', text: 'Other (please specify)'}
+                ]}
+                onChange={e => setReportType(e.target.value)}
                 ref={register} />
             </Col>
           </Row>
-          {/*problem === 'other'*/ false &&
+          <Row>
+            <Col xs={12}>
+              <TextField
+                name='taskDescription'
+                placeholder='What was the question / task given in the minigame *'
+                defaultValue={defaultValues.taskDescription}
+                ref={register} />
+            </Col>
+            <Col xs>
+              <TagList
+                name='answerOptions'
+                placeholder='Provided answers *'
+                tagName='answerOptions'
+                tags={defaultValues.answerOptions}
+                register={register} />
+            </Col>
+          </Row>
+          {reportType === 'other' &&
             <Row>
               <Col xs>
                 <div>
@@ -113,24 +115,18 @@ function Report () {
                 </div>
               </Col>
             </Row>}
-          <Row>
-            <Col xs>
-              <TextField
-                name='taskDescription'
-                placeholder='What was the question / task given in the minigame *'
-                defaultValue={defaultValues.taskDescription}
-                ref={register} />
-            </Col>
-            <Col xs>
-              {/* TODO: How will this be validated? */}
-              <TagList
-                name='answerOptions'
-                placeholder='Provided answers *'
-                tagName='answerOptions'
-                tags={defaultValues.answerOptions}
-                register={register} />
-            </Col>
-          </Row>
+          {reportType === 'wrongAnswer' &&
+            <Row>
+              <Col xs>
+                <div>
+                  <TextField
+                    name='correctAnswer'
+                    placeholder='Winning answer *'
+                    defaultValue={defaultValues.correctAnswer}
+                    ref={register} />
+                </div>
+              </Col>
+            </Row>}
           <Row>
             <Col xs>
               <TextArea placeholder='Any additional information you want to provide?' />
