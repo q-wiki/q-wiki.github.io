@@ -14,6 +14,7 @@ const TextField = React.forwardRef(({children, ...props }, ref) => {
     <div className="textfieldWrapper textfield input-effect">
       <input
         name={props.name}
+        disabled={props.disabled}
         defaultValue={props.defaultValue}
         onChange={onChange}
         className={`effect-20 ${hasContent ? 'has-content' : ''}`}
