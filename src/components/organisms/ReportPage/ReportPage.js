@@ -63,11 +63,11 @@ function Report () {
     mockFetch(config.API_URL + '/api/Platform/Minigame/' + params.minigameId)
       .then(res => {
         console.log('Server responded', res)
-        const minigameTypes = ['sorting', 'multipleChoice']
+        const minigameTypes = ['', 'sorting', 'multipleChoice']
         setDefaultValues({
           'minigameType': minigameTypes[res.type],
           'taskDescription': res.taskDescription,
-          'answerOptions': res.answerOptions
+          'answerOptions': res.answerOptions.map(option => ({label: option}))
         })
         setLoading(false)
       })
@@ -87,8 +87,8 @@ function Report () {
                 name='minigameType'
                 placeholder='Minigame type *'
                 options={[
-                  {key: 'sorting', value: 'sorting', text: 'Sorting'},
-                  {key: 'multipleChoice', value: 'multipleChoice', text: 'Multiple Choice'},
+                  {value: 'sorting', text: 'Sorting'},
+                  {value: 'multipleChoice', text: 'Multiple Choice'},
                 ]}
                 defaultValue={defaultValues.minigameType}
                 ref={register} />
@@ -127,7 +127,7 @@ function Report () {
                 name='answerOptions'
                 placeholder='Provided answers *'
                 tagName='answerOptions'
-                defaultValue={defaultValues.answerOptions}
+                tags={defaultValues.answerOptions}
                 register={register} />
             </Col>
           </Row>

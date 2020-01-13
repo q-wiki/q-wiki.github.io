@@ -49,12 +49,16 @@ export default function TagList (props) {
         {...omit(inputProps, ['label'])} />
     </div>
     <div>
-      {tags.map((tag, i) => <span key={`tag-elem-${i}`}>
-        <Button small icon={{ icon: 'delete', pallete: 'qwikiOrange' }} onClick={e => removeLabel(e, i)}>
-          {tag.label}
-        </Button>
-        <input type='hidden' name={`${props.tagName}[]`} value={tag.value} />
-      </span>)}
+      {Array.isArray(tags) && tags.map((tag, i) =>
+        (
+          <span key={`tag-elem-${i}`}>
+            <Button small icon={{ icon: 'delete', pallete: 'qwikiOrange' }} onClick={e => removeLabel(e, i)}>
+              {tag.label}
+            </Button>
+            <input type='hidden' name={`${props.tagName}[]`} value={tag.value} />
+          </span>
+        )
+      )}
     </div>
   </>
 }
