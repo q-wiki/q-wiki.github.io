@@ -19,7 +19,6 @@ const NumberDisplay = ({  icon, headline1, headline2, ...props }) => (
 );
 
 NumberDisplay.propTypes = {
-  headline1: PropTypes.string,
   headline2: PropTypes.string,
   icon: PropTypes.string,
 };
