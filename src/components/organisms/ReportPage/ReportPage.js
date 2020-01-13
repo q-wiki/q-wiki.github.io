@@ -30,7 +30,7 @@ const mockFetch = (_) => {
 
 function Report () {
   const params = useParams()
-  const {register, handleSubmit} = useForm()
+  const {register, handleSubmit, errors} = useForm()
 
   // fetch details about minigame if a minigame the route is called with a minigame id
   const [loading, setLoading] = useState(params.minigameId != null)
@@ -54,6 +54,8 @@ function Report () {
       })
   }
 
+  const Errors = ({ field }) => {errors[field] && <Paragraph>{errors[field]}</Paragraph>}
+
   return <form onSubmit={handleSubmit(form => console.log('form submitted with data', form))}>
     {loading
       ? (<Row>
@@ -72,7 +74,8 @@ function Report () {
                   {value: 'multipleChoice', text: 'Multiple Choice'},
                 ]}
                 defaultValue={defaultValues.minigameType}
-                ref={register} />
+                ref={register({ required: true })} />
+              {errors.minigameType && <Paragraph>{errors.minigameType.message}</Paragraph>}
             </Col>
             <Col xs>
               <Dropdown
@@ -84,7 +87,8 @@ function Report () {
                   {value: 'other', text: 'Other (please specify)'}
                 ]}
                 onChange={e => setReportType(e.target.value)}
-                ref={register} />
+                ref={register({ required: true })} />
+              {errors.reportType && <Paragraph>{errors.reportType.message}</Paragraph>}
             </Col>
           </Row>
           <Row>
@@ -93,15 +97,17 @@ function Report () {
                 name='taskDescription'
                 placeholder='What was the question / task given in the minigame *'
                 defaultValue={defaultValues.taskDescription}
-                ref={register} />
+                ref={register({ required: true })} />
+              {errors.taskDescription && <Paragraph>{errors.taskDescription.message}</Paragraph>}
             </Col>
             <Col xs>
               <TagList
                 name='answerOptions'
-                placeholder='Provided answers *'
+                placeholder='Provided answers'
                 tagName='answerOptions'
                 tags={defaultValues.answerOptions}
                 register={register} />
+              {errors.answerOptions && <Paragraph>{errors.answerOptions.message}</Paragraph>}
             </Col>
           </Row>
           {reportType === 'other' &&
@@ -112,6 +118,7 @@ function Report () {
                     name='problemDescription'
                     placeholder='Specify problem *'
                     ref={register} />
+                  {errors.problemDescription && <Paragraph>{errors.problemDescription.message}</Paragraph>}
                 </div>
               </Col>
             </Row>}
@@ -124,6 +131,7 @@ function Report () {
                     placeholder='Winning answer *'
                     defaultValue={defaultValues.correctAnswer}
                     ref={register} />
+                  {errors.correctAnswer && <Paragraph>{errors.correctAnswer.message}</Paragraph>}
                 </div>
               </Col>
             </Row>}
