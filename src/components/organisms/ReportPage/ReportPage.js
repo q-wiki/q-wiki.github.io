@@ -17,17 +17,6 @@ import TagList from '../../molecules/TagList/TagList'
 
 // TODO:  validation
 
-const mockFetch = (_) => {
-  // FIXME: There's a problem with missing CORS headers; for the time being we
-  // just use mock data from the service until it's fixed.
-  // See: https://github.com/q-wiki/q-wiki-server/issues/89
-  const response = {"question":{"id":"40677b0f-9d5f-46d2-ab85-a6c40afb5f87","sparqlQuery":"SELECT ?question ?answer WHERE {\r\n                                      ?element wdt:P31 wd:Q11344;\r\n                                               wdt:P1086 ?number;\r\n                                               wdt:P246 ?question.\r\n                                      FILTER(1 <= ?number &&\r\n                                             ?number <= 118)\r\n                                      SERVICE wikibase:label {\r\n                                        bd:serviceParam wikibase:language 'en'.\r\n                                        ?element  rdfs:label ?answer.\r\n                                      }\r\n                                    }\r\n                                    ORDER BY MD5(CONCAT(STR(?answer), STR(NOW()))) # order by random\r\n                                    LIMIT 4","taskDescription":"Which element has the chemical symbol {0}?","category":{"id":"6c22af9b-2f45-413b-995d-7ee6c61674e5","title":"Chemistry"},"miniGameType":2,"status":2,"rating":0.0},"correctAnswer":["mercury"],"id":"b957e313-385a-49d1-1d85-08d796c3149c","type":2,"taskDescription":"Which element has the chemical symbol Hg?","answerOptions":["dysprosium","strontium","neon","mercury"]}
-
-  return new Promise((resolve, reject) => {
-    setTimeout(_ => resolve(response), 100) 
-  })
-}
-
 function Report () {
   const params = useParams()
   const {register, handleSubmit, errors} = useForm()
@@ -36,20 +25,27 @@ function Report () {
   const [loading, setLoading] = useState(params.minigameId != null)
   const [defaultValues, setDefaultValues] = useState({})
   const [reportType, setReportType] = useState('')
+  const [apiError, setApiError] = useState(null)
 
   if (loading) {
-    // fetch(config.API_URL + '/api/Platform/Minigame/' + params.minigameId)
-    //   .then(r => r.json())
-    mockFetch(config.API_URL + '/api/Platform/Minigame/' + params.minigameId)
-      .then(res => {
+    fetch(config.API_URL + '/api/Platform/Minigame/' + params.minigameId)
+      .then(res => 
+        // keep original response to handle http errors
+        res.json().then(body => [res, body])
+      )
+      .then(([res, body]) => {
         console.log('Server responded', res)
-        const minigameTypes = ['', 'sorting', 'multipleChoice']
-        setDefaultValues({
-          minigameType: minigameTypes[res.type],
-          taskDescription: res.taskDescription,
-          answerOptions: res.answerOptions.map(option => ({label: option})),
-          correctAnswer: res.correctAnswer.join(', ')
-        })
+        if (res.ok) {
+          const minigameTypes = ['', 'sorting', 'multipleChoice']
+          setDefaultValues({
+            minigameType: minigameTypes[body.type],
+            taskDescription: body.taskDescription,
+            answerOptions: body.answerOptions.map(option => ({label: option})),
+            correctAnswer: body.correctAnswer.join(', ')
+          })
+        } else {
+          setApiError(body)
+        }
         setLoading(false)
       })
   }
@@ -63,7 +59,17 @@ function Report () {
             <Paragraph>One moment please, loading data…</Paragraph>
           </Col>
         </Row>)
-      : (<>
+      :
+      (apiError != null
+       ? <>
+         <Row>
+           <Col xs>
+             <Heading type='H2'>An error occured interacting with the API :(</Heading>
+             <pre>{JSON.stringify(apiError, 2)}</pre>
+           </Col>
+         </Row>
+       </> 
+       : (<>
           <Row>
             <Col xs>
               <Dropdown
@@ -150,7 +156,7 @@ function Report () {
               <Button>Submit</Button>
             </Col>
           </Row>
-        </>)}
+        </>))}
     </form>
 }
 
