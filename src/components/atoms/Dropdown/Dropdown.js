@@ -1,12 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 
 import './dropdown.scss';
 
 const Dropdown = React.forwardRef((props, ref) => {
+    const [hasContent, setHasContent] = useState(props.defaultValue != null && props.defaultValue !== '')
+    const onChange = e => {
+        setHasContent(e.target.value !== '')
+        if (props.onChange) props.onChange(e)
+    }
+
     return (
         <div className="dropdown input-effect">
-            <select name={props.name} ref={ref} defaultValue={props.defaultValue} required className="effect-20">
+            <select
+                name={props.name}
+                ref={ref}
+                defaultValue={props.defaultValue}
+                required={props.required}
+                onChange={onChange}
+                className={`effect-20 ${hasContent ? 'has-content' : ''}`}>
                 <option key="1000" value=''/>
                 {
                     props.options.map((item, i) =>
