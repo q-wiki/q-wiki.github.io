@@ -149,28 +149,28 @@ export const aboutUsData = [
 ],
 wikidata:[
   {
-    heading: "",
+    heading: "Lucas Werkmeister",
     link:"",
-    text: "",
+    text: "Full Stack Developer",
     image: aboutUsMemberOne,
   },
   {
-    heading: "",
+    heading: "Alaa Sarhan",
     link:"",
-    text: "",
+    text: "Full Stack Developer",
     image: aboutUsMemberOne,
   }
 ],
 htw:[
   {
-    heading: "",
+    heading: "Prof. Dr. Debora Weber-Wulff",
     link:"",
     text: "",
     image: aboutUsMemberOne,
   },
   {
-    heading: "",
-    link:"",
+    heading: "Prof. Dr.-Ing. David Strippgen",
+    link:"http://home.htw-berlin.de/~strippg/",
     text: "",
     image: aboutUsMemberOne,
   }
