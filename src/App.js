@@ -45,7 +45,7 @@ function App() {
             <Route path='/about'>
               <AboutPage />
             </Route>
-            <Route path='/report'>
+            <Route path='/report/:minigameId?'>
               <ReportPage />
             </Route>
             <Route path='/contribute'>
