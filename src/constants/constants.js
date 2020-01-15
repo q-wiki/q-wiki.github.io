@@ -13,7 +13,7 @@ export const cardsDataLandingPage= [
   } ,
 { icon:"report-problem",
   heading:"Report\nProblems",
-  link:"/report",
+  link:"/report/create",
   text: "Found any wrong or broken questions? We can fix them"
 } ,
 { icon:"sparql-community",
