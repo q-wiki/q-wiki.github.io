@@ -81,6 +81,7 @@ export const numberDisplay= [
 import infoScreenshot from "../assets/images/screenshot-1.jpg"
 import infoQrCode from "../assets/images/qr-code.jpg"
 
+
 export const qWikiInfo= [
   {
     heading1: "We are ",
@@ -92,7 +93,7 @@ export const qWikiInfo= [
   }
 ]
 
-import aboutUsMemberOne from "../assets/images/member-1.png"
+import aboutUsMemberOne from "../assets/images/member-1.jpg"
 
 export const aboutUsData = [
 {
@@ -116,7 +117,7 @@ export const aboutUsData = [
     image: aboutUsMemberOne,
   } ,
   {
-    heading: "Eko Supardjo",
+    heading:"Eko Supardjo",
     link:"https://github.com/EkoSHtw",
     text: "Backend Developer",
     image: aboutUsMemberOne,
@@ -128,19 +129,19 @@ export const aboutUsData = [
     image: aboutUsMemberOne,
   },
   {
-    heading: "David",
+    heading: "David Müller",
     link:"https://github.com/davidmllr",
     text: "Frontend Developer",
     image: aboutUsMemberOne,
   },
   {
-    heading: "Arne",
+    heading: "Arne Schlüter",
     link:"https://github.com/heyarne",
     text: "Backend/Frontend Developer",
     image: aboutUsMemberOne,
   },
   {
-    heading: "Laura",
+    heading: "Laura Wölbeling",
     link:"https://github.com/chibbs",
     text: "Backend Developer",
     image: aboutUsMemberOne,
@@ -148,65 +149,79 @@ export const aboutUsData = [
 ],
 wikidata:[
   {
-    heading: "Antonia Berger",
-    link:"https://github.com/AntoniaBe",
-    text: "Frontend Developer",
+    heading: "Lucas Werkmeister",
+    link:"",
+    text: "Full Stack Developer",
     image: aboutUsMemberOne,
   },
   {
-    heading: "SPARQL\nTutorial",
-    link:"https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial",
-    text: "Learn SPARQL with Wikidatas beginner-friendly course for SPARQL",
+    heading: "Alaa Sarhan",
+    link:"",
+    text: "Full Stack Developer",
     image: aboutUsMemberOne,
   }
 ],
 htw:[
   {
-    heading: "Antonia Berger",
-    link:"https://github.com/AntoniaBe",
-    text: "Frontend Developer",
+    heading: "Prof. Dr. Debora Weber-Wulff",
+    link:"",
+    text: "",
     image: aboutUsMemberOne,
   },
   {
-    heading: "SPARQL\nTutorial",
-    link:"https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial",
-    text: "Learn SPARQL with Wikidatas beginner-friendly course for SPARQL",
+    heading: "Prof. Dr.-Ing. David Strippgen",
+    link:"http://home.htw-berlin.de/~strippg/",
+    text: "",
     image: aboutUsMemberOne,
   }
 ],
 }
 ];
 
-
-
+import screenshot2 from "../assets/images/screenshot-2.jpg"
+import screenshot3 from "../assets/images/screenshot-3.jpg"
 
 export const qWikiHistory = [
+{
+  screenshots: [
+    {
+      src: screenshot2,
+    },
+    {
+     src: screenshot3,
+    } ,
+],
+  firstPart: [
+    {
+      heading: "The Task",
+      text: "The original group consisted of 6 master Students. As part of our masters program in International Media and Programming at the HTW Berlin, we were tasked to create a game in collaboration with Wikidata. During the summer semester of 2019 we worked several months to realize the project.",
+    },
+    {
+      heading: "The Diffuculty",
+      text: "A spezial focus was put on the vast amount data and information the platform offers. Using the SPARQL backend enpoint we created queries to fetch data from which we could generate questions.",
+    } ,
   {
-    heading: "The Task",
-    text: "The original group consisted of 6 master Students. As part of our masters program in International Media and Programming at the HTW Berlin, we were tasked to create a game in collaboration with Wikidata. During the summer semester of 2019 we worked several months to realize the project.",
-  },
-  {
-    heading: "The Diffuculty",
-    text: "A spezial focus was put on the vast amount data and information the platform offers. Using the SPARQL backend enpoint we created queries to fetch data from which we could generate questions.",
+    heading: "The Inspiration",
+    text: "The basic gameplay loop was inspired by popular Quiz-Apps, while creating a different take on the visual representation.",
   } ,
-{
-  heading: "The Inspiration",
-  text: "The basic gameplay loop was inspired by popular Quiz-Apps, while creating a different take on the visual representation.",
-} ,
-{
-  heading: "The Workflow",
-  text: "During these months we worked closely with our contacts at Wikidata, exchanging ideas and suggestions to create a fun and representative game.",
-} ,
-{
-  heading: "The End of the Beginning",
-  text: "The result at the end of the semester was recieved positively, promising a good foundation onto which new teams could build upon. Not just amongst Wikidata but also from professors at the HTW, which lead to the continuation of the project during the next semester. While the original team mostly returned to the project, we also welcomed 2 new members to help us perfect the game.",
-} ,
-{
-  heading: "The Leftovers",
-  text: "Due to the lack of time in the first run we had to cut some ideas and features. With a whole second semester we were able to implement many more functions, as well as this website to accompany the game.",
-} ,
-{
-  heading: "The new Task",
-  text: "While refining the core game, adding new categories and questions, we also wanted to create a platform for users to help us help Wikidata get the recognition they deserve as well as build and maintain knowledge on their platform.",
-} ,
+  {
+    heading: "The Workflow",
+    text: "During these months we worked closely with our contacts at Wikidata, exchanging ideas and suggestions to create a fun and representative game.",
+  },
+],
+secondPart:[
+  {
+    heading: "The End of the Beginning",
+    text: "The result at the end of the semester was recieved positively, promising a good foundation onto which new teams could build upon. Not just amongst Wikidata but also from professors at the HTW, which lead to the continuation of the project during the next semester. While the original team mostly returned to the project, we also welcomed 2 new members to help us perfect the game.",
+  } ,
+  {
+    heading: "The Leftovers",
+    text: "Due to the lack of time in the first run we had to cut some ideas and features. With a whole second semester we were able to implement many more functions, as well as this website to accompany the game.",
+  } ,
+  {
+    heading: "The new Task",
+    text: "While refining the core game, adding new categories and questions, we also wanted to create a platform for users to help us help Wikidata get the recognition they deserve as well as build and maintain knowledge on their platform.",
+  } ,
 ]
+}
+];
