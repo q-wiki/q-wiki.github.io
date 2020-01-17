@@ -225,3 +225,17 @@ secondPart:[
 ]
 }
 ];
+
+export const reportPageInfo= [
+  {
+    heading: "Even after hundreds of tests, we still can not guarantee that every question is 100% correct!",
+    text: "But you can help us locate and correct as many bugs as possible!\nFound an incorrect question? > Report it here!",
+    text2:"Want to help us correct all these wrong questions?\nScroll through the reports and help us identify the error!",
+  },
+  {
+    heading:"Got problems with wrong or missing content?",
+    heading2:"Did you find an error in a question?",
+    text:"Join the community and leave a suggestion. Together we can provide as much knowledge as possible!",
+    text2:"If you notice this during a game, click the in-game button. It makes filling out this form much quicker!",
+  }
+]

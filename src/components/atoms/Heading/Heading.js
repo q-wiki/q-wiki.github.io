@@ -43,7 +43,7 @@ const Heading = ({
   twoLined,
   ...props
 }) => {
-  return (<div>
+  return (<div className="heading-container">
     <Text {...{ type, pallete }}>{children}</Text>
 
     {
