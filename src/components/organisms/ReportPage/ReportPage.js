@@ -15,6 +15,9 @@ import TextField from '../../atoms/TextField/TextField'
 
 import TagList from '../../molecules/TagList/TagList'
 
+import '../../molecules/GithubLoginButton/GithubLoginButton'
+import GithubLoginButton from '../../molecules/GithubLoginButton/GithubLoginButton'
+
 // TODO:  validation
 
 function Report () {
@@ -166,6 +169,7 @@ export default function ReportPage() {
       <Col xs>
         <Heading type='H1'>Got problems with wrong or missing content?</Heading>
         <Paragraph>Join the community and leave a suggestion. Together we can provide as much knowledge as possible!</Paragraph>
+        <Paragraph><GithubLoginButton /></Paragraph>
       </Col>
     </Row>
     <Row>

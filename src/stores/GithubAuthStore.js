@@ -1,7 +1,13 @@
-export default class GithubAuthStore {
+import { computed, action } from 'mobx'
+
+class GithubAuthStore {
   bearerToken = null
 
-  apiRequest (url, data={}, opts={}) {
+  @computed get isLoggedIn () {
+    return this.bearerToken != null
+  }
+
+  @action apiRequest (url, data={}, opts={}) {
     let headers = {'Content-Type': 'application/json'}
     const body = JSON.stringify(data)
 
@@ -16,3 +22,5 @@ export default class GithubAuthStore {
       })
   }
 }
+
+export default new GithubAuthStore()
