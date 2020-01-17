@@ -124,11 +124,9 @@ select::-ms-expand {
   .effect-20 ~ label {
     position: absolute;
     left: 14px;
-    width: 100%;
     top: 10px;
     color: $qwikiGrey;
     transition: 0.3s;
-    z-index: -1;
     letter-spacing: 0.5px;
   }
 

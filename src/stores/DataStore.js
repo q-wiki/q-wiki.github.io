@@ -44,7 +44,7 @@ export default class DataStore {
                     this.questions.error = "None";
             })
             .catch((error) =>{
-                this.questions.isLoading = false;
+                this.questions.isLoading = true;
                 this.questions.error = error;
             })
     }

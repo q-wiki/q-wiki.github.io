@@ -54,9 +54,9 @@ export const cardsDataContributePage = [
 ]
 
 export const minigameTypes=[
-  {title:"Multiple Choice"},
-    {title:"Sorting"},
-    {title:"Image Guess"}
+    {title:"Sorting", id:0},
+    {title:"Image Guess", id:1},
+    {title:"Multiple Choice", id:2},
 ]
 
 export const numberDisplay= [

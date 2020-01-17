@@ -5,7 +5,7 @@
   position: relative;
   text-align: center;
   width: 40rem;
-  height: 25rem;
+  height: 20rem;
   display: flex;
   align-items: center;
 
@@ -38,5 +38,8 @@
         border: 1px solid $black;
       }
     }
+  }
+  .minigame_button{
+    margin-top: 1rem;
   }
 }

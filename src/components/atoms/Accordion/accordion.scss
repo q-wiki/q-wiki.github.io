@@ -24,6 +24,10 @@ float:right;
   border-bottom: 1px solid $qwikiGrey;
 }
 
-.accordion__button:hover, .accordion__button:focus{
+.accordion__button:hover, .accordion__button:focus, .accordion__button[aria-expanded="true"]{
   background-color: $qwikiGreenDarker;
+}
+
+.accordion__panel{
+  background-color: white;
 }

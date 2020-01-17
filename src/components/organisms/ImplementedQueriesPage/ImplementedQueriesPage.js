@@ -4,6 +4,9 @@ import Paragraph from '../../atoms/Paragraph/Paragraph'
 import { inject, observer } from 'mobx-react'
 import Dropdown from '../../atoms/Dropdown/Dropdown'
 import Container75 from '../../atoms/Container75/Container75'
+import Minigame from '../../molecules/Minigame/Minigame'
+import MinigameStore from '../../../stores/MinigameStore'
+import Button from '../../atoms/Button/Button'
 
 import { minigameTypes } from '../../../../src/constants/constants'
 
@@ -21,30 +24,35 @@ import '../../atoms/Accordion/accordion.scss';
 
 import './implementedQueriesPage.scss';
 
-let dataStore = "";
+let dataStore;
 
 @inject('dataStore')
 @observer
 export default class ImplementedQueriesPage extends React.Component{
 
+    changeStatus(question){
+        question.status = 1;
+    }
+
     render(){
         dataStore = this.props.dataStore;
         let categories = dataStore.categories.categories;
         let questions = dataStore.questions;
-        console.log(questions.questions[0]);
         return (
-            <>
+            <div className="implemented-queries">
                 <div className="implemented-queries-header ">
                     <Heading type="H1">Check out our SPARQL Queries!</Heading>
                     <Paragraph textAlign="justify">Choose a minigame and category and try them out Yourself!</Paragraph>
                 </div>
-                <Container75>
+                <Container75 className="filter">
+                    <div className="dropdown-container">
                         <Dropdown placeholder="Minigame Types" options={minigameTypes}/>
                     {!dataStore.categories.isLoading ?
                         <Dropdown placeholder="Minigame Categories" options={JSON.parse(JSON.stringify(categories))}/>:null
                     }
+                    </div>
                 </Container75>
-            <Container75>
+            <Container75 className="accordion-container">
 
                 <Accordion allowZeroExpanded>
         {
@@ -56,16 +64,25 @@ export default class ImplementedQueriesPage extends React.Component{
                         </AccordionItemButton>
                     </AccordionItemHeading>
                     <AccordionItemPanel>
-                        <p>
-                            Test3
-                        </p>
+                        {question.status == 2?
+                            <Button onClick={() => this.changeStatus(question)}>Try Out This Query</Button>
+                            : <div>
+                                {minigameTypes[question.miniGameType].title == "Sorting" ?
+                                    <div className="minigame-div">
+                                        <Minigame questionData={question}/>
+                                    </div>
+                                    : null
+                                }
+                             </div>
+                        }
                     </AccordionItemPanel>
                 </AccordionItem>
-                )) : null}
+                )) : <p>Loading ...</p>
+        }
 
                 </Accordion>
             </Container75>
-            </>
+            </div>
         )
     }
 }
