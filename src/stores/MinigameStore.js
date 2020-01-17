@@ -37,7 +37,6 @@ export default class MinigameStore {
         })
             .then(response => response.json())
             .then((data) => {
-                console.log(data);
                 this.minigameRaw = data.results.bindings;
                 this.isLoading = false;
                 this.processMinigameRaw();
@@ -55,6 +54,13 @@ export default class MinigameStore {
             for(let i = 0; i < this.minigameRaw.length; i++){
                 this.minigameOptions.push(this.minigameRaw[i].answer.value)
                 this.minigameAnswers.push(this.minigameRaw[i].answer.value)
+            }
+            this.minigameOptions = this.minigameOptions.sort(function(a, b){return 0.5 - Math.random()});
+        }else if(this.minigameType == "Multiple Choice"){
+            this.minigameAnswers.push(this.minigameRaw[0].answer.value)
+            this.minigameOptions.push(this.minigameRaw[0].answer.value)
+            for(let i = 1; i < this.minigameRaw.length; i++){
+                this.minigameOptions.push(this.minigameRaw[i].answer.value)
             }
             this.minigameOptions = this.minigameOptions.sort(function(a, b){return 0.5 - Math.random()});
         }

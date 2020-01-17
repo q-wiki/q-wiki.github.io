@@ -12,13 +12,13 @@ import {minigameTypes} from "../../../constants/constants";
 export default class Minigame extends React.Component{
     constructor(props) {
         super(props);
-        console.log(this.props.questionData);
         this.state = {
             questionData : this.props.questionData,
             minigameLoaded : false,
             question : "",
             type: minigameTypes[this.props.questionData.miniGameType].title,
             options: [],
+            correctAnswer: [],
             answer: [],
             checked: false,
         }
@@ -31,7 +31,7 @@ export default class Minigame extends React.Component{
         await minigameStore.initializeMinigame(
             question.sparqlQuery, minigameTypes[question.miniGameType].title, question.taskDescription);
 
-        this.setState({answer : minigameStore.minigameAnswers});
+        this.setState({correctAnswer : minigameStore.minigameAnswers});
         this.setState({question : minigameStore.minigameQuestion});
 
         for(var i = 0; i < minigameStore.minigameOptions.length; i++){
@@ -45,9 +45,8 @@ export default class Minigame extends React.Component{
     }
 
     onClickHandler = (e) =>{
-        console.log("onclick");
-        console.log(this.state.type);
         const id = e.target.id;
+        console.log(e.target);
         const active = !this.state.options[id].active;
         let newState = [];
 
@@ -75,7 +74,6 @@ export default class Minigame extends React.Component{
             });
 
         }else if(this.state.type === "Sorting"){
-            console.log("inside");
             //Handle visual update
             newState = this.state.options;
             newState[id].active = active;
@@ -102,7 +100,7 @@ export default class Minigame extends React.Component{
     validateOptions(){
         this.setState({checked: true});
         let answer = this.state.answer;
-        let correct = this.state.answer;
+        let correct = this.state.correctAnswer;
         let options = this.state.options;
         if(this.state.type == "Sorting"){
             for(let i = 0; i<options.length; i++){
@@ -152,7 +150,7 @@ export default class Minigame extends React.Component{
                             </Row>
                             {
                                 this.state.options.map((option, index) => (
-                                    <Row className="minigame_options" between="md">
+                                    <Row className="minigame_options" between="md" key={index}>
                                         <Col md={1} />
                                         <Col md={this.state.type=="Sorting"?9:10} className="container_option">
                                             <MinigameOption result={this.state.options[index].result} id={index} onClick={((e) => this.onClickHandler(e))} active={this.state.options[index].active}>
@@ -162,9 +160,18 @@ export default class Minigame extends React.Component{
                                         {this.state.type=="Sorting"?
                                             <Col md={1} className="container_option_number">
                                                 {(this.state.answer.indexOf(this.state.options[index].text)+1)>0?<div className={"sorting_number"}><p>{this.state.answer.indexOf(this.state.options[index].text)+1}</p></div>:null}
-                                            </Col>:null
+                                            </Col>
+                                            :
+                                            null
                                         }
-                                        <Col md={1} />
+                                        {
+                                            this.state.type=="Sorting"&& this.state.checked?
+                                                    <Col md={1} className="container_result_number">
+                                                        <div className={"result_number"}><p>{this.state.correctAnswer.indexOf(this.state.options[index].text)+1}</p></div>
+                                                    </Col>
+                                                    :
+                                                    <Col md={1} />
+                                        }
                                     </Row>
                                 ))
                             }

@@ -67,12 +67,9 @@ export default class ImplementedQueriesPage extends React.Component{
                         {question.status == 2?
                             <Button onClick={() => this.changeStatus(question)}>Try Out This Query</Button>
                             : <div>
-                                {minigameTypes[question.miniGameType].title == "Sorting" ?
-                                    <div className="minigame-div">
-                                        <Minigame questionData={question}/>
-                                    </div>
-                                    : null
-                                }
+                                 <div className="minigame-div">
+                                    <Minigame questionData={question}/>
+                                 </div>
                              </div>
                         }
                     </AccordionItemPanel>
