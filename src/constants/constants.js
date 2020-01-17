@@ -238,4 +238,7 @@ export const reportPageInfo= [
     text:"Join the community and leave a suggestion. Together we can provide as much knowledge as possible!",
     text2:"If you notice this during a game, click the in-game button. It makes filling out this form much quicker!",
   }
+
 ]
+}
+];
