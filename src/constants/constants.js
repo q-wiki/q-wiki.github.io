@@ -94,6 +94,9 @@ export const qWikiInfo= [
 ]
 
 import aboutUsMemberOne from "../assets/images/member-1.jpg"
+import werkmeister from "../assets/images/Werkmeister.png"
+import strippgen from "../assets/images/Strippgen.png"
+import weberWulff from "../assets/images/Weber-Wulff.jpg"
 
 export const aboutUsData = [
 {
@@ -150,9 +153,9 @@ export const aboutUsData = [
 wikidata:[
   {
     heading: "Lucas Werkmeister",
-    link:"",
+    link:"lucaswerkmeister.de",
     text: "Full Stack Developer",
-    image: aboutUsMemberOne,
+    image: werkmeister,
   },
   {
     heading: "Alaa Sarhan",
@@ -164,15 +167,13 @@ wikidata:[
 htw:[
   {
     heading: "Prof. Dr. Debora Weber-Wulff",
-    link:"",
     text: "",
-    image: aboutUsMemberOne,
+    image: weberWulff,
   },
   {
     heading: "Prof. Dr.-Ing. David Strippgen",
-    link:"http://home.htw-berlin.de/~strippg/",
     text: "",
-    image: aboutUsMemberOne,
+    image: strippgen,
   }
 ],
 }
