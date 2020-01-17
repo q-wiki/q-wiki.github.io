@@ -12,6 +12,7 @@ textarea{
   height: 100%;
   box-sizing: border-box;
   letter-spacing: 1px;
+
 }
 
 :focus {
@@ -23,6 +24,7 @@ textarea{
   margin: 20px 0 0 0;
 
   position: relative;
+    z-index: 2;
 
   textarea{
     resize: vertical;
@@ -110,7 +112,6 @@ textarea{
   .effect-20 ~ label {
     position: absolute;
     left: 14px;
-    width: 100%;
     top: 10px;
     color: $qwikiGrey;
     transition: 0.3s;
@@ -127,5 +128,3 @@ textarea{
   }
 
 }
-
-
