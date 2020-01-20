@@ -1,44 +1,37 @@
-import { computed, action, observable } from 'mobx'
+import { computed, action, observable, autorun, toJS } from 'mobx'
 
 import config from '../config'
 
-const authInfo = () => JSON.parse(localStorage.getItem('auth') || '{}')
+// autoSave is a modified version of code by Mouad Debbar and others, https://stackoverflow.com/a/40326316
+function autoSave(store) {
+  let firstRun = true;
+  autorun(() => {
+    // This code will run every time any observable property
+    // on the store is updated.
+    const json = JSON.stringify(toJS(store));
+    if (!firstRun) {
+      localStorage.setItem('auth', json)
+    }
+    firstRun = false;
+  });
+}
 
 class GithubAuthStore {
-  // ---
-  // we hide the implementation details so we can provide a clean interface
-  // which persists auth info into local storage and uses it again when the
-  // store is constructed
-  // ---
-
   constructor() {
-    let auth = authInfo()
-    if (auth.bearerToken) this._bearerToken = auth.bearerToken
-    if (auth.user) this._user = auth.user
+    // restore from localstorage
+    const persisted = JSON.parse(localStorage.getItem('auth') || '{"bearerToken": null, "user": {}}')
+    const hasUser = persisted.user.login
+    this.bearerToken = persisted.bearerToken
+    this.user = persisted.user
+
+    if (persisted.bearerToken && !hasUser) this.fetchUser()
+
+    // persist on change
+    autoSave(this)
   }
 
-  @observable _bearerToken = null
-  @observable _user = {}
-
-  @computed get bearerToken () {
-    return this._bearerToken
-  }
-
-  set bearerToken(bearerToken) {
-    let auth = authInfo()
-    window.localStorage.setItem('auth', JSON.stringify(Object.assign(auth, {bearerToken})))
-  }
-
-  @computed get user () {
-    return this._user
-  }
-
-  set user(user) {
-    let auth = authInfo()
-    window.localStorage.setItem('auth', JSON.stringify(Object.assign(auth, {user})))
-  }
-
-  // ---
+  @observable bearerToken = null
+  @observable user = {}
 
   @computed get isLoggedIn () {
     return this.user.login != null
