@@ -1,7 +1,19 @@
 import React, {useState} from 'react'
+import './reportPage.scss';
 import useForm from 'react-hook-form'
 import {useParams} from 'react-router-dom'
 import {Col, Row} from 'react-flexbox-grid'
+import Tabs from 'react-responsive-tabs';
+import 'react-responsive-tabs/styles.css';
+import 'react-accessible-accordion/dist/fancy-example.css';
+import {
+    Accordion,
+    AccordionItem,
+    AccordionItemHeading,
+    AccordionItemButton,
+    AccordionItemPanel,
+} from 'react-accessible-accordion';
+
 
 import config from '../../../config'
 
@@ -12,13 +24,54 @@ import Heading from '../../atoms/Heading/Heading'
 import Paragraph from '../../atoms/Paragraph/Paragraph'
 import TextArea from '../../atoms/TextArea/TextArea'
 import TextField from '../../atoms/TextField/TextField'
-
 import TagList from '../../molecules/TagList/TagList'
 
-import '../../molecules/GithubLoginButton/GithubLoginButton'
-import GithubLoginButton from '../../molecules/GithubLoginButton/GithubLoginButton'
+import { reportPageInfo} from '../../../../src/constants/constants'
 
 // TODO:  validation
+
+
+const tabsContent = [
+  {
+    title: 'Open New Report',
+    content:
+    <div className="report-form-container">
+      <Row>
+        <Col xs>
+          <Heading type='H1'>{reportPageInfo[1].heading}</Heading>
+          <Paragraph>{reportPageInfo[1].text}</Paragraph>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs>
+          <Heading type='H2'>{reportPageInfo[1].heading2}</Heading>
+          <Paragraph>{reportPageInfo[1].text2}</Paragraph>
+        </Col>
+      </Row>
+      <Report />
+    </div>,
+  },
+  {
+    title: 'Open Reports',
+    content: 'This is a list of Open Reports!'
+  },
+  {
+    title: 'Closed Reports',
+    content: 'This is a list of Closed Reports!'
+  }
+];
+
+function getTabs() {
+  return tabsContent.map((tabsContent, index) => ({
+    title: tabsContent.title,
+    getContent: () => tabsContent.content,
+    /* Optional parameters */
+    key: index,
+    tabClassName: 'tab',
+    panelClassName: 'panel',
+  }));
+}
+
 
 function Report () {
   const params = useParams()
@@ -32,7 +85,7 @@ function Report () {
 
   if (loading) {
     fetch(config.API_URL + '/api/Platform/Minigame/' + params.minigameId)
-      .then(res => 
+      .then(res =>
         // keep original response to handle http errors
         res.json().then(body => [res, body])
       )
@@ -71,7 +124,7 @@ function Report () {
              <pre>{JSON.stringify(apiError, 2)}</pre>
            </Col>
          </Row>
-       </> 
+       </>
        : (<>
           <Row>
             <Col xs>
@@ -155,16 +208,25 @@ function Report () {
             </Col>
           </Row>
           <Row>
+            <div className="submit-button-container">
             <Col xs>
               <Button>Submit</Button>
             </Col>
+            </div>
           </Row>
         </>))}
     </form>
 }
 
 export default function ReportPage() {
-  return <Container75>
+  return <div className="report-page-container">
+  <Container75>
+    <div className="report-header">
+      <Heading  className="report-heading" pallete="white" type="H1">{reportPageInfo[0].heading}</Heading>
+      <Heading  className="report-heading" pallete="white" type="H2">{reportPageInfo[0].text}</Heading>
+      <Heading  className="report-heading" pallete="white" type="H2">{reportPageInfo[0].text2}</Heading>
+  </div>
+    <Tabs showMore={false} items={getTabs()} transformWidth={500}  />
     <Row>
       <Col xs>
         <Heading type='H1'>Got problems with wrong or missing content?</Heading>
@@ -178,6 +240,6 @@ export default function ReportPage() {
         <Paragraph>If you notice this during a game, click the in-game button. It makes filling out this form much quicker!</Paragraph>
       </Col>
     </Row>
-    <Report />
   </Container75>
+  </div>
 }

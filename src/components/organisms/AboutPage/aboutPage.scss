@@ -1,18 +1,187 @@
 @import "../../../../src/assets/variables.scss";
 
-
 .about-us-container {
+  .Q {
+    font-size: 36px;
+  }
+  .members-title {
+    padding: 30px 0px 30px 50px;
+  }
+  .history-container {
+    background-color: $qwikiLightBlue;
 
+    .history-title {
+      padding: 30px 0px 30px 0px;
+    }
 
+    .timeline-master-container {
+      display: flex;
+      flex-direction: column;
 
-.history-container {
-  background-color: $qwikiLightBlue;
-}
-}
+      .timeline-first-container,
+      .timeline-second-container {
+        display: flex;
+        flex-direction: row;
+      }
 
+      .timeline-img {
+        width: 100%;
+      }
 
-.members-container {
+      .timeline-container {
+        box-sizing: border-box;
+        flex: 1;
+      }
+
+      .timeline-ruler {
+        position: relative;
+      }
+
+      .timeline-ruler::after {
+        content: "";
+        position: absolute;
+        width: 6px;
+        background-color: $qwikiGreen;
+        top: 0;
+        bottom: 0;
+        margin-left: -3px;
+      }
+
+      .timeline-content-container {
+        padding: 3px 40px 20px 40px;
+        position: relative;
+        width: 85%;
+      }
+
+      .timeline-content-container::after {
+        content: "";
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background-color: $qwikiGreen;
+        border: 4px solid $qwikiGreen;
+        top: 15px;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      .left {
+        left: -75px;
+      }
+
+      .right {
+        left: 50%;
+      }
+
+      .right::after {
+        left: -16px;
+      }
+
+      .timeline-content {
+        position: relative;
+      }
+
+      .timeline-first-container {
+        .timeline-img-container {
+          display: flex;
+          align-items: flex-end;
+          flex: 1;
+          justify-content: flex-end;
+        }
+
+        .timeline {
+          position: relative;
+          right: 48%;
+
+          .timeline-ruler::after {
+            left: 50%;
+          }
+
+          .timeline-content-container::after {
+            right: 64px;
+          }
+        }
+      }
+
+      .timeline-second-container {
+        margin-bottom: -4px;
+        .timeline-img-container {
+          display: flex;
+          align-items: flex-start;
+          flex: 1;
+          justify-content: flex-end;
+        }
+
+        .timeline {
+          position: relative;
+          right: -13%;
+          top: -4px;
+          .timeline-ruler::after {
+            left: 85%;
+          }
+
+          .timeline-content-container::after {
+            right: -11px;
+          }
+        }
+      }
+    }
+  }
+
   .members {
-    padding: 15px;
+    padding: 6px;
+  }
+
+  .qwiki-team-container {
+    .members-container,
+    .supervisors-container {
+      padding-bottom: 50px;
+    }
+    .wikidata-container,
+    .htw-container {
+      flex: 1;
+      padding-top: 30px;
+    }
+
+    .project-supervisor-title {
+      padding: 30px 0px 30px 0px;
+      text-align: center;
+    }
+
+    .supervisors-container {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .about-us-container {
+    .col-md-2 {
+      flex-basis: 0 !important;
+      flex: initial !important;
+    }
+
+    .timeline-container {
+      padding: 20px;
+    }
+    .timeline-first-container,
+    .timeline-second-container {
+      flex-direction: column !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .qwiki-team-container {
+    .members-title {
+      padding: 30px 0px 30px 14px !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 964px) {
+  .supervisors-container {
+    flex-direction: column !important;
   }
 }
