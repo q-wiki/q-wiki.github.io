@@ -21,7 +21,15 @@ class GithubAuthStore {
       headers['Authorization'] = `Bearer ${this.bearerToken}`
     }
 
-    return fetch('https://api.github.com/' + endpoint, { ...{headers}, ...{body}, ...opts })
+    // the request method can always be directly set; however, if we have some
+    // data we want to transmit, do this via POST (if no method is defined); if
+    // not, just use a standard get request
+    const method = (opts.method || (data != null ? 'post' : 'get')).toLowerCase()
+    const request = method == 'get' || method == 'head'
+      ? { ...{headers}, ...opts }
+      : { ...{headers}, ...{body}, ...opts }
+
+    return fetch('https://api.github.com/' + endpoint, request)
       .then(res => {
         if (!res.ok) console.error('There is a problem with Github\'s response', res)
         return res.json()
