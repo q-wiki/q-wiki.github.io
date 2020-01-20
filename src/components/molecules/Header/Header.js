@@ -6,7 +6,7 @@ import Paragraph from "../../atoms/Paragraph/Paragraph";
 import Menu from '../../molecules/Menu/Menu';
 import Container75 from '../../atoms/Container75/Container75'
 
-import githubAuthStore from '../../../stores/GithubAuthStore'
+import githubStore from '../../../stores/GithubStore'
 import GithubLoginButton from '../../molecules/GithubLoginButton/GithubLoginButton'
 
 import "./header.scss";
@@ -22,7 +22,7 @@ const Header = () => (
         <Paragraph>Q-Wiki@wikidata.de</Paragraph>
       </div>
       <div className="content-right">
-        <Paragraph><GithubLoginButton githubAuthStore={githubAuthStore} /></Paragraph>
+        <Paragraph><GithubLoginButton githubStore={githubStore} /></Paragraph>
       </div>
       </Row>
       </Container75>

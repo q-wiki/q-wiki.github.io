@@ -8,22 +8,22 @@ import Icon from '../../atoms/Icon/Icon'
 
 import './GithubLoginButton.scss'
 
-export default observer(({ githubAuthStore }) => {
+export default observer(({ githubStore }) => {
   const location = useLocation()
   const logout = e => {
     e.preventDefault()
-    githubAuthStore.logout()
+    githubStore.logout()
   }
 
   return <span className='github-login-button'>
-    {githubAuthStore.isLoggedIn
+    {githubStore.isLoggedIn
       ? (
         <a href='#' onClick={logout}>
-          <Icon icon='github' /> Logout ({githubAuthStore.user.login})
+          <Icon icon='github' /> Logout ({githubStore.user.login})
         </a>
       )
       : (
-        <a href={githubAuthStore.loginLink(location)}>
+        <a href={githubStore.loginLink(location)}>
           <Icon icon='github' /> Sign in with GitHub
         </a>
       )}
