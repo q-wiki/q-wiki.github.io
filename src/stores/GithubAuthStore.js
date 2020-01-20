@@ -2,9 +2,43 @@ import { computed, action, observable } from 'mobx'
 
 import config from '../config'
 
+const authInfo = () => JSON.parse(localStorage.getItem('auth') || '{}')
+
 class GithubAuthStore {
-  @observable bearerToken = null
-  @observable user = {}
+  // ---
+  // we hide the implementation details so we can provide a clean interface
+  // which persists auth info into local storage and uses it again when the
+  // store is constructed
+  // ---
+
+  constructor() {
+    let auth = authInfo()
+    if (auth.bearerToken) this._bearerToken = auth.bearerToken
+    if (auth.user) this._user = auth.user
+  }
+
+  @observable _bearerToken = null
+  @observable _user = {}
+
+  @computed get bearerToken () {
+    return this._bearerToken
+  }
+
+  set bearerToken(bearerToken) {
+    let auth = authInfo()
+    window.localStorage.setItem('auth', JSON.stringify(Object.assign(auth, {bearerToken})))
+  }
+
+  @computed get user () {
+    return this._user
+  }
+
+  set user(user) {
+    let auth = authInfo()
+    window.localStorage.setItem('auth', JSON.stringify(Object.assign(auth, {user})))
+  }
+
+  // ---
 
   @computed get isLoggedIn () {
     return this.user.login != null
@@ -57,7 +91,9 @@ class GithubAuthStore {
   //
 
   fetchUser () {
-    this.apiRequest('user').then(user => { this.user = user })
+    this.apiRequest('user').then(user => {
+      this.user = user
+    })
   }
 }
 
