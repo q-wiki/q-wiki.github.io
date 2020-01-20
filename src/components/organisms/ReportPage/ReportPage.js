@@ -227,6 +227,19 @@ export default function ReportPage() {
       <Heading  className="report-heading" pallete="white" type="H2">{reportPageInfo[0].text2}</Heading>
   </div>
     <Tabs showMore={false} items={getTabs()} transformWidth={500}  />
+    <Row>
+      <Col xs>
+        <Heading type='H1'>Got problems with wrong or missing content?</Heading>
+        <Paragraph>Join the community and leave a suggestion. Together we can provide as much knowledge as possible!</Paragraph>
+        <Paragraph><GithubLoginButton /></Paragraph>
+      </Col>
+    </Row>
+    <Row>
+      <Col xs>
+        <Heading type='H2'>Did you find an error in a question?</Heading>
+        <Paragraph>If you notice this during a game, click the in-game button. It makes filling out this form much quicker!</Paragraph>
+      </Col>
+    </Row>
   </Container75>
   </div>
 }
