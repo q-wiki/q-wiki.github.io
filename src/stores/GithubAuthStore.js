@@ -4,20 +4,24 @@ import config from '../config'
 
 class GithubAuthStore {
   bearerToken = null
+  user = {}
 
   @computed get isLoggedIn () {
-    return this.bearerToken != null
+    return this.user.login != null
   }
 
-  @action apiRequest (url, data={}, opts={}) {
-    let headers = {'Content-Type': 'application/json'}
+  @action apiRequest (endpoint, data={}, opts={}) {
+    let headers = {
+      'Content-Type': 'application/json',
+      Accept: 'application/vnd.github.v3+json'
+    }
     const body = JSON.stringify(data)
 
     if (this.bearerToken) {
       headers['Authorization'] = `Bearer ${this.bearerToken}`
     }
 
-    return fetch(url, { ...{headers}, ...{body}, ...opts })
+    return fetch('https://api.github.com/' + endpoint, { ...{headers}, ...{body}, ...opts })
       .then(res => {
         if (!res.ok) console.error('There is a problem with Github\'s response', res)
         return res.json()
@@ -37,6 +41,18 @@ class GithubAuthStore {
 
   logout = () => {
     this.bearerToken = null
+    this.user = {}
+  }
+
+  //
+  // ---
+  // Below are API requests that change this store directly; if you just want
+  // to make an authorized request, use the apiRequest method above.
+  // ---
+  //
+
+  fetchUser () {
+    this.apiRequest('user').then(user => { this.user = user })
   }
 }
 

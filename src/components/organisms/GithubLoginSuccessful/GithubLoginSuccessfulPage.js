@@ -14,6 +14,7 @@ export default () => {
     // the sourceUrl gets passed on from the C# server so we know where we
     // initialized the auth flow; the bearer token comes from Github
     github.bearerToken = queryParams.get('bearer')
+    github.fetchUser()
     history.replace(queryParams.get('sourceUrl'))
   })
   
