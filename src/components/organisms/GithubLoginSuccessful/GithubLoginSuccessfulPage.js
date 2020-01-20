@@ -1,6 +1,6 @@
 import React from 'react'
 import { useLocation, useHistory } from 'react-router-dom'
-import github from '../../../stores/GithubAuthStore'
+import github from '../../../stores/GithubStore'
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);

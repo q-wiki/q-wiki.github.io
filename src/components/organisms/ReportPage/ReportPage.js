@@ -8,14 +8,13 @@ import Container75 from '../../atoms/Container75/Container75'
 import Heading from '../../atoms/Heading/Heading'
 import Paragraph from '../../atoms/Paragraph/Paragraph'
 
-import githubAuthStore from '../../../stores/GithubAuthStore'
-import GithubLoginButton from '../../molecules/GithubLoginButton/GithubLoginButton'
-
 import ReportForm from './tabs/ReportForm'
 
-import { reportPageInfo} from '../../../../src/constants/constants'
+import { reportPageInfo } from '../../../../src/constants/constants'
 
 // TODO:  validation
+
+const colSize = { xs: 12, md: 10, mdOffset: 1 }
 
 const tabsContent = [
   {
@@ -23,19 +22,22 @@ const tabsContent = [
     content:
     <div className="report-form-container">
       <Row>
-        <Col xs>
+        <Col {...colSize}>
           <Heading type='H1'>{reportPageInfo[1].heading}</Heading>
           <Paragraph>{reportPageInfo[1].text}</Paragraph>
-          <Paragraph><GithubLoginButton githubAuthStore={githubAuthStore} /></Paragraph>
         </Col>
       </Row>
       <Row>
-        <Col xs>
+        <Col {...colSize}>
           <Heading type='H2'>{reportPageInfo[1].heading2}</Heading>
           <Paragraph>{reportPageInfo[1].text2}</Paragraph>
         </Col>
       </Row>
-      <ReportForm />
+      <Row>
+        <Col {...colSize}>
+          <ReportForm />
+        </Col>
+      </Row>
     </div>,
   },
   {
@@ -59,17 +61,15 @@ function getTabs() {
   }));
 }
 
-
-
-export default function ReportPage() {
+export default function ReportPage () {
   return <div className="report-page-container">
-  <Container75>
-    <div className="report-header">
-      <Heading  className="report-heading" pallete="white" type="H1">{reportPageInfo[0].heading}</Heading>
-      <Heading  className="report-heading" pallete="white" type="H2">{reportPageInfo[0].text}</Heading>
-      <Heading  className="report-heading" pallete="white" type="H2">{reportPageInfo[0].text2}</Heading>
-  </div>
-    <Tabs showMore={false} items={getTabs()} transformWidth={500}  />
-  </Container75>
+    <Container75>
+      <div className="report-header">
+        <Heading className="report-heading" pallete="white" type="H1">{reportPageInfo[0].heading}</Heading>
+        <Heading className="report-heading" pallete="white" type="H2">{reportPageInfo[0].text}</Heading>
+        <Heading className="report-heading" pallete="white" type="H2">{reportPageInfo[0].text2}</Heading>
+      </div>
+      <Tabs showMore={false} items={getTabs()} transformWidth={500} />
+    </Container75>
   </div>
 }
