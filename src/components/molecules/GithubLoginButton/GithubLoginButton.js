@@ -10,12 +10,22 @@ import './GithubLoginButton.scss'
 
 export default observer(({ githubAuthStore }) => {
   const location = useLocation()
+  const logout = e => {
+    e.preventDefault()
+    githubAuthStore.logout()
+  }
+
   return <span className='github-login-button'>
-    <a href={githubAuthStore.loginLink(location)}>
-      <Icon icon='github' />
-      {githubAuthStore.isLoggedIn
-      ? `Logout (${githubAuthStore.user.login})`
-      : 'Sign in with Github'}
-    </a>
+    {githubAuthStore.isLoggedIn
+      ? (
+        <a href='#' onClick={logout}>
+          <Icon icon='github' /> Logout ({githubAuthStore.user.login})
+        </a>
+      )
+      : (
+        <a href={githubAuthStore.loginLink(location)}>
+          <Icon icon='github' /> Sign in with GitHub
+        </a>
+      )}
   </span>
 })

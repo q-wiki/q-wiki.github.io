@@ -1,8 +1,35 @@
-import { computed, action, observable } from 'mobx'
+import { computed, action, observable, autorun, toJS } from 'mobx'
 
 import config from '../config'
 
+// autoSave is a modified version of code by Mouad Debbar and others, https://stackoverflow.com/a/40326316
+function autoSave(store) {
+  let firstRun = true;
+  autorun(() => {
+    // This code will run every time any observable property
+    // on the store is updated.
+    const json = JSON.stringify(toJS(store));
+    if (!firstRun) {
+      localStorage.setItem('auth', json)
+    }
+    firstRun = false;
+  });
+}
+
 class GithubAuthStore {
+  constructor() {
+    // restore from localstorage
+    const persisted = JSON.parse(localStorage.getItem('auth') || '{"bearerToken": null, "user": {}}')
+    const hasUser = persisted.user.login
+    this.bearerToken = persisted.bearerToken
+    this.user = persisted.user
+
+    if (persisted.bearerToken && !hasUser) this.fetchUser()
+
+    // persist on change
+    autoSave(this)
+  }
+
   @observable bearerToken = null
   @observable user = {}
 
@@ -57,7 +84,9 @@ class GithubAuthStore {
   //
 
   fetchUser () {
-    this.apiRequest('user').then(user => { this.user = user })
+    this.apiRequest('user').then(user => {
+      this.user = user
+    })
   }
 }
 
