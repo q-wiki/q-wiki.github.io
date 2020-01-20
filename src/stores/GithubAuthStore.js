@@ -1,10 +1,10 @@
-import { computed, action } from 'mobx'
+import { computed, action, observable } from 'mobx'
 
 import config from '../config'
 
 class GithubAuthStore {
-  bearerToken = null
-  user = {}
+  @observable bearerToken = null
+  @observable user = {}
 
   @computed get isLoggedIn () {
     return this.user.login != null
@@ -21,7 +21,12 @@ class GithubAuthStore {
       headers['Authorization'] = `Bearer ${this.bearerToken}`
     }
 
-    return fetch('https://api.github.com/' + endpoint, { ...{headers}, ...{body}, ...opts })
+    const method = (opts.method || 'get').toLowerCase()
+    const request = method == 'get' || method == 'head'
+      ? { ...{headers}, ...opts }
+      : { ...{headers}, ...{body}, ...opts }
+
+    return fetch('https://api.github.com/' + endpoint, request)
       .then(res => {
         if (!res.ok) console.error('There is a problem with Github\'s response', res)
         return res.json()
