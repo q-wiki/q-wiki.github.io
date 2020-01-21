@@ -16,7 +16,6 @@ const Footer = () => (
     </Heading>
     <div>
       <Paragraph pallete="white"><a href="/" target="_blank">Privacy Policy</a></Paragraph>
-      <Paragraph pallete="white"><a href="/" target="_blank">Site Map</a></Paragraph>
       <Paragraph pallete="white"><a href="/" target="_blank">Contact</a></Paragraph>
       <Paragraph pallete="white"><a href="/" target="_blank">Terms of Use</a></Paragraph>
     </div>
