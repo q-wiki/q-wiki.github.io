@@ -21,7 +21,7 @@
 
   .cardMember_container_content {
     padding: 10px;
-    opacity: 0;
+    opacity: 1;
     h2 {
       text-align: left;
     }
@@ -45,15 +45,13 @@
   }
 }
 
-.cardMember_container:hover {
-
+.mobile {
   .cardMember_container_content {
     opacity: 1;
   }
 }
+.browser:hover {
 
-/* smartphones, touchscreens */
-@media (hover: none) and (pointer: coarse) {
   .cardMember_container_content {
     opacity: 1;
   }

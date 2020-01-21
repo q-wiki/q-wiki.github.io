@@ -7,21 +7,24 @@ import Paragraph from "../../atoms/Paragraph/Paragraph";
 
 import "./cardMember.scss";
 
-const Wrapper = styled.div`
-  background-image: url('${props => props.backgroundImage}');
+import { isMobile } from "react-device-detect";
 
-  &:hover {
-    background: linear-gradient(to bottom, rgba(0, 0 ,0, 0), rgba(0, 0, 0, 0.75)), url('${props =>
-      props.backgroundImage}');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-  }
+
+
+const Wrapper = styled.div`
+
+
+
 `;
 const CardMember = ({ headline, link, content, backgroundImage, ...props }) => (
   <a className="link" href={link} target="_blank">
     <Wrapper
-      className="cardMember_container"
+      style={{
+        background: `linear-gradient(to bottom, rgba(0, 0 ,0, 0), rgba(0, 0, 0, 0.75)), url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center center',
+      }}
+      className={`cardMember_container ${isMobile ? 'mobile' : 'browser'}`}
       {...{ backgroundImage }}
     >
       <div className="cardMember_container_content">

@@ -97,6 +97,7 @@ import aboutUsMemberOne from "../assets/images/member-1.jpg"
 import werkmeister from "../assets/images/Werkmeister.png"
 import strippgen from "../assets/images/Strippgen.png"
 import weberWulff from "../assets/images/Weber-Wulff.jpg"
+import schlueter from "../assets/images/schlueter.jpeg"
 
 export const aboutUsData = [
 {
@@ -104,63 +105,60 @@ export const aboutUsData = [
     {
       heading: "Antonia Berger",
       link:"https://github.com/AntoniaBe",
-      text: "Frontend Developer",
+      text: "Frontend",
       image: aboutUsMemberOne,
     },
     {
       heading: "Jennifer Lindner",
       link:"https://github.com/JennyLin1995",
-      text: "Frontend Developer",
+      text: "Frontend",
       image: aboutUsMemberOne,
     } ,
   {
     heading:"Malte Götz",
-    link:"https://github.com/maltegoetz",
-    text: "Backend Developer",
+    link:"http://maltegoetz.com ",
+    text: "Backend",
     image: aboutUsMemberOne,
   } ,
   {
     heading:"Eko Supardjo",
     link:"https://github.com/EkoSHtw",
-    text: "Backend Developer",
+    text: "Backend",
     image: aboutUsMemberOne,
   },
   {
     heading: "Jonas Fichtmüller",
     link:"https://github.com/golemmoja",
-    text: "Backend Developer",
+    text: "Backend",
     image: aboutUsMemberOne,
   },
   {
     heading: "David Müller",
     link:"https://github.com/davidmllr",
-    text: "Frontend Developer",
+    text: "Frontend",
     image: aboutUsMemberOne,
   },
   {
     heading: "Arne Schlüter",
     link:"https://github.com/heyarne",
-    text: "Backend/Frontend Developer",
-    image: aboutUsMemberOne,
+    text: "Backend/Frontend",
+    image: schlueter,
   },
   {
     heading: "Laura Wölbeling",
     link:"https://github.com/chibbs",
-    text: "Backend Developer",
+    text: "Backend",
     image: aboutUsMemberOne,
   },
 ],
 wikidata:[
   {
     heading: "Lucas Werkmeister",
-    link:"lucaswerkmeister.de",
-    text: "Full Stack Developer",
+    link:"https://lucaswerkmeister.de",
     image: werkmeister,
   },
   {
     heading: "Alaa Sarhan",
-    link:"",
-    text: "Full Stack Developer",
     image: aboutUsMemberOne,
   }
 ],
