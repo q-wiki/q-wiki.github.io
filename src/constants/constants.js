@@ -234,7 +234,7 @@ export const reportPageInfo= [
     text2:"Want to help us correct all these wrong questions?\nScroll through the reports and help us identify the error!",
   },
   {
-    heading:"Got problems with wrong or missing content?",
+    heading:"Wrong or missing content?",
     heading2:"Did you find an error in a question?",
     text:"Join the community and leave a suggestion. Together we can provide as much knowledge as possible!",
     text2:"If you notice this during a game, click the in-game button. It makes filling out this form much quicker!",
