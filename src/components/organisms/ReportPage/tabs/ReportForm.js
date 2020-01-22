@@ -17,15 +17,16 @@ import TagList from '../../../molecules/TagList/TagList'
 import { inject, observer } from 'mobx-react'
 import GithubLoginButton from '../../../molecules/GithubLoginButton/GithubLoginButton'
 
-function ReportForm () {
+function ReportForm ({ githubStore }) {
   const params = useParams()
-  const {register, handleSubmit, errors} = useForm()
+  const { register, handleSubmit, errors, setValue } = useForm()
 
   // fetch details about minigame if a minigame the route is called with a minigame id
   const [loading, setLoading] = useState(params.minigameId != null)
   const [defaultValues, setDefaultValues] = useState({})
   const [reportType, setReportType] = useState('')
   const [apiError, setApiError] = useState(null)
+  const [issueUrl, setIssueUrl] = useState(null)
 
   if (loading) {
     fetch(config.API_URL + '/api/Platform/Minigame/' + params.minigameId)
@@ -52,7 +53,38 @@ function ReportForm () {
 
   // const Errors = ({ field }) => errors[field] && <Paragraph>{errors[field]}</Paragraph>
 
-  return <form onSubmit={handleSubmit(form => console.log('form submitted with data', form))}>
+  return <form onSubmit={handleSubmit(async form => {
+    console.log('Form', form)
+    let description = form.taskDescription
+    if (description.length > 50) {
+      description = description.replace(/\s(.*?)$/, '') + '…'
+    }
+
+    return
+    const response = await githubStore.apiRequest('repos/q-wiki/q-wiki-server/issues', {
+      labels: ['q-wiki-platform', 'feedback'],
+      title: `Feedback for question "${description}"`,
+      body: `
+## Feedback
+
+**Minigame type:** ${form.minigameType}  
+**What's wrong?** ${form.reportType}  
+
+**Question / task given:** ${form.taskDescription}  
+**Answers:** ${form.answers || '*Empty*'}  
+**Suggested correct answer:** ${form.correctAnswer || '*Empty*'}  
+
+**Additional information**: ${form.additionalInfo || '*Empty*'}
+`
+    }, { method: 'POST' })
+    const body = await response.json()
+
+    if (response.ok) {
+      setIssueUrl(body.url)
+    } else {
+      setApiError(body)
+    }
+  })}>
     {loading
       ? (<Row>
         <Col xs>
@@ -68,57 +100,64 @@ function ReportForm () {
             </Col>
           </Row>
         </>
-        : (<>
-          <Row>
+        : (issueUrl != null
+          ? <>
             <Col xs>
-              <Dropdown
-                name='minigameType'
-                placeholder='Minigame type *'
-                options={[
-                  { value: 'sorting', text: 'Sorting' },
-                  { value: 'multipleChoice', text: 'Multiple Choice' },
-                  { value: 'guessTheImage', text: 'Guess The Image' },
-                ]}
-                defaultValue={defaultValues.minigameType}
-                ref={register({ required: 'Please tell us which game you were playing' })} />
-              {errors.minigameType && <Paragraph>{errors.minigameType.message}</Paragraph>}
+              <Heading type='H2'>Thank you for your report!</Heading>
+              <Paragraph>The issue can be found <a href={issueUrl}>on Github</a> where you can track any progress.</Paragraph>
             </Col>
-            <Col xs>
-              <Dropdown
-                name='reportType'
-                placeholder="What's wrong? *"
-                options={[
-                  { value: 'wrongAnswer', text: 'The suggested answer is incorrect' },
-                  { value: 'duplicates', text: 'An option was offered multiple times' },
-                  { value: 'other', text: 'Other (please specify)' }
-                ]}
-                onChange={e => setReportType(e.target.value)}
-                ref={register({ required: 'Please describe your problem' })} />
-              {errors.reportType && <Paragraph>{errors.reportType.message}</Paragraph>}
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <TextField
-                name='taskDescription'
-                placeholder='What was the question / task given in the minigame *'
-                defaultValue={defaultValues.taskDescription}
-                ref={register({ required: 'We need this information to find out where to look' })} />
-              {errors.taskDescription && <Paragraph>{errors.taskDescription.message}</Paragraph>}
-            </Col>
-          </Row>
-          <Row>
-            <Col xs>
-              <TagList
-                name='answerOptions'
-                placeholder='Provided answers'
-                tagName='answerOptions'
-                tags={defaultValues.answerOptions}
-                register={register} />
-              {errors.answerOptions && <Paragraph>{errors.answerOptions.message}</Paragraph>}
-            </Col>
-          </Row>
-          {reportType === 'other' &&
+          </>
+          : (<>
+            <Row>
+              <Col xs>
+                <Dropdown
+                  name='minigameType'
+                  placeholder='Minigame type *'
+                  options={[
+                    { value: 'sorting', text: 'Sorting' },
+                    { value: 'multipleChoice', text: 'Multiple Choice' },
+                    { value: 'guessTheImage', text: 'Guess The Image' },
+                  ]}
+                  defaultValue={defaultValues.minigameType}
+                  ref={register({ required: 'Please tell us which game you were playing' })} />
+                {errors.minigameType && <Paragraph>{errors.minigameType.message}</Paragraph>}
+              </Col>
+              <Col xs>
+                <Dropdown
+                  name='reportType'
+                  placeholder="What's wrong? *"
+                  options={[
+                    { value: 'wrongAnswer', text: 'The suggested answer is incorrect' },
+                    { value: 'duplicates', text: 'An option was offered multiple times' },
+                    { value: 'other', text: 'Other (please specify)' }
+                  ]}
+                  onChange={e => setReportType(e.target.value)}
+                  ref={register({ required: 'Please describe your problem' })} />
+                {errors.reportType && <Paragraph>{errors.reportType.message}</Paragraph>}
+              </Col>
+            </Row>
+            <Row>
+              <Col xs={12}>
+                <TextField
+                  name='taskDescription'
+                  placeholder='What was the question / task given in the minigame *'
+                  defaultValue={defaultValues.taskDescription}
+                  ref={register({ required: 'We need this information to find out where to look' })} />
+                {errors.taskDescription && <Paragraph>{errors.taskDescription.message}</Paragraph>}
+              </Col>
+            </Row>
+            <Row>
+              <Col xs>
+                <TagList
+                  name='answerOptions'
+                  placeholder='Provided answers'
+                  tagName='answerOptions'
+                  tags={defaultValues.answerOptions}
+                  ref={register} />
+                {errors.answerOptions && <Paragraph>{errors.answerOptions.message}</Paragraph>}
+              </Col>
+            </Row>
+            {reportType === 'other' &&
             <Row>
               <Col xs>
                 <div>
@@ -145,7 +184,7 @@ function ReportForm () {
             </Row>}
           <Row>
             <Col xs>
-              <TextArea placeholder='Any additional information you want to provide?' />
+              <TextArea name='additionalNotes' placeholder='Any additional information you want to provide?' ref={register} />
             </Col>
           </Row>
           <Row>
@@ -160,14 +199,14 @@ function ReportForm () {
               </Col>
             </div>
           </Row>
-        </>))}
+        </>)))}
   </form>
 }
 
 export default inject('githubStore')(observer(function SignInOverlay ({ githubStore }) {
   // FIXME: This is not a nice solution. There should be /some/ way to submit reports without logging in
   return githubStore.isLoggedIn
-    ? <ReportForm />
+    ? <ReportForm githubStore={ githubStore } />
     : <>
       <Paragraph>
         This report will be created as a public issue in <a href="https://github.com/q-wiki/q-wiki-server/issues?q=is%3Aissue+is%3Aopen+label%3Aq-wiki-platform+label:feedback">our Github repository</a>. In order to avoid vandalism, please log in to continue:
