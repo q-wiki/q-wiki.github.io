@@ -75,24 +75,25 @@ function ReportForm () {
                 name='minigameType'
                 placeholder='Minigame type *'
                 options={[
-                  {value: 'sorting', text: 'Sorting'},
-                  {value: 'multipleChoice', text: 'Multiple Choice'},
+                  { value: 'sorting', text: 'Sorting' },
+                  { value: 'multipleChoice', text: 'Multiple Choice' },
+                  { value: 'guessTheImage', text: 'Guess The Image' },
                 ]}
                 defaultValue={defaultValues.minigameType}
-                ref={register({ required: true })} />
+                ref={register({ required: 'Please tell us which game you were playing' })} />
               {errors.minigameType && <Paragraph>{errors.minigameType.message}</Paragraph>}
             </Col>
             <Col xs>
               <Dropdown
                 name='reportType'
-                placeholder={ `What's wrong? *` }
+                placeholder="What's wrong? *"
                 options={[
                   { value: 'wrongAnswer', text: 'The suggested answer is incorrect' },
                   { value: 'duplicates', text: 'An option was offered multiple times' },
                   { value: 'other', text: 'Other (please specify)' }
                 ]}
                 onChange={e => setReportType(e.target.value)}
-                ref={register({ required: true })} />
+                ref={register({ required: 'Please describe your problem' })} />
               {errors.reportType && <Paragraph>{errors.reportType.message}</Paragraph>}
             </Col>
           </Row>
@@ -102,9 +103,11 @@ function ReportForm () {
                 name='taskDescription'
                 placeholder='What was the question / task given in the minigame *'
                 defaultValue={defaultValues.taskDescription}
-                ref={register({ required: true })} />
+                ref={register({ required: 'We need this information to find out where to look' })} />
               {errors.taskDescription && <Paragraph>{errors.taskDescription.message}</Paragraph>}
             </Col>
+          </Row>
+          <Row>
             <Col xs>
               <TagList
                 name='answerOptions'
