@@ -4,9 +4,12 @@ import {Row, Col} from 'react-flexbox-grid'
 import MinigameOption from '../../atoms/MinigameOption/MinigameOption';
 import update from 'immutability-helper';
 import Button from '../../atoms/Button/Button';
-import './minigame.scss';
 import MinigameStore from "../../../stores/MinigameStore";
 import {minigameTypes} from "../../../constants/constants";
+
+
+import './minigame.scss';
+import {observable} from "mobx/lib/mobx";
 
 @observer
 export default class Minigame extends React.Component{
@@ -21,6 +24,10 @@ export default class Minigame extends React.Component{
             correctAnswer: [],
             answer: [],
             checked: false,
+            overlayClass: "image_overlay invisible",
+            licenseLoading: true,
+            license: null,
+            showLicense: false,
         }
         this.generateMinigame(this.state.questionData);
     }
@@ -42,15 +49,17 @@ export default class Minigame extends React.Component{
             this.state.options.push(content);
         }
         this.setState({minigameLoaded : true});
+        if(this.state.type == "Image Guess"){
+            this.loadLicense(this.state.correctAnswer[1]);
+        }
     }
 
     onClickHandler = (e) =>{
         const id = e.target.id;
-        console.log(e.target);
         const active = !this.state.options[id].active;
         let newState = [];
 
-        if(this.state.type === "Multiple Choice"){
+        if(this.state.type === "Multiple Choice" || this.state.type === "Image Guess"){
             //Handle visual update
             newState = this.state.options;
             // Multiple Choice reset all other options visually
@@ -97,6 +106,28 @@ export default class Minigame extends React.Component{
         }
     }
 
+    toggleOverlay = (e) => {
+        if (this.state.overlayClass.includes("invisible")) {
+            this.setState({overlayClass : "image_overlay visible"});
+        }
+        else if (this.state.overlayClass.includes("visible")) {
+            this.setState({overlayClass : "image_overlay invisible"});
+        }
+    }
+
+    resetMinigame = (e) => {
+        this.setState({question : ""});
+        this.setState({options: []});
+        this.setState({correctAnswer: []});
+        this.setState({answer: []});
+        this.setState({checked: false});
+        this.setState({licenseLoading: true});
+        this.setState({license: null});
+        this.setState({showLicense: false});
+        this.generateMinigame(this.state.questionData);
+    }
+
+
     validateOptions(){
         this.setState({checked: true});
         let answer = this.state.answer;
@@ -110,7 +141,7 @@ export default class Minigame extends React.Component{
                     options[i].result = false;
                 }
             }
-        }else if(this.state.type == "Multiple Choice"){
+        }else if(this.state.type == "Multiple Choice" || this.state.type == "Image Guess"){
             if(answer[0]==correct[0]){
                 for(let i = 0; i < options.length; i++){
                     if(options[i].text == answer[0]){
@@ -121,11 +152,9 @@ export default class Minigame extends React.Component{
                 for(let i = 0; i < options.length; i++){
                     if(options[i].text == answer[0]){
                         options[i].result = false;
-                        console.log("Set False");
                     }
                     if(options[i].text == correct[0]){
                         options[i].result = true;
-                        console.log("Set true");
                     }
                 }
             }
@@ -135,13 +164,51 @@ export default class Minigame extends React.Component{
         });
     }
 
+    async loadLicense(url){
+        let minigameStore = new MinigameStore();
+        await minigameStore.recieveLicense(url)
+        this.setState({
+            licenseLoading: minigameStore.licenseLoading,
+        });
+        this.setState({
+            license: minigameStore.imageLicense,
+        });
+        console.log(this.state.license);
+    }
+
+    renderLicense(){
+        let dom = <div className="license-links" dangerouslySetInnerHTML={{__html: this.state.license}}/>
+        console.log(dom);
+        return dom;
+    }
+
+    showLicense(){
+        console.log("SettingLicense");
+        this.setState({showLicense: true});
+    }
+
     render() {
       return(
             <>
                 {!this.state.minigameLoaded ?
-                    <p>Loading</p>
+                    <p>...Loading</p>
                     :
                     <div className="minigame_container">
+                        { this.state.type=="Image Guess"?
+                            <div className={this.state.overlayClass} >
+                                {   this.state.licenseLoading? "...Loading"
+                                    :
+                                    <img className="image" src={this.state.correctAnswer[1]} />
+                                }
+                                {   this.state.licenseLoading? "...Loading"
+                                    :
+                                    this.state.showLicense? this.renderLicense() : <div className="license-links" onClick={this.showLicense.bind(this)}> > Show License Details</div>
+
+                                }
+                                <div className="close_button" onClick={this.toggleOverlay}>X</div>
+                            </div>
+                            :null
+                        }
                         <div className="minigame_content" >
                             <Row className="minigame_head">
                                 <Col md={1} />
@@ -151,14 +218,14 @@ export default class Minigame extends React.Component{
                             {
                                 this.state.options.map((option, index) => (
                                     <Row className="minigame_options" between="md" key={index}>
-                                        <Col md={1} />
-                                        <Col md={this.state.type=="Sorting"?9:10} className="container_option">
+                                        <Col xs={1} />
+                                        <Col xs={this.state.type=="Sorting"?9:10} className="container_option">
                                             <MinigameOption result={this.state.options[index].result} id={index} onClick={((e) => this.onClickHandler(e))} active={this.state.options[index].active}>
                                                 {this.state.options[index].text}
                                             </MinigameOption>
                                         </Col>
                                         {this.state.type=="Sorting"?
-                                            <Col md={1} className="container_option_number">
+                                            <Col xs={1} className="container_option_number">
                                                 {(this.state.answer.indexOf(this.state.options[index].text)+1)>0?<div className={"sorting_number"}><p>{this.state.answer.indexOf(this.state.options[index].text)+1}</p></div>:null}
                                             </Col>
                                             :
@@ -166,21 +233,29 @@ export default class Minigame extends React.Component{
                                         }
                                         {
                                             this.state.type=="Sorting"&& this.state.checked?
-                                                    <Col md={1} className="container_result_number">
+                                                    <Col xs={1} className="container_result_number">
                                                         <div className={"result_number"}><p>{this.state.correctAnswer.indexOf(this.state.options[index].text)+1}</p></div>
                                                     </Col>
                                                     :
-                                                    <Col md={1} />
+                                                    <Col xs={1} />
                                         }
                                     </Row>
                                 ))
                             }
-                            <Row className="minigame_button">
-                                <Col md={4} />
-                                <Col md={4}>
+                            <Row className="minigame_button" center="xs">
+                                <Col md={1} />
+                                {this.state.type=="Image Guess"?
+                                    <Col xs={4} className="overlay_button">
+                                        <Button disabled={this.state.checked} onClick={this.toggleOverlay}>Open Image</Button>
+                                    </Col> : null
+                                }
+                                <Col xs={3}>
                                     <Button disabled={this.state.checked} onClick={this.validateOptions.bind(this)}>Send</Button>
                                 </Col>
-                                <Col md={4} />
+                                <Col xs={3}>
+                                    <Button disabled={this.state.checked} onClick={this.resetMinigame}>Reset</Button>
+                                </Col>
+                                <Col md={1} />
                             </Row>
                         </div>
                     </div>
