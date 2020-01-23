@@ -10,7 +10,7 @@ import Button from '../../atoms/Button/Button'
  * Provides a list of tags that's influenced by a delete button next to each
  * tag and an input text that can be used to extend the list.
  */
-export default function TagList (props) {
+function TagList (props, ref) {
   const [tags, setTags] = useState(props.tags || [])
   const input = useRef(null)
   const maxTags = Math.min(props.maxTags || 4, 4)
@@ -49,12 +49,16 @@ export default function TagList (props) {
         {...omit(inputProps, ['label'])} />
     </div>
     <div>
-      {tags.map((tag, i) => <span key={`tag-elem-${i}`}>
-        <Button small icon={{ icon: 'delete', pallete: 'qwikiOrange' }} onClick={e => removeLabel(e, i)}>
-          {tag.label}
-        </Button>
-        <input type='hidden' name={`${props.tagName}[]`} value={tag.value} />
-      </span>)}
+      {Array.isArray(tags) && tags.map((tag, i) =>
+        (
+          <span key={`tag-elem-${i}`}>
+            <Button small icon={{ icon: 'delete', pallete: 'qwikiOrange' }} onClick={e => removeLabel(e, i)}>
+              {tag.label}
+            </Button>
+            <input type='hidden' name={`${props.tagName}[${i}]`} ref={ref} value={tag.value} />
+          </span>
+        )
+      )}
     </div>
   </>
 }
@@ -67,3 +71,5 @@ TagList.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.object),
   maxTags: PropTypes.number
 }
+
+export default React.forwardRef(TagList)

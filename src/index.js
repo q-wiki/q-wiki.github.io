@@ -6,13 +6,13 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Provider } from 'mobx-react'
 import DataStore from './stores/DataStore'
-
+import githubStore from './stores/GithubStore'
 
 const dStore = new DataStore();
 dStore.fetchData();
 
 ReactDOM.render(
-  <Provider dataStore={dStore}>
+  <Provider dataStore={dStore} githubStore={githubStore}>
     <App />
   </Provider>,
   document.getElementById('root'));

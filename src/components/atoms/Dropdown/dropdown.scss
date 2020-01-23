@@ -28,6 +28,7 @@ select::-ms-expand {
 .dropdown {
   width: 100%;
   margin: 20px 0 0 0;
+  z-index: 1;
 
   position: relative;
 
@@ -57,6 +58,7 @@ select::-ms-expand {
     min-height: 2.75rem;
     letter-spacing: 1px;
 
+
     option:first-child{
       display: none;
     }
@@ -66,6 +68,7 @@ select::-ms-expand {
     padding: 7px 14px;
     transition: 0.4s;
     background: transparent;
+    z-index: 2;
   }
 
   .effect-20 ~ .focus-border:before, .effect-20 ~ .focus-border:after {
@@ -125,9 +128,10 @@ select::-ms-expand {
     position: absolute;
     left: 14px;
     top: 10px;
-    color: $qwikiGrey;
+    color: $qwikiDarkGray;
     transition: 0.3s;
     letter-spacing: 0.5px;
+    z-index: -1;
   }
 
   .effect-20:focus ~ label, .has-content.effect-20 ~ label {
@@ -144,5 +148,3 @@ select::-ms-expand {
   }
 
 }
-
-

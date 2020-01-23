@@ -28,6 +28,11 @@ float:right;
   background-color: $qwikiGreenDarker;
 }
 
-.accordion__panel{
+.accordion__panel {
   background-color: white;
+}
+@media only screen and (max-width: 516px) {
+ .tab {
+    border-right-width: 0px;
+ }
 }
