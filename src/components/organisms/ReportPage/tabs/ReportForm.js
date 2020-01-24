@@ -7,7 +7,7 @@ import { Col, Row } from 'react-flexbox-grid'
 import config from '../../../../config'
 
 import Button from '../../../atoms/Button/Button'
-import Dropdown from '../../../atoms/Dropdown/Dropdown'
+import ValidatedDropdown from '../../../atoms/Dropdown/ValidatedDropdown'
 import Heading from '../../../atoms/Heading/Heading'
 import Paragraph from '../../../atoms/Paragraph/Paragraph'
 import TextArea from '../../../atoms/TextArea/TextArea'
@@ -110,7 +110,7 @@ function ReportForm ({ githubStore }) {
           : (<>
             <Row>
               <Col xs>
-                <Dropdown
+                <ValidatedDropdown
                   name='minigameType'
                   placeholder='Minigame type *'
                   options={[
@@ -123,7 +123,7 @@ function ReportForm ({ githubStore }) {
                 {errors.minigameType && <Paragraph>{errors.minigameType.message}</Paragraph>}
               </Col>
               <Col xs>
-                <Dropdown
+                <ValidatedDropdown
                   name='reportType'
                   placeholder="What's wrong? *"
                   options={[

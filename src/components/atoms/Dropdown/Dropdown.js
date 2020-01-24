@@ -7,6 +7,7 @@ export default class Dropdown extends React.Component{
 
     constructor(props) {
         super(props);
+
         this.state = {
             classNames: "effect-20",
             onChange: props.onChange,
@@ -14,6 +15,8 @@ export default class Dropdown extends React.Component{
             hasContent: false,
             content: "",
         };
+
+        console.log("Test");
     }
 
     handleClick= (e) =>{
@@ -31,6 +34,8 @@ export default class Dropdown extends React.Component{
     }
 
     render() {
+        console.log("Test");
+        console.log(this.props.options);
         return(
             <div className="dropdown input-effect">
                 <select required className={this.state.classNames} value={this.state.content} onChange={this.handleClick.bind(this)}>
