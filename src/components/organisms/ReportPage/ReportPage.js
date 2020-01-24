@@ -45,15 +45,11 @@ const tabsContent = [
   },
   {
     title: 'Open Reports',
-    content: <Row>
-      <ReportList openIssues={true} />
-    </Row>
+    content: <ReportList openIssues={true} />
   },
   {
     title: 'Closed Reports',
-    content: <Row>
-      <ReportList openIssues={false} />
-    </Row>
+    content: <ReportList openIssues={false} />
   }
 ]
 
