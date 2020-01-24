@@ -18,7 +18,6 @@ import { inject, observer } from 'mobx-react'
 import GithubLoginButton from '../../../molecules/GithubLoginButton/GithubLoginButton'
 
 function issueBody (form) {
-
   return `
 ## Feedback
 

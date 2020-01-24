@@ -70,7 +70,7 @@ function getTabs (selectedTabsKey) {
 
 export default function ReportPage ({ page, showOpenIssues }) {
   const { minigameId } = useParams()
-  const [ rememberedMinigameId, setRememberedMinigameId ] = useState(null)
+  const [rememberedMinigameId, setRememberedMinigameId] = useState(null)
   if (minigameId) {
     setRememberedMinigameId(minigameId)
   }
