@@ -5,7 +5,7 @@ export default class MinigameStore {
 
     @observable minigameQuery;
     @observable minigameURL = "https://query.wikidata.org/sparql?query=";
-    @observable licenseURL = "https://wikidatagame-testing.azurewebsites.net/api/Platform/License?imageUrl=";
+    @observable licenseURL = "https://wikidatagame-testing.azurewebsites.net/api/Platform/ImageInfo?imageUrl=";
     @observable minigameType;
     @observable minigameQuestion;
     @observable minigameOptions = [];
@@ -13,11 +13,10 @@ export default class MinigameStore {
     @observable isLoading = true;
     @observable error;
     @observable minigameRaw;
-    @observable imageLicense;
+    @observable imgData;
     @observable licenseLoading = true;
 
     @action async initializeMinigame(query, type, question){
-        console.log("initialsing");
         this.minigameQuery = query;
         if(query.length > 3500){
 
@@ -37,10 +36,10 @@ export default class MinigameStore {
         this.error = "";
         let fetchURL = this.licenseURL + url;
         await fetch(fetchURL)
-            .then(response => response.text())
+            .then(response => response.json())
             .then((data) => {
                 this.licenseLoading = false;
-                this.imageLicense = data;
+                this.imgData = data;
             })
             .catch((error) =>{
                 this.licenseLoading = true;
@@ -83,7 +82,6 @@ export default class MinigameStore {
             }
             this.minigameOptions = this.minigameOptions.sort(function(a, b){return 0.5 - Math.random()});
         }else if(this.minigameType == "Image Guess"){
-            console.log(this.minigameRaw);
             this.minigameAnswers.push(this.minigameRaw[0].answer.value)
             this.minigameAnswers.push(this.minigameRaw[0].question.value)
             this.minigameOptions.push(this.minigameRaw[0].answer.value)

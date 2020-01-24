@@ -60,15 +60,11 @@ export default class ImplementedQueriesPage extends React.Component{
     }
 
     changeStatus(question, status){
-           console.log("Status"+status);
-           console.log("Question Status"+question.status);
-           console.log(status == 3 && question.status == 1);
         if(status == 3 && question.status == 1 || status == 1 && question.status == 3){
             question.status = 0;
         }else{
             question.status = status;
         }
-        console.log("Question Status after"+question.status);
     }
 
     componentDidUpdate(prevProps){
@@ -106,7 +102,6 @@ export default class ImplementedQueriesPage extends React.Component{
     }
 
     showEditor(){
-        console.log("set editor show");
         this.setState({showEditor:true});
     }
 

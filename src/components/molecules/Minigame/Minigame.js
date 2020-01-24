@@ -166,24 +166,21 @@ export default class Minigame extends React.Component{
 
     async loadLicense(url){
         let minigameStore = new MinigameStore();
-        await minigameStore.recieveLicense(url)
+        await minigameStore.recieveLicense(url);
+        this.setState({
+            license: minigameStore.imgData,
+        });
         this.setState({
             licenseLoading: minigameStore.licenseLoading,
         });
-        this.setState({
-            license: minigameStore.imageLicense,
-        });
-        console.log(this.state.license);
     }
 
     renderLicense(){
-        let dom = <div className="license-links" dangerouslySetInnerHTML={{__html: this.state.license}}/>
-        console.log(dom);
+        let dom = <div className="license-links" dangerouslySetInnerHTML={{__html: this.state.license.licenseInfo}}/>
         return dom;
     }
 
     showLicense(){
-        console.log("SettingLicense");
         this.setState({showLicense: true});
     }
 
@@ -198,9 +195,9 @@ export default class Minigame extends React.Component{
                             <div className={this.state.overlayClass} >
                                 {   this.state.licenseLoading? "...Loading"
                                     :
-                                    <img className="image" src={this.state.correctAnswer[1]} />
+                                    <img onClick={this.toggleOverlay} className="image" src={this.state.license.thumbUrl} />
                                 }
-                                {   this.state.licenseLoading? "...Loading"
+                                {   this.state.licenseLoading? null
                                     :
                                     this.state.showLicense? this.renderLicense() : <div className="license-links" onClick={this.showLicense.bind(this)}> > Show License Details</div>
 
