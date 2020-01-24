@@ -39,32 +39,38 @@ function App() {
         <ContainerFullPage>
           <div className="pageContent">
             <Header/>
-          <Switch>
-            <Route exact path='/'>
-              <LandingPage />
-            </Route>
-            <Route path='/about'>
-              <AboutPage />
-            </Route>
-            <Route path='/report/:minigameId?'>
-              <ReportPage />
-            </Route>
-            <Route path='/contribute'>
-              <SparqlPage />
-            </Route>
-            <Route path='/implementedSparqlQueries'>
-              <ImplementedQueriesPage />
-            </Route>
-            <Route path='/createNewSparqlQueries'>
-              <CreateNewQueriesPage />
-            </Route>
-            <Route path='/login'>
-              <GithubLoginSuccessfulPage />
-            </Route>
-            <Route path='*'>
-              <NotFoundPage />
-            </Route>
-          </Switch>
+            <Switch>
+              <Route exact path='/'>
+                <LandingPage />
+              </Route>
+              <Route path='/about'>
+                <AboutPage />
+              </Route>
+              <Route path='/report/list/open'>
+                <ReportPage page='list' showOpenIssues={true} />
+              </Route>
+              <Route path='/report/list/closed'>
+                <ReportPage page='list' showOpenIssues={false} />
+              </Route>
+              <Route path='/report/:minigameId?'>
+                <ReportPage page='form' />
+              </Route>
+              <Route path='/contribute'>
+                <SparqlPage />
+              </Route>
+              <Route path='/implementedSparqlQueries'>
+                <ImplementedQueriesPage />
+              </Route>
+              <Route path='/createNewSparqlQueries'>
+                <CreateNewQueriesPage />
+              </Route>
+              <Route path='/login'>
+                <GithubLoginSuccessfulPage />
+              </Route>
+              <Route path='*'>
+                <NotFoundPage />
+              </Route>
+            </Switch>
           </div>
           <Footer/>
         </ContainerFullPage>

@@ -1,14 +1,17 @@
-import React from 'react'
-import './reportPage.scss';
-import {Col, Row} from 'react-flexbox-grid'
-import Tabs from 'react-responsive-tabs';
-import 'react-responsive-tabs/styles.css';
+import React, { useState } from 'react'
+import { useParams } from 'react-router-dom'
+
+import './reportPage.scss'
+import { Col, Row } from 'react-flexbox-grid'
+import Tabs from 'react-responsive-tabs'
+import 'react-responsive-tabs/styles.css'
 
 import Container75 from '../../atoms/Container75/Container75'
 import Heading from '../../atoms/Heading/Heading'
 import Paragraph from '../../atoms/Paragraph/Paragraph'
 
 import ReportForm from './tabs/ReportForm'
+import ReportList from './tabs/ReportList'
 
 import { reportPageInfo } from '../../../../src/constants/constants'
 
@@ -38,30 +41,44 @@ const tabsContent = [
           <ReportForm />
         </Col>
       </Row>
-    </div>,
+    </div>
   },
   {
     title: 'Open Reports',
-    content: 'This is a list of Open Reports!'
+    content: <Row>
+      <ReportList openIssues={true} />
+    </Row>
   },
   {
     title: 'Closed Reports',
-    content: 'This is a list of Closed Reports!'
+    content: <Row>
+      <ReportList openIssues={false} />
+    </Row>
   }
-];
+]
 
-function getTabs() {
+function getTabs (selectedTabsKey) {
   return tabsContent.map((tabsContent, index) => ({
     title: tabsContent.title,
     getContent: () => tabsContent.content,
     /* Optional parameters */
     key: index,
     tabClassName: 'tab',
-    panelClassName: 'panel',
-  }));
+    panelClassName: 'panel'
+  }))
 }
 
-export default function ReportPage () {
+export default function ReportPage ({ page, showOpenIssues }) {
+  const { minigameId } = useParams()
+  const [ rememberedMinigameId, setRememberedMinigameId ] = useState(null)
+  if (minigameId) {
+    setRememberedMinigameId(minigameId)
+  }
+
+  const selectedTabKey = page === 'form'
+    ? 0
+    : (showOpenIssues ? 1 : 2)
+
   return <div className="report-page-container">
     <Container75>
       <div className="report-header">
@@ -69,7 +86,21 @@ export default function ReportPage () {
         <Heading className="report-heading" pallete="white" type="H2">{reportPageInfo[0].text}</Heading>
         <Heading className="report-heading" pallete="white" type="H2">{reportPageInfo[0].text2}</Heading>
       </div>
-      <Tabs showMore={false} items={getTabs()} transformWidth={500} />
+      <Tabs
+        showMore={false}
+        items={getTabs()}
+        transformWidth={500}
+        onChange={currentlySelectedTab => {
+          // NOTE: We need to update the location has manually because `react-responsive-tabs` does not have any concept of URLs by itself
+          const URLs = [
+            '/report/' + (rememberedMinigameId ? rememberedMinigameId : ''),
+            '/report/list/open',
+            '/report/list/closed'
+          ]
+
+          window.location.hash = URLs[currentlySelectedTab]
+        }}
+        selectedTabKey={selectedTabKey} />
     </Container75>
   </div>
 }
