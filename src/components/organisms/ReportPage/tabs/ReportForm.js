@@ -18,6 +18,7 @@ import { inject, observer } from 'mobx-react'
 import GithubLoginButton from '../../../molecules/GithubLoginButton/GithubLoginButton'
 
 function issueBody (form) {
+
   return `
 ## Feedback
 
@@ -28,8 +29,8 @@ function issueBody (form) {
 **What's wrong?** ${form.reportType}  
 
 **Question / task given:** ${form.taskDescription}  
-**Answers:** ${form.answers || '*Empty*'}  
-${form.reportType === 'wrongAnswer' || form.correctAnswer ? `**Suggested correct answer:** ${form.correctAnswer || '*Empty*'}  ` : ''}
+**Answers:** ${(form.answerOptions && form.answerOptions.join(', ')) || '*Empty*'}  
+**Suggested correct answer:** ${form.correctAnswer || '*Empty*'}  
 
 **Additional information**: ${form.additionalInfo || '*Empty*'}`
 }
@@ -57,7 +58,7 @@ function ReportForm ({ githubStore }) {
           setDefaultValues({
             minigameType: minigameTypes[body.type],
             taskDescription: body.taskDescription,
-            answerOptions: body.answerOptions.map(option => ({ label: option })),
+            answerOptions: body.answerOptions.map(option => ({ label: option, value: option })),
             correctAnswer: body.correctAnswer.join(', ')
           })
         } else {
@@ -70,10 +71,10 @@ function ReportForm ({ githubStore }) {
   // const Errors = ({ field }) => errors[field] && <Paragraph>{errors[field]}</Paragraph>
 
   return <form onSubmit={handleSubmit(async form => {
-    console.log('Form', form)
+    const maxLength = 100
     let description = form.taskDescription
-    if (description.length > 50) {
-      description = description.replace(/\s(.*?)$/, '') + '…'
+    if (description.length > maxLength) {
+      description = description.substr(0, maxLength).replace(/\s(.*?)$/, '') + '…'
     }
 
     // eslint-disable-next-line react/prop-types
@@ -176,11 +177,11 @@ function ReportForm ({ githubStore }) {
                 <TextArea
                   name='additionalInfo'
                   placeholder={getValues().reportType === 'other'
-                    ? 'Additional information *'
+                    ? 'Please specify your problem *'
                     : 'Any additional information you want to provide?'}
                   ref={register(getValues().reportType === 'other' ? {
                     required: 'We need more information to understand your problem'
-                  } : {})} />
+                  } : { required: false })} />
                 {errors.additionalInfo && <Paragraph>{errors.additionalInfo.message}</Paragraph>}
               </Col>
             </Row>
