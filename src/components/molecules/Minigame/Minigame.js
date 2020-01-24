@@ -188,7 +188,19 @@ export default class Minigame extends React.Component{
       return(
             <>
                 {!this.state.minigameLoaded ?
-                    <p>...Loading</p>
+                    <div className="loading-container">
+                        <div className="lds-grid">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
                     :
                     <div className="minigame_container">
                         { this.state.type=="Image Guess"?
