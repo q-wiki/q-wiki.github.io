@@ -45,11 +45,11 @@ const tabsContent = [
   {
     title: 'Open Reports',
     content: <ReportList openIssues={true} />
-  },
-  {
-    title: 'Closed Reports',
-    content: <ReportList openIssues={false} />
-  }
+  }// ,
+  // {
+  //   title: 'Closed Reports',
+  //   content: <ReportList openIssues={false} />
+  // }
 ]
 
 function getTabs (selectedTabsKey) {
