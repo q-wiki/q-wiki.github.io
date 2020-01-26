@@ -1,6 +1,9 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react'
 import githubStore from '../../../../stores/GithubStore'
 import PropTypes from 'prop-types'
+
+import config from '../../../../config'
 
 import Container75 from '../../../atoms/Container75/Container75'
 import Heading from '../../../atoms/Heading/Heading'
@@ -18,14 +21,17 @@ import {
 import 'react-accessible-accordion/dist/fancy-example.css'
 import '../../../atoms/Accordion/accordion.scss'
 
-// eslint-disable-next-line react/prop-types
 function ReportDetail ({ report }) {
   const [minigame, setMinigame] = useState(null)
-  console.log(report)
-  
-  // useEffect(() => {
 
-  // }, [report.issueId])
+  useEffect(() => {
+    // TODO: Handle errors
+    fetch(config.API_URL + '/Platform/Minigame/' + report.content['minigame id'])
+      .then(res => res.json())
+      .then(body => {
+        setMinigame(body)
+      })
+  }, [report.content['minigame id']])
 
   return <>
     <Paragraph>Have a look at the query and fix it yourself</Paragraph>
