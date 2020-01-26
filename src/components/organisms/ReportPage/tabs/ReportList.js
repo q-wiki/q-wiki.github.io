@@ -43,11 +43,12 @@ function LoginWidget () {
 }
 
 function ExtendedDetail ({ githubStore, report, issue, minigame }) {
-  const { register } = useForm()
+  const { register, getValues } = useForm()
 
   // see if the currently logged in user is somewhere in an issue's reactions
   const hasVotedBefore = issue.reactions.map(r => r.user.login).indexOf(githubStore.user.login.indexOf) > -1
   const [hasVoted, setHasVoted] = useState(hasVotedBefore)
+  const [hasSubmitted, setHasSubmitted] = useState(false)
 
   console.log('issue', issue)
 
@@ -91,12 +92,31 @@ function ExtendedDetail ({ githubStore, report, issue, minigame }) {
         </WikidataQueryEditor>
       </div>}
 
-    <div>
-      <Paragraph>
-        <strong className='report-label'>Got an idea what is going wrong?</strong> Or any other comments you would like to make? You made changes to the query and now it works perfectly fine? Every tip or suggestion can help us solve the issue!
-        <Textarea name='additionalComments' ref={register} />
-      </Paragraph>
-    </div>
+    {hasSubmitted
+      ? <Paragraph>Thank you for your comment!</Paragraph>
+      : <>
+        <div>
+          <Paragraph>
+            <strong className='report-label'>Got an idea what is going wrong?</strong> Or any other comments you would like to make? You made changes to the query and now it works perfectly fine? Every tip or suggestion can help us solve the issue!
+            <Textarea name='additionalComments' ref={register} />
+          </Paragraph>
+        </div>
+
+        <div>
+          <Button onClick={_ => {
+            const comment = getValues().additionalComments
+            if (comment) {
+              // TODO: Error handling!
+              githubStore.apiRequest('repos/q-wiki/q-wiki-server/issues/' + issue.number + '/comments', {
+                body: comment
+              }, { method: 'POST' })
+              setHasSubmitted(true)
+            }
+          }}>Submit comment</Button>
+        </div>
+      </>}
+
+    <div>You can see additional discussion of this issue <a href={'https://github.com/q-wiki/q-wiki-server/issues/' + issue.number}>here</a></div>
   </>
 }
 
