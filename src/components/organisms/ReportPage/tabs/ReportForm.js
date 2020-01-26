@@ -17,9 +17,26 @@ import TagList from '../../../molecules/TagList/TagList'
 import { inject, observer } from 'mobx-react'
 import GithubLoginButton from '../../../molecules/GithubLoginButton/GithubLoginButton'
 
+function issueBody (form) {
+  return `
+## Feedback
+
+*This issue has been automatically created via the [report form](https://q-wiki.github.io/#/report).*
+
+**Minigame id:** ${form.minigameId || '*Empty*'}
+**Minigame type:** ${form.minigameType}  
+**What's wrong?** ${form.reportType}  
+
+**Question / task given:** ${form.taskDescription}  
+**Answers:** ${(form.answerOptions && form.answerOptions.join(', ')) || '*Empty*'}  
+**Suggested correct answer:** ${form.correctAnswer || '*Empty*'}  
+
+**Additional information:** ${form.additionalInfo || '*Empty*'}`
+}
+
 function ReportForm ({ githubStore }) {
   const params = useParams()
-  const { register, handleSubmit, errors, setValue } = useForm()
+  const { register, handleSubmit, errors, getValues } = useForm()
 
   // fetch details about minigame if a minigame the route is called with a minigame id
   const [loading, setLoading] = useState(params.minigameId != null)
@@ -35,13 +52,12 @@ function ReportForm ({ githubStore }) {
         res.json().then(body => [res, body])
       )
       .then(([res, body]) => {
-        console.log('Server responded', res)
         if (res.ok) {
-          const minigameTypes = ['', 'sorting', 'multipleChoice']
+          const minigameTypes = ['', 'sorting', 'multipleChoice', 'guessTheImage']
           setDefaultValues({
             minigameType: minigameTypes[body.type],
             taskDescription: body.taskDescription,
-            answerOptions: body.answerOptions.map(option => ({label: option})),
+            answerOptions: body.answerOptions.map(option => ({ label: option, value: option })),
             correctAnswer: body.correctAnswer.join(', ')
           })
         } else {
@@ -54,36 +70,20 @@ function ReportForm ({ githubStore }) {
   // const Errors = ({ field }) => errors[field] && <Paragraph>{errors[field]}</Paragraph>
 
   return <form onSubmit={handleSubmit(async form => {
-    console.log('Form', form)
+    const maxLength = 100
     let description = form.taskDescription
-    if (description.length > 50) {
-      description = description.replace(/\s(.*?)$/, '') + '…'
+    if (description.length > maxLength) {
+      description = description.substr(0, maxLength).replace(/\s(.*?)$/, '') + '…'
     }
 
-    return
-    const response = await githubStore.apiRequest('repos/q-wiki/q-wiki-server/issues', {
+    // eslint-disable-next-line react/prop-types
+    const body = await githubStore.apiRequest('repos/q-wiki/q-wiki-server/issues', {
       labels: ['q-wiki-platform', 'feedback'],
       title: `Feedback for question "${description}"`,
-      body: `
-## Feedback
-
-**Minigame type:** ${form.minigameType}  
-**What's wrong?** ${form.reportType}  
-
-**Question / task given:** ${form.taskDescription}  
-**Answers:** ${form.answers || '*Empty*'}  
-**Suggested correct answer:** ${form.correctAnswer || '*Empty*'}  
-
-**Additional information**: ${form.additionalInfo || '*Empty*'}
-`
+      body: issueBody(form)
     }, { method: 'POST' })
-    const body = await response.json()
 
-    if (response.ok) {
-      setIssueUrl(body.url)
-    } else {
-      setApiError(body)
-    }
+    setIssueUrl(body.html_url)
   })}>
     {loading
       ? (<Row>
@@ -116,7 +116,7 @@ function ReportForm ({ githubStore }) {
                   options={[
                     { value: 'sorting', text: 'Sorting' },
                     { value: 'multipleChoice', text: 'Multiple Choice' },
-                    { value: 'guessTheImage', text: 'Guess The Image' },
+                    { value: 'guessTheImage', text: 'Guess The Image' }
                   ]}
                   defaultValue={defaultValues.minigameType}
                   ref={register({ required: 'Please tell us which game you were playing' })} />
@@ -157,49 +157,46 @@ function ReportForm ({ githubStore }) {
                 {errors.answerOptions && <Paragraph>{errors.answerOptions.message}</Paragraph>}
               </Col>
             </Row>
-            {reportType === 'other' &&
+            {reportType === 'wrongAnswer' &&
+              <Row>
+                <Col xs>
+                  <div>
+                    <TextField
+                      name='correctAnswer'
+                      placeholder='Winning answer *'
+                      defaultValue={defaultValues.correctAnswer}
+                      ref={register({ required: 'We need this information to understand your problem' })} />
+                    {errors.correctAnswer && <Paragraph>{errors.correctAnswer.message}</Paragraph>}
+                  </div>
+                </Col>
+              </Row>}
+            {params.minigameId ? <input type='hidden' name='minigameId' defaultValue={params.minigameId} ref={register} /> : null}
             <Row>
               <Col xs>
-                <div>
-                  <TextArea
-                    name='problemDescription'
-                    placeholder='Specify problem *'
-                    ref={register} />
-                  {errors.problemDescription && <Paragraph>{errors.problemDescription.message}</Paragraph>}
-                </div>
+                <TextArea
+                  name='additionalInfo'
+                  placeholder={getValues().reportType === 'other'
+                    ? 'Please specify your problem *'
+                    : 'Any additional information you want to provide?'}
+                  ref={register(getValues().reportType === 'other' ? {
+                    required: 'We need more information to understand your problem'
+                  } : { required: false })} />
+                {errors.additionalInfo && <Paragraph>{errors.additionalInfo.message}</Paragraph>}
               </Col>
-            </Row>}
-          {reportType === 'wrongAnswer' &&
+            </Row>
             <Row>
               <Col xs>
-                <div>
-                  <TextField
-                    name='correctAnswer'
-                    placeholder='Winning answer *'
-                    defaultValue={defaultValues.correctAnswer}
-                    ref={register} />
-                  {errors.correctAnswer && <Paragraph>{errors.correctAnswer.message}</Paragraph>}
-                </div>
+                <Paragraph>Required fields are marked with *</Paragraph>
               </Col>
-            </Row>}
-          <Row>
-            <Col xs>
-              <TextArea name='additionalNotes' placeholder='Any additional information you want to provide?' ref={register} />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs>
-              <Paragraph>Required fields are marked with *</Paragraph>
-            </Col>
-          </Row>
-          <Row>
-            <div className="submit-button-container">
-              <Col xs>
-                <Button>Submit</Button>
-              </Col>
-            </div>
-          </Row>
-        </>)))}
+            </Row>
+            <Row>
+              <div className="submit-button-container">
+                <Col xs>
+                  <Button>Submit</Button>
+                </Col>
+              </div>
+            </Row>
+          </>)))}
   </form>
 }
 

@@ -10,7 +10,7 @@ import Button from '../../atoms/Button/Button'
  * Provides a list of tags that's influenced by a delete button next to each
  * tag and an input text that can be used to extend the list.
  */
-function TagList (props, ref) {
+const TagList = React.forwardRef((props, ref) => {
   const [tags, setTags] = useState(props.tags || [])
   const input = useRef(null)
   const maxTags = Math.min(props.maxTags || 4, 4)
@@ -61,7 +61,9 @@ function TagList (props, ref) {
       )}
     </div>
   </>
-}
+})
+
+TagList.displayName = 'TagList'
 
 TagList.propTypes = {
   // the tag name will decide the name of the hidden input field that is used
@@ -72,4 +74,4 @@ TagList.propTypes = {
   maxTags: PropTypes.number
 }
 
-export default React.forwardRef(TagList)
+export default TagList
