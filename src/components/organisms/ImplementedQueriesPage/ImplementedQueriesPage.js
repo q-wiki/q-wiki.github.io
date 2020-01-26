@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef} from 'react'
 import Heading from '../../atoms/Heading/Heading'
 import Paragraph from '../../atoms/Paragraph/Paragraph'
 import { inject, observer } from 'mobx-react'
@@ -8,8 +8,9 @@ import Minigame from '../../molecules/Minigame/Minigame'
 import MinigameStore from '../../../stores/MinigameStore'
 import Button from '../../atoms/Button/Button'
 import {Row, Col} from 'react-flexbox-grid'
+import SparqlEditor from '../../atoms/SparqlEditor/SparqlEditor'
 
-import { minigameTypes } from '../../../../src/constants/constants'
+import { minigameTypes, headerImplemenetedPage } from '../../../../src/constants/constants'
 
 
 import {
@@ -24,23 +25,12 @@ import 'react-accessible-accordion/dist/fancy-example.css';
 import '../../atoms/Accordion/accordion.scss';
 
 import './implementedQueriesPage.scss';
-import Loadable from "react-loadable";
-
 let categories;
 let questions;
 let dataStore;
 let questionsArray;
 
-function LoadingComponent ({ loadingText='Loading… 📂' }) {
-    return <>
-        <p>{loadingText}</p>
-    </>
-}
-
-const WikidataQueryEditor = Loadable({
-    loader: () => import('../../molecules/WikidataQueryEditor/WikidataQueryEditor'),
-    loading: LoadingComponent
-})
+const yasqe = React.createRef(null);
 
 @inject('dataStore')
 @observer
@@ -58,6 +48,7 @@ export default class ImplementedQueriesPage extends React.Component{
         questions = this.props.dataStore.questions;
         questionsArray = questions.questions;
     }
+
 
     changeStatus(question, status){
         if(status == 3 && question.status == 1 || status == 1 && question.status == 3){
@@ -111,8 +102,8 @@ export default class ImplementedQueriesPage extends React.Component{
         return (
             <div className="implemented-queries">
                 <div className="implemented-queries-header ">
-                    <Heading type="H1">Check out our SPARQL Queries!</Heading>
-                    <Paragraph textAlign="justify">Choose a minigame and category and try them out Yourself!</Paragraph>
+                    <Heading type="H1">{headerImplemenetedPage[0].heading}</Heading>
+                    <Paragraph textAlign="justify">{headerImplemenetedPage[0].text}</Paragraph>
                 </div>
                 <Container75 className="filter">
                     {!dataStore.categories.isLoading ?
@@ -149,9 +140,9 @@ export default class ImplementedQueriesPage extends React.Component{
                         {
                             question.status == 3 || question.status == 0?
                                 <div className="editor-container">
-                                    <WikidataQueryEditor>
+                                    <SparqlEditor ref={yasqe}>
                                         {question.sparqlQuery}
-                                    </WikidataQueryEditor>
+                                    </SparqlEditor>
                                 </div>
                                 :
                                 <Row center="xs" className="button-editor">

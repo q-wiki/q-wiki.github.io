@@ -48,6 +48,7 @@ export default class Minigame extends React.Component{
             content.result = null;
             this.state.options.push(content);
         }
+        console.log("Loading")
         this.setState({minigameLoaded : true});
         if(this.state.type == "Image Guess"){
             this.loadLicense(this.state.correctAnswer[1]);
@@ -124,6 +125,7 @@ export default class Minigame extends React.Component{
         this.setState({licenseLoading: true});
         this.setState({license: null});
         this.setState({showLicense: false});
+        this.setState({minigameLoaded: false});
         this.generateMinigame(this.state.questionData);
     }
 
@@ -188,7 +190,19 @@ export default class Minigame extends React.Component{
       return(
             <>
                 {!this.state.minigameLoaded ?
-                    <p>...Loading</p>
+                    <div className="loading-container">
+                        <div className="lds-grid">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
                     :
                     <div className="minigame_container">
                         { this.state.type=="Image Guess"?

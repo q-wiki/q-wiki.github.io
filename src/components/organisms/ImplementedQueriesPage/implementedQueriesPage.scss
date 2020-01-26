@@ -18,6 +18,14 @@
   justify-content: center;
   align-items: center;
   align-content: center;
+
+  p{
+    color: $white;
+  }
+
+  h2{
+    color: $qwikiOrange;
+  }
 }
   .dropdown-container{
     display: flex;
