@@ -16,8 +16,6 @@ import ReportList from './tabs/ReportList'
 
 import { reportPageInfo } from '../../../../src/constants/constants'
 
-// TODO:  validation
-
 const colSize = { xs: 12, md: 10, mdOffset: 1 }
 
 const tabsContent = [
@@ -90,7 +88,7 @@ export default function ReportPage ({ page, showOpenIssues }) {
         onChange={currentlySelectedTab => {
           // NOTE: We need to update the location has manually because `react-responsive-tabs` does not have any concept of URLs by itself
           const URLs = [
-            '/report/' + (rememberedMinigameId ? rememberedMinigameId : ''),
+            '/report/' + (rememberedMinigameId || ''),
             '/report/list/open',
             '/report/list/closed'
           ]

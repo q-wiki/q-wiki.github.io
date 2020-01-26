@@ -6,11 +6,13 @@ import { inject, observer } from 'mobx-react'
 import config from '../../../../config'
 import githubStore from '../../../../stores/GithubStore'
 
+import Button from '../../../atoms/Button/Button'
 import Container75 from '../../../atoms/Container75/Container75'
 import Heading from '../../../atoms/Heading/Heading'
+import Textarea from '../../../atoms/TextArea/TextArea'
 import Paragraph from '../../../atoms/Paragraph/Paragraph'
 import Minigame from '../../../molecules/Minigame/Minigame'
-
+import WikidataQueryEditor from '../../../molecules/WikidataQueryEditor/WikidataQueryEditor'
 import GithubLoginButton from '../../../molecules/GithubLoginButton/GithubLoginButton'
 
 import { Row, Col } from 'react-flexbox-grid'
@@ -25,7 +27,7 @@ import {
 
 import 'react-accessible-accordion/dist/fancy-example.css'
 import '../../../atoms/Accordion/accordion.scss'
-import WikidataQueryEditor from '../../../molecules/WikidataQueryEditor/WikidataQueryEditor'
+import useForm from 'react-hook-form'
 
 const capitalizeFirstLetter = s => s.substring(0, 1).toLocaleUpperCase() + s.substring(1)
 
@@ -40,7 +42,28 @@ function LoginWidget () {
   </>
 }
 
-function ExtendedDetail ({ report, minigame }) {
+function ExtendedDetail ({ githubStore, report, issue, minigame }) {
+  const { register } = useForm()
+
+  // see if the currently logged in user is somewhere in an issue's reactions
+  const hasVotedBefore = issue.reactions.map(r => r.user.login).indexOf(githubStore.user.login.indexOf) > -1
+  const [hasVoted, setHasVoted] = useState(hasVotedBefore)
+
+  console.log('issue', issue)
+
+  const voteValid = isValid => {
+    // TODO: Error handling
+    setHasVoted(true)
+    githubStore.apiRequest('repos/q-wiki/q-wiki-server/issues/' + issue.number + '/reactions', {
+      content: isValid ? '+1' : '-1'
+    }, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/vnd.github.squirrel-girl-preview+json'
+      }
+    })
+  }
+
   // shown when logged in
   return <>
     {minigame &&
@@ -49,7 +72,12 @@ function ExtendedDetail ({ report, minigame }) {
     <div>
       <Paragraph>
         <strong className='report-label'>Is the reported problem valid?</strong>
-        <span className='report-content'> </span>
+        {!hasVoted
+          ? <>
+            <Button onClick={_ => voteValid(true)}>👍</Button>
+            <Button onClick={_ => voteValid(false)}>👎</Button>
+          </>
+          : <span className='report-content'> Thank you for your vote!</span>}
       </Paragraph>
     </div>
 
@@ -66,12 +94,13 @@ function ExtendedDetail ({ report, minigame }) {
     <div>
       <Paragraph>
         <strong className='report-label'>Got an idea what is going wrong?</strong> Or any other comments you would like to make? You made changes to the query and now it works perfectly fine? Every tip or suggestion can help us solve the issue!
+        <Textarea name='additionalComments' ref={register} />
       </Paragraph>
     </div>
   </>
 }
 
-const ReportDetail = inject('githubStore')(observer(({ githubStore, report }) => {
+const ReportDetail = inject('githubStore')(observer(({ githubStore, report, issue }) => {
   const [minigame, setMinigame] = useState(null)
   const minigameId = report.content['Minigame id']
   useEffect(() => {
@@ -113,13 +142,13 @@ const ReportDetail = inject('githubStore')(observer(({ githubStore, report }) =>
       </div>)}
 
     {githubStore.isLoggedIn
-      ? <ExtendedDetail report={report} minigame={minigame} />
+      ? <ExtendedDetail githubStore={githubStore} report={report} issue={issue} minigame={minigame} />
       : <LoginWidget />}
   </>
 }))
 
 // eslint-disable-next-line react/prop-types
-function SingleReport ({ report }) {
+function SingleReport ({ report, issue }) {
   return <AccordionItem>
     <AccordionItemHeading>
       <AccordionItemButton>
@@ -132,7 +161,7 @@ function SingleReport ({ report }) {
     <AccordionItemPanel>
       <Row>
         <Col xs>
-          <ReportDetail report={report} />
+          <ReportDetail issue={issue} report={report} />
         </Col>
       </Row>
     </AccordionItemPanel>
@@ -154,7 +183,7 @@ function parseReportFromIssue (issue) {
   return {
     title: issue.title.replace(/^.*?"/, '').replace(/"$/, ''),
     reportedBy: issue.user.login,
-    issueId: issue.id,
+    issueNumber: issue.number,
     content
   }
 }
@@ -166,8 +195,21 @@ export default function ReportList ({ openIssues = true }) {
   useEffect(() => {
     async function fetchData () {
       // TODO: Error handling!!!!
-      const body = await githubStore.apiRequest(endpoint)
-      setApiResponse(body)
+      const issues = await githubStore.apiRequest(endpoint)
+
+      // fetch reactions for each issue so a user can't react twice
+      const reactions = await Promise.all(issues.map(issue =>
+        githubStore.apiRequest(
+          'repos/q-wiki/q-wiki-server/issues/' + issue.number + '/reactions',
+          null, {
+            headers: { Accept: 'application/vnd.github.squirrel-girl-preview+json' }
+          }
+        )))
+      reactions.forEach((reactions, idx) => {
+        issues[idx].reactions = reactions
+      })
+
+      setApiResponse(issues)
     }
 
     fetchData()
@@ -181,7 +223,7 @@ export default function ReportList ({ openIssues = true }) {
     </Row>
     {apiResponse
       ? <Accordion allowZeroExpanded={true}>
-        {apiResponse.map((issue, idx) => <SingleReport report={parseReportFromIssue(issue)} key={idx} />)}
+        {apiResponse.map((issue, idx) => <SingleReport report={parseReportFromIssue(issue)} issue={issue} key={idx} />)}
       </Accordion>
       : 'Loading…'}
   </Container75>
