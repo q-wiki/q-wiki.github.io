@@ -1,13 +1,17 @@
 /* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react'
-import githubStore from '../../../../stores/GithubStore'
 import PropTypes from 'prop-types'
+import { inject, observer } from 'mobx-react'
 
 import config from '../../../../config'
+import githubStore from '../../../../stores/GithubStore'
 
 import Container75 from '../../../atoms/Container75/Container75'
 import Heading from '../../../atoms/Heading/Heading'
 import Paragraph from '../../../atoms/Paragraph/Paragraph'
+
+import GithubLoginButton from '../../../molecules/GithubLoginButton/GithubLoginButton'
+
 import { Row, Col } from 'react-flexbox-grid'
 
 import {
@@ -20,20 +24,64 @@ import {
 
 import 'react-accessible-accordion/dist/fancy-example.css'
 import '../../../atoms/Accordion/accordion.scss'
+import WikidataQueryEditor from '../../../molecules/WikidataQueryEditor/WikidataQueryEditor'
 
 const capitalizeFirstLetter = s => s.substring(0, 1).toLocaleUpperCase() + s.substring(1)
 
-function ReportDetail ({ report }) {
-  const [minigame, setMinigame] = useState(null)
+// TODO: Check styling (logged in and loggged out, also for every issue when the accordion is expanded)
 
+function LoginWidget () {
+  return <>
+    <Paragraph>
+      All of our issue reporting is tightly integrated into our code collaboration efforts <a href='https://github.com/q-wiki/q-wiki-server'>on GitHub</a>. Login in to give feedback on issues, post comments or re-play minigames and help us figure out what went wrong!
+    </Paragraph>
+    <GithubLoginButton />
+  </>
+}
+
+function ExtendedDetail ({ report, minigame }) {
+  // shown when logged in
+  return <>
+    {minigame && 'TODO: Let\'s play the game!'}
+
+    <div>
+      <Paragraph>
+        <strong className='report-label'>Is the reported problem valid?</strong>
+        <span className='report-content'> </span>
+      </Paragraph>
+    </div>
+
+    {minigame &&
+      <div>
+        <Paragraph>
+          <strong className='report-label'>Have a look at the query.</strong> Feel free to change the query below, try it and fix it! Send it together with your comments and ideas about this report.
+        </Paragraph>
+        <WikidataQueryEditor>
+          {minigame.question.sparqlQuery}
+        </WikidataQueryEditor>
+      </div>}
+
+    <div>
+      <Paragraph>
+        <strong className='report-label'>Got an idea what is going wrong?</strong> Or any other comments you would like to make? You made changes to the query and now it works perfectly fine? Every tip or suggestion can help us solve the issue!
+      </Paragraph>
+    </div>
+  </>
+}
+
+const ReportDetail = inject('githubStore')(observer(({ githubStore, report }) => {
+  const [minigame, setMinigame] = useState(null)
+  const minigameId = report.content['Minigame id']
   useEffect(() => {
-    // TODO: Handle errors
-    fetch(config.API_URL + '/api/Platform/Minigame/' + report.content['Minigame id'])
-      .then(res => res.json())
-      .then(body => {
-        setMinigame(body)
-      })
-  }, [report.content['Minigame id']])
+    if (minigameId) {
+      // TODO: Handle errors
+      fetch(config.API_URL + '/api/Platform/Minigame/' + minigameId)
+        .then(res => res.json())
+        .then(body => {
+          setMinigame(body)
+        })
+    }
+  }, [minigameId])
 
   console.log(report)
   const minigameTypes = {
@@ -62,10 +110,11 @@ function ReportDetail ({ report }) {
         </Paragraph>
       </div>)}
 
-    {/* TODO: Display Github login note */}
-    {/* TODO: Let user play minigame */}
+    {githubStore.isLoggedIn
+      ? <ExtendedDetail report={report} minigame={minigame} />
+      : <LoginWidget />}
   </>
-}
+}))
 
 // eslint-disable-next-line react/prop-types
 function SingleReport ({ report }) {
@@ -129,7 +178,7 @@ export default function ReportList ({ openIssues = true }) {
       </Col>
     </Row>
     {apiResponse
-      ? <Accordion allowZeroExpanded>
+      ? <Accordion allowZeroExpanded={true}>
         {apiResponse.map((issue, idx) => <SingleReport report={parseReportFromIssue(issue)} key={idx} />)}
       </Accordion>
       : 'Loading…'}
