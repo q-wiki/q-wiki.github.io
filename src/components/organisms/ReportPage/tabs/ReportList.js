@@ -21,21 +21,49 @@ import {
 import 'react-accessible-accordion/dist/fancy-example.css'
 import '../../../atoms/Accordion/accordion.scss'
 
+const capitalizeFirstLetter = s => s.substring(0, 1).toLocaleUpperCase() + s.substring(1)
+
 function ReportDetail ({ report }) {
   const [minigame, setMinigame] = useState(null)
 
   useEffect(() => {
     // TODO: Handle errors
-    fetch(config.API_URL + '/Platform/Minigame/' + report.content['minigame id'])
+    fetch(config.API_URL + '/api/Platform/Minigame/' + report.content['Minigame id'])
       .then(res => res.json())
       .then(body => {
         setMinigame(body)
       })
-  }, [report.content['minigame id']])
+  }, [report.content['Minigame id']])
+
+  console.log(report)
+  const minigameTypes = {
+    multipleChoice: 'Multiple Choice',
+    guessTheImage: 'Guess The Image',
+    sorting: 'Sorting'
+  }
+
+  const formatContent = (k) => {
+    switch (k.toLowerCase()) {
+      case 'minigame type': return minigameTypes[report.content[k]]
+      default: return capitalizeFirstLetter(report.content[k])
+    }
+  }
 
   return <>
-    <Paragraph>Have a look at the query and fix it yourself</Paragraph>
-    <pre>// TODO: Render query</pre>
+    {/* Try to piece back together as much information as we can */}
+    {Object.keys(report.content)
+      // only labels for which we actually have content
+      .filter(k => report.content[k])
+      // display all of it
+      .map((k, idx) => <div key={'report-row-' + idx}>
+        <Paragraph>
+          <strong className='report-label'>{k}</strong>
+          <span className='report-content'> {formatContent(k)}</span>
+        </Paragraph>
+      </div>)}
+
+    {/* TODO: Display Github login note */}
+    {/* TODO: Let user play minigame */}
   </>
 }
 
@@ -66,7 +94,7 @@ function parseReportFromIssue (issue) {
   issue.body.split('\n*').forEach(line => {
     if (line.match(/(:|\?)\*\*/)) {
       const split = line.replace(/^\*+/, '').split(/(:|\?)\*\*/)
-      const key = split[0].toLocaleLowerCase()
+      const key = split[0] + (split[1] === '?' ? '?' : '')
       const val = split.slice(2).join(':').replace(/^\s+/, '').replace(/\s+$/, '').replace('*Empty*', '')
       content[key] = val
     }
