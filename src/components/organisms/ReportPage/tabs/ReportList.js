@@ -9,6 +9,7 @@ import githubStore from '../../../../stores/GithubStore'
 import Container75 from '../../../atoms/Container75/Container75'
 import Heading from '../../../atoms/Heading/Heading'
 import Paragraph from '../../../atoms/Paragraph/Paragraph'
+import Minigame from '../../../molecules/Minigame/Minigame'
 
 import GithubLoginButton from '../../../molecules/GithubLoginButton/GithubLoginButton'
 
@@ -42,7 +43,8 @@ function LoginWidget () {
 function ExtendedDetail ({ report, minigame }) {
   // shown when logged in
   return <>
-    {minigame && 'TODO: Let\'s play the game!'}
+    {minigame &&
+      <Minigame questionData={minigame.question} />}
 
     <div>
       <Paragraph>
