@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 import Container75 from '../../../atoms/Container75/Container75'
 import Heading from '../../../atoms/Heading/Heading'
+import Paragraph from '../../../atoms/Paragraph/Paragraph'
 import { Row, Col } from 'react-flexbox-grid'
 
 import {
@@ -17,18 +18,23 @@ import {
 import 'react-accessible-accordion/dist/fancy-example.css'
 import '../../../atoms/Accordion/accordion.scss'
 
-function parseReportFromIssue (issue) {
-  console.log(issue)
-  return {
-    title: issue.title.replace(/^.*?"/, '').replace(/"$/, ''),
-    reportedBy: issue.user.login,
-  }
+// eslint-disable-next-line react/prop-types
+function ReportDetail ({ report }) {
+  const [minigame, setMinigame] = useState(null)
+  console.log(report)
+  
+  // useEffect(() => {
+
+  // }, [report.issueId])
+
+  return <>
+    <Paragraph>Have a look at the query and fix it yourself</Paragraph>
+    <pre>// TODO: Render query</pre>
+  </>
 }
 
 // eslint-disable-next-line react/prop-types
-function SingleReport ({ issue }) {
-  const report = parseReportFromIssue(issue)
-
+function SingleReport ({ report }) {
   return <AccordionItem>
     <AccordionItemHeading>
       <AccordionItemButton>
@@ -41,11 +47,31 @@ function SingleReport ({ issue }) {
     <AccordionItemPanel>
       <Row>
         <Col xs>
-          <pre>{JSON.stringify(issue, null, 2)}</pre>
+          <ReportDetail report={report} />
         </Col>
       </Row>
     </AccordionItemPanel>
   </AccordionItem>
+}
+
+function parseReportFromIssue (issue) {
+  // parse the information back out from the issue body
+  const content = {}
+  issue.body.split('\n*').forEach(line => {
+    if (line.match(/(:|\?)\*\*/)) {
+      const split = line.replace(/^\*+/, '').split(/(:|\?)\*\*/)
+      const key = split[0].toLocaleLowerCase()
+      const val = split.slice(2).join(':').replace(/^\s+/, '').replace(/\s+$/, '').replace('*Empty*', '')
+      content[key] = val
+    }
+  })
+
+  return {
+    title: issue.title.replace(/^.*?"/, '').replace(/"$/, ''),
+    reportedBy: issue.user.login,
+    issueId: issue.id,
+    content
+  }
 }
 
 export default function ReportList ({ openIssues = true }) {
@@ -70,7 +96,7 @@ export default function ReportList ({ openIssues = true }) {
     </Row>
     {apiResponse
       ? <Accordion allowZeroExpanded>
-        {apiResponse.map((issue, idx) => <SingleReport issue={issue} key={idx} />)}
+        {apiResponse.map((issue, idx) => <SingleReport report={parseReportFromIssue(issue)} key={idx} />)}
       </Accordion>
       : 'Loading…'}
   </Container75>

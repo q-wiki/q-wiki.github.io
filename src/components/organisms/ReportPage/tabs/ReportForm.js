@@ -31,7 +31,7 @@ function issueBody (form) {
 **Answers:** ${(form.answerOptions && form.answerOptions.join(', ')) || '*Empty*'}  
 **Suggested correct answer:** ${form.correctAnswer || '*Empty*'}  
 
-**Additional information**: ${form.additionalInfo || '*Empty*'}`
+**Additional information:** ${form.additionalInfo || '*Empty*'}`
 }
 
 function ReportForm ({ githubStore }) {
