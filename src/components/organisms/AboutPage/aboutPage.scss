@@ -5,18 +5,13 @@
     font-size: 36px;
   }
   .members-title {
-    text-align: center;
-    padding: 30px 0px 30px 0px;
-  }
-
-  .col-md-2,  .col-md-8 {
-    padding: 0;
+    padding: 30px 0px 30px 50px;
   }
   .history-container {
     background-color: $qwikiLightBlue;
 
     .history-title {
-      padding: 30px 5px 30px 5px;
+      padding: 30px 0px 30px 0px;
     }
 
     .timeline-master-container {
@@ -75,7 +70,7 @@
       }
 
       .right {
-        left: 49%;
+        left: 50%;
       }
 
       .right::after {
@@ -99,7 +94,7 @@
           right: 48%;
 
           .timeline-ruler::after {
-            left: 49%;
+            left: 50%;
           }
 
           .timeline-content-container::after {
@@ -160,12 +155,6 @@
   }
 }
 
-@media only screen and (max-width: 964px) {
-  .supervisors-container {
-    flex-direction: column !important;
-  }
-}
-
 @media only screen and (max-width: 768px) {
   .about-us-container {
     .col-md-2 {
@@ -176,57 +165,23 @@
     .timeline-container {
       padding: 20px;
     }
-
-    .timeline-ruler {
-      width: 90%;
-      left: 12%;
-    }
-
-    .history-container {
-      .history-title{
-        text-align: center;
-      }
-    }
-
     .timeline-first-container,
     .timeline-second-container {
       flex-direction: column !important;
     }
+  }
+}
 
-    .timeline-second-container {
-      .timeline {
-        right: 0 !important;
-      }
+@media only screen and (max-width: 500px) {
+  .qwiki-team-container {
+    .members-title {
+      padding: 30px 0px 30px 14px !important;
     }
   }
 }
 
-@media only screen and (max-width: 473px) {
-
-      .timeline-first-container {
-        .timeline {
-          right: 54% !important;
-        }
-    }
-    .qwiki-team-container {
-      .cardMember_container {
-        width: 145px;
-        height: 190px;
-
-        .cardMember_container_content{
-          padding: 5px;
-          h2 {
-            font-size: 16px;
-          }
-
-          p {
-            padding: 0px;
-          }
-        }
-
-        .double-underline-thick{
-          width: 125px !important;
-        }
-      }
-    }
+@media only screen and (max-width: 964px) {
+  .supervisors-container {
+    flex-direction: column !important;
+  }
 }

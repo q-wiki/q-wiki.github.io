@@ -18,6 +18,7 @@ import WikidataQueryEditor from '../../molecules/WikidataQueryEditor/WikidataQue
 import { cardsDataLandingPage, qWikiInfo, numberDisplay } from '../../../../src/constants/constants'
 
 import { Row, Col } from 'react-flexbox-grid';
+import Iframe from 'react-iframe';
 import Button from '../../atoms/Button/Button'
 import { inject, observer } from 'mobx-react'
 import Minigame from '../../molecules/Minigame/Minigame'
@@ -80,7 +81,7 @@ export default class LandingPage extends React.Component{
                                 <div className="empty-space"></div>
                                 <div className="download-qrCode">
                                     <Paragraph textAlign="justify">{qWikiInfo[0].downloadText}</Paragraph>
-                                    <Icon  className="qwiki_info-qrCode-img" icon={"qr-code"}  width={200} height={200}/>
+                                    <Image className="qwiki_info-qrCode-img" width={200} backgroundSrc={qWikiInfo[0].qrCode}/>
                                 </div>
                             </div>
                         </div>
