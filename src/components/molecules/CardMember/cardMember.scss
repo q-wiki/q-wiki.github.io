@@ -21,14 +21,14 @@
 
   .cardMember_container_content {
     padding: 10px;
-    opacity: 1;
+    opacity: 0;
     h2 {
       text-align: left;
     }
 
     p {
       display: block !important;
-      padding: 2px 0px 0px 0px;
+      padding: 10px 0px 0px 0px;
     }
 
     .double-underline-thick {
@@ -45,13 +45,15 @@
   }
 }
 
-.mobile {
+.cardMember_container:hover {
+
   .cardMember_container_content {
     opacity: 1;
   }
 }
-.browser:hover {
 
+/* smartphones, touchscreens */
+@media (hover: none) and (pointer: coarse) {
   .cardMember_container_content {
     opacity: 1;
   }

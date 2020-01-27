@@ -130,6 +130,20 @@
     padding-left: 30px;
 
   }
+  .iFrame-container{
+    overflow: hidden;
+    margin-top: 15px;
+
+    .iFrame-content {
+      height: 650px;
+      width: 100%;
+    }
+
+    iframe {
+      overflow:hidden;
+    }
+  }
+
 
   @media only screen and (max-width: 508px) {
     .numberDisplay {

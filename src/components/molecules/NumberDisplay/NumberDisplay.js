@@ -10,7 +10,7 @@ import "./numberDisplay.scss";
 
 const NumberDisplay = ({  icon, headline1, headline2, ...props }) => (
 <div className="numberDisplay-container">
-  <Icon  icon={icon}  width={75}/>
+  <Icon  icon={icon}  width={60}/>
   <div className="numberDisplay-content">
   <Heading  type="H1" pallete="white">{headline1}</Heading>
   <Heading  type="H2" pallete="qwikiOrange">{headline2}</Heading>
