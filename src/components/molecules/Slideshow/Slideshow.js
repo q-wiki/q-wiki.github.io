@@ -5,21 +5,18 @@ import { Carousel } from 'react-responsive-carousel';
 
 import './slideshow.scss';
 
-//This is an example how to use the slideshow component
+import { screenshots } from '../../../../src/constants/constants'
 
-import slide1 from '../../../../src/assets/images/slide-1.jpg'
+//This is an example how to use the slideshow component
 
 const Slideshow = () => {
     return (
       <Carousel infiniteLoop={true} autoPlay={true} transitionTime={500} interval={5000} showThumbs={false} showStatus={false}>
                 <div>
-                    <img src={slide1} />
+                    <img  src={screenshots[0].src} />
                 </div>
                 <div>
-                    <img src={slide1} />
-                </div>
-                <div>
-                    <img src={slide1} />
+                    <img  src={screenshots[1].src} />
                 </div>
             </Carousel>
     )
