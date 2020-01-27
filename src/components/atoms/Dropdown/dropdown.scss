@@ -141,5 +141,10 @@ select::-ms-expand {
     color: $qwikiLightBlue;
     transition: 0.3s;
   }
+  .clear-filter{
+    position: absolute;
+    right: -15px;
+    top: 13px;
+  }
 
 }

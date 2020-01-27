@@ -25,9 +25,23 @@ export const cardsDataLandingPage= [
 
 export const headerContributePage = [
   {
-    heading: "Contribute",
-    text: ""
+    heading: "The World could always use more Heroes!",
+    text: "Join the community, learn how to write SPARQL queries and contribute to the game."
   }
+]
+
+export const headerImplemenetedPage = [
+    {
+        heading: "Check out our in-game SPARQL Queries!",
+        text: "Choose a minigame type and category and try them out yourself!"
+    }
+]
+
+export const createNewPage = [
+    {
+        heading: "Create new SPRAQL Queries!",
+        text: "Help us extend our game with new queries and millions of possible questions!"
+    }
 ]
 
 export const cardsDataContributePage = [
@@ -54,9 +68,9 @@ export const cardsDataContributePage = [
 ]
 
 export const minigameTypes=[
-  {title:"Multiple Choice"},
-    {title:"Sorting"},
-    {title:"Image Guess"}
+    {title:"Sorting", id:0},
+    {title:"Image Guess", id:1},
+    {title:"Multiple Choice", id:2},
 ]
 
 export const numberDisplay= [

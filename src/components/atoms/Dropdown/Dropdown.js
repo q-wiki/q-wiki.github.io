@@ -3,45 +3,53 @@ import PropTypes from 'prop-types';
 
 import './dropdown.scss';
 
-const Dropdown = React.forwardRef((props, ref) => {
-    const [hasContent, setHasContent] = useState(props.defaultValue != null && props.defaultValue !== '')
-    const onChange = e => {
-        setHasContent(e.target.value !== '')
-        if (props.onChange) props.onChange(e)
+export default class Dropdown extends React.Component{
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            classNames: "effect-20",
+            onChange: props.onChange,
+            dataSet: props.dataSet,
+            hasContent: false,
+            content: "",
+        };
     }
 
-    return (
-        <div className="dropdown input-effect">
-            <select
-                name={props.name}
-                ref={ref}
-                defaultValue={props.defaultValue}
-                required={props.required}
-                onChange={onChange}
-                className={`effect-20 ${hasContent ? 'has-content' : ''}`}>
-                <option key="1000" value=''/>
-                {
-                    props.options.map((item, i) =>
-                    <option key={item.key || i} value={item.id || item.value || item.text || item}>{item.text || item}</option>
-                )}
-            </select>
-            <label>{props.placeholder}</label>
-            <span className="focus-border">
-            <i/>
-            </span>
-        </div>
-    )
-})
+    handleClick= (e) =>{
+        this.props.onChange(e.target.value, this.props.index);
+        this.setState({classNames : "effect-20 has-content"});
+        this.setState({hasContent : true});
+        this.setState({content: e.target.value});
+    }
 
-Dropdown.propTypes = {
-    placeholder: PropTypes.string,
-    onChange: PropTypes.func,
-    defaultValue: PropTypes.any,
-    options: PropTypes.array
-};
+    clear () {
+        this.props.onChange(null, this.props.index);
+        this.setState({classNames: "effect-20"});
+        this.setState({hasContent: false});
+        this.setState({content: ""});
+    }
 
-Dropdown.defaultProps = {
-    onChange: Function.prototype
-};
-
-export default Dropdown;
+    render() {
+        return(
+            <div className="dropdown input-effect">
+                <select required className={this.state.classNames} value={this.state.content} onChange={this.handleClick.bind(this)}>
+                    <option key="1000" value={1000}></option>
+                    {
+                        this.props.options.map((item, i) =>
+                            <option key={i} value={item.title}>{item.title}</option>
+                        )}
+                </select>
+                <label>{this.props.placeholder}</label>
+                <span className="focus-border">
+                    <i/>
+                </span>
+                { this.state.hasContent?
+                    <div className="clear-filter" onClick={this.clear.bind(this)}>X</div>
+                    :null
+                }
+            </div>
+        );
+    }
+}

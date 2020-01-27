@@ -4,8 +4,8 @@
   background-size: cover;
   position: relative;
   text-align: center;
-  width: 40rem;
-  height: 25rem;
+  width: 100%rem;
+  height: 20rem;
   display: flex;
   align-items: center;
 
@@ -26,7 +26,7 @@
       padding: 0.5rem;
       margin-bottom: 0.6rem;
     }
-    .sorting_number{
+    .sorting_number, .result_number{
       padding: 2px;
       p {
         background-color: $white;
@@ -38,5 +38,146 @@
         border: 1px solid $black;
       }
     }
+    .result_number > p {
+      border: 1px solid $qwikiCorrectGreen;
+      color: $qwikiCorrectGreen;
+    }
   }
+  .image_overlay{
+    background-color: rgba(2, 64, 64, 0.8);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+
+    div{
+    }
+    .license-links{
+      div{
+        display: inline-block;
+      }
+      color: $white;
+      a{
+        color: $white;
+        text-decoration: underline;
+      }
+      width: auto;
+      height: auto;
+    }
+
+    &.visible{
+      display:block;
+    }
+
+    &.invisible{
+      display:none;
+    }
+
+    .close_button{
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      color: $white;
+    }
+
+    img{
+      margin-top: 2rem;
+      height: 70%;
+      width: 70%;
+      object-fit: contain;
+    }
+  }
+
+  .minigame_button{
+    margin-top: 1rem;
+    align-items: center;
+    .draw-border{
+      color: $white;
+      &:hover{
+        &::before, &::after{
+          border-color: $qwikiOrange;
+        }
+      }
+    }
+  }
+}
+
+.lds-grid {
+  display: inline-block;
+  position: relative;
+  margin-right:auto;
+  margin-left:auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: 80px;
+  height: 80px;
+}
+.lds-grid div {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: $qwikiLightBlue;
+  animation: lds-grid 1.2s linear infinite;
+}
+.lds-grid div:nth-child(1) {
+  top: 8px;
+  left: 8px;
+  animation-delay: 0s;
+}
+.lds-grid div:nth-child(2) {
+  top: 8px;
+  left: 32px;
+  animation-delay: -0.4s;
+}
+.lds-grid div:nth-child(3) {
+  top: 8px;
+  left: 56px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(4) {
+  top: 32px;
+  left: 8px;
+  animation-delay: -0.4s;
+}
+.lds-grid div:nth-child(5) {
+  top: 32px;
+  left: 32px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(6) {
+  top: 32px;
+  left: 56px;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(7) {
+  top: 56px;
+  left: 8px;
+  animation-delay: -0.8s;
+}
+.lds-grid div:nth-child(8) {
+  top: 56px;
+  left: 32px;
+  animation-delay: -1.2s;
+}
+.lds-grid div:nth-child(9) {
+  top: 56px;
+  left: 56px;
+  animation-delay: -1.6s;
+}
+@keyframes lds-grid {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.loading-container{
+  display: flex;
 }

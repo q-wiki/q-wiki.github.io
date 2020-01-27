@@ -10,7 +10,7 @@ import Button from '../../atoms/Button/Button'
  * Provides a list of tags that's influenced by a delete button next to each
  * tag and an input text that can be used to extend the list.
  */
-export default function TagList (props) {
+const TagList = React.forwardRef((props, ref) => {
   const [tags, setTags] = useState(props.tags || [])
   const input = useRef(null)
   const maxTags = Math.min(props.maxTags || 4, 4)
@@ -55,13 +55,15 @@ export default function TagList (props) {
             <Button small icon={{ icon: 'delete', pallete: 'qwikiOrange' }} onClick={e => removeLabel(e, i)}>
               {tag.label}
             </Button>
-            <input type='hidden' name={`${props.tagName}[]`} value={tag.value} />
+            <input type='hidden' name={`${props.tagName}[${i}]`} ref={ref} value={tag.value} />
           </span>
         )
       )}
     </div>
   </>
-}
+})
+
+TagList.displayName = 'TagList'
 
 TagList.propTypes = {
   // the tag name will decide the name of the hidden input field that is used
@@ -71,3 +73,5 @@ TagList.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.object),
   maxTags: PropTypes.number
 }
+
+export default TagList

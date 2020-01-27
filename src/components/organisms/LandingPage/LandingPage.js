@@ -7,6 +7,7 @@ import Tab from '../../atoms/Tabs/Tab'
 import MenuItem from  '../../atoms/MenuItem/MenuItem'
 import Image from  '../../atoms/Image/Image'
 import Container75 from '../../atoms/Container75/Container75'
+import SparqlEditor from '../../atoms/SparqlEditor/SparqlEditor'
 
 import Card from '../../molecules/Card/Card'
 import Slideshow from '../../molecules/Slideshow/Slideshow'
@@ -39,6 +40,9 @@ SERVICE wikibase:label { bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en" 
 }
 `
 let dataStore = "";
+let query = "";
+const yasqe = React.createRef(null);
+
 @inject('dataStore')
 @observer
 export default class LandingPage extends React.Component{
@@ -98,24 +102,36 @@ export default class LandingPage extends React.Component{
                         <Heading  pallete="qwikiLightBlue" type="H1">Current Activities</Heading>
                         <div className="latest-query-container">
                             <Heading  pallete="qwikiLightBlue" type="H2">Latest Query</Heading>
-                            <ReportDisplay/>
-
+                            { dataStore.questions.isLoading? null :
+                                <SparqlEditor ref={yasqe}>
+                                    {dataStore.questions.questions[0].sparqlQuery}
+                                </SparqlEditor>
+                            }
                         </div>
-                        <div className="recently-reported-problems-container">
-                            <Heading  pallete="qwikiLightBlue" type="H2">Recently Reported Problems</Heading>
-                            <div className="recently-reported-problems-content">
-                                <Icon  pallete="qwikiDarkBlue" icon={"report-problem"}  width={192}/>
-                                <ReportDisplay>
-                                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-                                </ReportDisplay>
+                        { true? null:
+                            <div className="recently-reported-problems-container">
+                                <Heading  pallete="qwikiLightBlue" type="H2">Recently Reported Problems</Heading>
+                                <div className="recently-reported-problems-content">
+                                    <Icon  pallete="qwikiDarkBlue" icon={"report-problem"}  width={192}/>
+                                    <ReportDisplay>
+                                        Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+                                    </ReportDisplay>
+                                </div>
+
                             </div>
-
-                        </div>
+                        }
                     </div>
                     <div className="wikidata-container">
-                        <Heading  pallete="qwikiLightBlue" type="H1">Wikidata Entry of the Day</Heading>
-                        <div className="iFrame-container">
-                        </div>
+                        <Heading  pallete="qwikiLightBlue" type="H1">Minigame from SPARQL queries</Heading>
+                        { dataStore.questions.isLoading? null :
+
+                            <div className="latest-query-container">
+                                <Heading  pallete="qwikiLightBlue" type="H2">Mingame generated by the latest query</Heading>
+                                { dataStore.questions.isLoading? null :
+                                    <Minigame questionData={dataStore.questions.questions[0]}/>
+                                }
+                            </div>
+                        }
                     </div>
                 </Row>
 

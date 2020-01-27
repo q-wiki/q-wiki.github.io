@@ -1,11 +1,16 @@
 import { observable, action } from 'mobx'
 
 export default class DataStore {
+
+    @observable filteredCategorie = null;
+    @observable filteredType = null;
+
+
 	@action initialise(){
         this.stats.stats.push({number:"Loading", title:"Questions", icon:"question"})
         this.stats.stats.push({number:"Loading", title:"Categories", icon:"categories"})
         this.stats.stats.push({number:"Loading", title:"Matches", icon:"matches"})
-        this.stats.stats.push({number:"Loading", title:"Contributions", icon:"contributions"})
+        this.stats.stats.push({number:"Loading", title:"Minigames", icon:"minigame"})
     }
 
 	@observable stats = {
@@ -21,7 +26,7 @@ export default class DataStore {
             		this.stats.stats[0].number = data.numberOfQuestions;
             		this.stats.stats[1].number = data.numberOfCategories;
             		this.stats.stats[2].number = data.numberOfGamesPlayed;
-            		this.stats.stats[3].number = data.numberOfContributions;
+            		this.stats.stats[3].number = data.numberOfMinigames;
             })
             .catch((error) =>{
                 this.stats.isLoading = false;
@@ -44,7 +49,7 @@ export default class DataStore {
                     this.questions.error = "None";
             })
             .catch((error) =>{
-                this.questions.isLoading = false;
+                this.questions.isLoading = true;
                 this.questions.error = error;
             })
     }
