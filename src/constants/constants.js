@@ -107,6 +107,8 @@ import strippgen from "../assets/images/Strippgen.png"
 import weberWulff from "../assets/images/Weber-Wulff.jpg"
 import schlueter from "../assets/images/schlueter.jpeg"
 import mueller from "../assets/images/mueller.jpg"
+import sarhan from "../assets/images/sarhan.jpg"
+
 
 export const aboutUsData = [
 {
@@ -168,7 +170,8 @@ wikidata:[
   },
   {
     heading: "Alaa Sarhan",
-    image: aboutUsMemberOne,
+    link:"https://alaasarhan.me",
+    image: sarhan,
   }
 ],
 htw:[
