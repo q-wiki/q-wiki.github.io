@@ -3,21 +3,18 @@ import React from 'react'
 import {
   // NOTE: We use the hash router because it's easer to setup with gh-pages
   HashRouter as Router,
-  Link,
   Switch,
   Route
 } from 'react-router-dom'
 
-
 // layout components
 
-import { Grid } from 'react-flexbox-grid';
+import { Grid } from 'react-flexbox-grid'
 import ContainerFullPage from './components/atoms/ContainerFullPage/ContainerFullPage'
-import Container75 from './components/atoms/Container75/Container75'
 import Header from './components/molecules/Header/Header'
 import Footer from './components/molecules/Footer/Footer'
 
-import './App.css';
+import './App.css'
 
 // our routes 👩‍🔧
 
@@ -56,7 +53,7 @@ function App () {
               <Route path='/report/:minigameId?'>
                 <ReportPage page='form' />
               </Route>
-              <Route path='/contribute'>
+              <Route exact path='/contribute'>
                 <SparqlPage />
               </Route>
               <Route path='/contribute/how-to-add-questions'>
@@ -65,7 +62,7 @@ function App () {
               <Route path='/contribute/implemented-sparql-queries'>
                 <ImplementedQueriesPage />
               </Route>
-              <Route path='/contribute/create-new-queries'>
+              <Route path='/contribute/create-new-sparql-queries'>
                 <CreateNewQueriesPage />
               </Route>
               <Route path='/login'>
@@ -80,7 +77,7 @@ function App () {
         </ContainerFullPage>
       </Grid>
     </Router>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -1,8 +1,31 @@
+/* eslint-disable react/display-name */
+/* eslint-disable react/prop-types */
 import React from 'react'
+
+import Tabs from 'react-responsive-tabs';
 
 import Heading from '../../atoms/Heading/Heading'
 import Paragraph from '../../atoms/Paragraph/Paragraph'
 import Container75 from '../../atoms/Container75/Container75'
+
+// This is used for the tabs
+const minigames = [
+  { name: 'Multiple Choice', slug: 'multipleChoice' },
+  { name: 'Sorting', slug: 'sorting' },
+  { name: 'Guess The Image', slug: 'guessTheImage' }
+]
+
+const MinigamePanel = ({ minigameType }) => <p>{ minigameType }</p>
+
+function tutorialTabs () {
+  return minigames.map(minigame => ({
+    title: minigame.name,
+    getContent: () => <MinigamePanel minigameType={minigame.slug} />,
+    key: minigame.slug,
+    tabClassName: 'tab',
+    panelClassName: 'panel'
+  }))
+}
 
 const AddingQuestionsPage = () =>
   <>
@@ -53,6 +76,9 @@ const AddingQuestionsPage = () =>
         You can try different queries below:
       </Paragraph>
 
+
+      <Tabs
+        items={tutorialTabs()} />
       <ul style={{ color: 'red' }}>
         <li><b><b>TAB FOR MINIGAME TYPES</b></b></li>
         <li><b><b>SPARQL COMPONENT</b></b></li>

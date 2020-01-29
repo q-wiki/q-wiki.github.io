@@ -75,12 +75,12 @@ export const cardsDataContributePage = [
   } ,
 { icon:"implemented-queries",
   heading:"Implemented\nSPARQL Queries",
-  link:"/implementedSparqlQueries",
+  link:"/contribute/implemented-sparql-queries",
   text: "Check out our already implemented SPARQL queries and try them out!"
 } ,
 { icon:"add",
   heading: "Create new\nSPARQL Queries",
-  link:"/createNewSparqlQueries",
+  link:"/contribute/create-new-sparql-queries",
   text: "Help us create more  SPARQL queries and check out what others already submited!"
 } ,
 ]
