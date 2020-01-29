@@ -235,7 +235,7 @@ export default function ReportList ({ openIssues = true }) {
     fetchData()
   }, [openIssues])
 
-  return <div>
+  return <Container75>
     <Row>
       <Col x>
         <Heading type='H1'>{openIssues ? 'Open reports' : 'Closed reports'}</Heading>
@@ -246,7 +246,7 @@ export default function ReportList ({ openIssues = true }) {
         {apiResponse.map((issue, idx) => <SingleReport report={parseReportFromIssue(issue)} issue={issue} key={idx} />)}
       </Accordion>
       : 'Loading…'}
-</div>
+  </Container75>
 }
 
 ReportList.propTypes = {

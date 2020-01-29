@@ -3,12 +3,18 @@
 
 import screen1 from "../assets/images/screen2.png"
 import screen2 from "../assets/images/screen10.png"
+import screen3 from "../assets/images/screen1.png"
+import screen4 from "../assets/images/screen3.png"
 
 
 export const screenshots= [
   { src:screen2,
   } ,
 { src:screen1,
+} ,
+{ src:screen3,
+} ,
+{ src:screen4,
 } ,
 ]
 
@@ -189,8 +195,8 @@ htw:[
 }
 ];
 
-import screenshot2 from "../assets/images/screenshot-2.jpg"
-import screenshot3 from "../assets/images/screenshot-3.jpg"
+import screenshot2 from "../assets/images/screenshot-2.jpeg"
+import screenshot3 from "../assets/images/screenshot-3.png"
 
 export const qWikiHistory = [
 {
