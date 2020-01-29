@@ -1,4 +1,5 @@
 import { observable, action } from 'mobx'
+import config from '../config'
 
 export default class DataStore {
 
@@ -20,7 +21,7 @@ export default class DataStore {
 	};
 
     @action async fetchStats(){
-        fetch(`https://wikidatagame-testing.azurewebsites.net/api/Platform/Stats`)
+        fetch(config.API_URL + `/api/Platform/Stats`)
             .then(response => response.json())
             .then((data) => {
             		this.stats.stats[0].number = data.numberOfQuestions;
@@ -41,7 +42,7 @@ export default class DataStore {
     };
 
     @action async fetchQuestions(){
-        fetch(`https://wikidatagame-testing.azurewebsites.net/api/Platform/Question`)
+        fetch(config.API_URL + `/api/Platform/Question`)
             .then(response => response.json())
             .then((data) => {
                     this.questions.questions = data;
@@ -61,7 +62,7 @@ export default class DataStore {
     };
 
     @action async fetchCategories(){
-        fetch(`https://wikidatagame-testing.azurewebsites.net/api/Platform/Category`)
+        fetch(config.API_URL + `/api/Platform/Category`)
             .then(response => response.json())
             .then((data) => {
                     this.categories.categories = data;
