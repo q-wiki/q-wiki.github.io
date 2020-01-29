@@ -33,12 +33,12 @@ const capitalizeFirstLetter = s => s.substring(0, 1).toLocaleUpperCase() + s.sub
 
 // TODO: Check styling (logged in and loggged out, also for every issue when the accordion is expanded)
 
-function LoginWidget () {
+function LoginWidget ({ githubStore }) {
   return <>
     <Paragraph>
       All of our issue reporting is tightly integrated into our code collaboration efforts <a href='https://github.com/q-wiki/q-wiki-server'>on GitHub</a>. Login in to give feedback on issues, post comments or re-play minigames and help us figure out what went wrong!
     </Paragraph>
-    <GithubLoginButton />
+    <GithubLoginButton githubStore={githubStore} />
   </>
 }
 
@@ -161,7 +161,7 @@ const ReportDetail = inject('githubStore')(observer(({ githubStore, report, issu
 
     {githubStore.isLoggedIn
       ? <ExtendedDetail githubStore={githubStore} report={report} issue={issue} minigame={minigame} />
-      : <LoginWidget />}
+      : <LoginWidget githubStore={githubStore} />}
   </>
 }))
 

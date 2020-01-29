@@ -1,0 +1,175 @@
+@import "../../../../src/assets/variables.scss";
+
+.create-new{
+  background-color: $qwikiLightBlue;
+
+  .create-new-header{
+    height: 280px;
+    background: linear-gradient(to bottom, rgba(3, 93 ,93, 0.75), rgba(3, 93 ,93, 0.75)), url("../../../../src/assets/images/slide-1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+      p{
+        color: $white;
+      }
+
+      h2{
+        color: $qwikiOrange;
+      }
+  }
+  .create-new-text{
+    margin: 2rem;
+
+    h2{
+        margin-bottom: 1rem;
+    }
+
+    p {
+      text-align: left;
+    }
+  }
+  .buttons-row{
+    margin: 1rem;
+    button{
+      margin: 0.5rem;
+    }
+  }
+
+  .notification-row{
+    .alert {
+        width: 100%;
+      padding: 20px;
+      background-color: $qwikiOrange;
+      color: white;
+    }
+
+    .closebtn {
+      margin-left: 15px;
+      color: white;
+      font-weight: bold;
+      float: right;
+      font-size: 22px;
+      line-height: 20px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .closebtn:hover {
+      color: black;
+    }
+  }
+
+  .create-new-container{
+    background-color: $qwikiGreen;
+
+    .input-container{
+      margin: 2rem;
+    }
+  }
+
+  .textarea textarea{
+    height: 20rem;
+  }
+
+  .dropdown-container{
+    display: flex;
+    justify-content: space-around;
+    margin: 1em 0 2em 0;
+    .dropdown{
+      width: 45%;
+
+    }
+
+  }
+
+  .lds-grid {
+    display: inline-block;
+    position: relative;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-grid div {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: $qwikiLightBlue;
+    animation: lds-grid 1.2s linear infinite;
+  }
+  .lds-grid div:nth-child(1) {
+    top: 8px;
+    left: 8px;
+    animation-delay: 0s;
+  }
+  .lds-grid div:nth-child(2) {
+    top: 8px;
+    left: 32px;
+    animation-delay: -0.4s;
+  }
+  .lds-grid div:nth-child(3) {
+    top: 8px;
+    left: 56px;
+    animation-delay: -0.8s;
+  }
+  .lds-grid div:nth-child(4) {
+    top: 32px;
+    left: 8px;
+    animation-delay: -0.4s;
+  }
+  .lds-grid div:nth-child(5) {
+    top: 32px;
+    left: 32px;
+    animation-delay: -0.8s;
+  }
+  .lds-grid div:nth-child(6) {
+    top: 32px;
+    left: 56px;
+    animation-delay: -1.2s;
+  }
+  .lds-grid div:nth-child(7) {
+    top: 56px;
+    left: 8px;
+    animation-delay: -0.8s;
+  }
+  .lds-grid div:nth-child(8) {
+    top: 56px;
+    left: 32px;
+    animation-delay: -1.2s;
+  }
+  .lds-grid div:nth-child(9) {
+    top: 56px;
+    left: 56px;
+    animation-delay: -1.6s;
+  }
+  @keyframes lds-grid {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+  .loading-container{
+    display: flex;
+  }
+
+}
+
+@media only screen and (max-width: 600px) {
+  .dropdown-container{
+    flex-wrap: wrap;
+  }
+  .implemented-queries .dropdown-container dropdown{
+    width: 70%;
+  }
+}

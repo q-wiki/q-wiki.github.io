@@ -20,6 +20,34 @@ export default class DataStore {
 		stats: []
 	};
 
+  @observable responsePost = "";
+
+  @action async sendQuery(data){
+
+    let bodyData ={
+      "sparqlQuery": data.query,
+      "taskDescription": data.task,
+      "category": {
+        "id": data.categorie,
+        "title": data.categorieTitle
+      },
+        "miniGameType": data.type,
+      };
+
+    fetch(config.API_URL + `/api/Platform/Question`, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(bodyData)
+    })
+      .then(response => response.text())
+      .then((data) => {
+          this.responsePost = data;
+      })
+      .catch((error) =>{
+          this.responsePost = error;
+      })
+    }
+
     @action async fetchStats(){
         fetch(config.API_URL + `/api/Platform/Stats`)
             .then(response => response.json())
@@ -45,6 +73,8 @@ export default class DataStore {
         fetch(config.API_URL + `/api/Platform/Question`)
             .then(response => response.json())
             .then((data) => {
+                  //Filter out questions that are not approved yet
+                  data = data.filter(d => d.status > 0)
                     this.questions.questions = data;
                     this.questions.isLoading = false;
                     this.questions.error = "None";
