@@ -66,13 +66,14 @@ function getTabs (selectedTabsKey) {
 export default function ReportPage ({ page, showOpenIssues }) {
   const { minigameId } = useParams()
   const [rememberedMinigameId, setRememberedMinigameId] = useState(null)
-  if (minigameId) {
+
+  // set minigame id once if we have it in the url, don't change it afterwards
+  if (minigameId != null && rememberedMinigameId !== minigameId) {
     setRememberedMinigameId(minigameId)
   }
 
   const selectedTabKey = page === 'form'
-    ? 0
-    : (showOpenIssues ? 1 : 2)
+    ? 0 : 1 // (showOpenIssues ? 1 : 2)
 
   return <div className="report-page-container">
     <Container75>
