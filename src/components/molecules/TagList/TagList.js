@@ -1,7 +1,8 @@
 import React, {useState, useRef} from 'react'
 import PropTypes from 'prop-types'
 
-import {pick, omit} from 'lodash'
+import pick from 'lodash/pick'
+import omit from 'lodash/omit'
 
 import TextField from '../../atoms/TextField/TextField'
 import Button from '../../atoms/Button/Button'
