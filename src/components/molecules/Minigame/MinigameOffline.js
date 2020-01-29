@@ -12,16 +12,15 @@ import './minigame.scss';
 import {observable} from "mobx/lib/mobx";
 
 @observer
-export default class Minigame extends React.Component{
+export default class MinigameOffline extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
             questionData : this.props.questionData,
-            minigameLoaded : false,
-            question : "",
+            question : this.props.questionData.taskDesciption,
             type: minigameTypes[this.props.questionData.miniGameType].title,
-            options: [],
-            correctAnswer: [],
+            options: this.props.questionData.options,
+            correctAnswer: this.props.questionData.options[0].answer,
             answer: [],
             checked: false,
             overlayClass: "image_overlay invisible",
@@ -29,31 +28,19 @@ export default class Minigame extends React.Component{
             license: null,
             showLicense: false,
         }
-        console.log(this.state.questionData);
-        this.generateMinigame(this.state.questionData);
+
+        this.loadLicense(this.state.questionData.options[0].img)
     }
 
-    async generateMinigame(question){
+    async loadLicense(url){
         let minigameStore = new MinigameStore();
-
-        await minigameStore.initializeMinigame(
-            question.sparqlQuery, minigameTypes[question.miniGameType].title, question.taskDescription);
-
-        this.setState({correctAnswer : minigameStore.minigameAnswers});
-        this.setState({question : minigameStore.minigameQuestion});
-
-        for(var i = 0; i < minigameStore.minigameOptions.length; i++){
-            const content = {};
-            content.text = minigameStore.minigameOptions[i]
-            content.active = false;
-            content.result = null;
-            this.state.options.push(content);
-        }
-        console.log("Loading")
-        this.setState({minigameLoaded : true});
-        if(this.state.type == "Image Guess"){
-            this.loadLicense(this.state.correctAnswer[1]);
-        }
+        await minigameStore.recieveLicense(url);
+        this.setState({
+            license: minigameStore.imgData,
+        });
+        this.setState({
+            licenseLoading: minigameStore.licenseLoading,
+        });
     }
 
     onClickHandler = (e) =>{
@@ -117,20 +104,6 @@ export default class Minigame extends React.Component{
         }
     }
 
-    resetMinigame = (e) => {
-        this.setState({question : ""});
-        this.setState({options: []});
-        this.setState({correctAnswer: []});
-        this.setState({answer: []});
-        this.setState({checked: false});
-        this.setState({licenseLoading: true});
-        this.setState({license: null});
-        this.setState({showLicense: false});
-        this.setState({minigameLoaded: false});
-        this.generateMinigame(this.state.questionData);
-    }
-
-
     validateOptions(){
         this.setState({checked: true});
         let answer = this.state.answer;
@@ -164,17 +137,6 @@ export default class Minigame extends React.Component{
         }
         this.setState({
             options: options,
-        });
-    }
-
-    async loadLicense(url){
-        let minigameStore = new MinigameStore();
-        await minigameStore.recieveLicense(url);
-        this.setState({
-            license: minigameStore.imgData,
-        });
-        this.setState({
-            licenseLoading: minigameStore.licenseLoading,
         });
     }
 
