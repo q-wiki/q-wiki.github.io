@@ -45,8 +45,6 @@ const yasqe = React.createRef(null);
 @inject('dataStore')
 @observer
 export default class LandingPage extends React.Component{
-
-
     render() {
         dataStore = this.props.dataStore;
         return (

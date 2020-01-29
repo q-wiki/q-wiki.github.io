@@ -1,5 +1,7 @@
-.report-page-container {
+@import "../../../../src/assets/variables.scss";
 
+.report-page-container {
+  background-color: $qwikiVeryLightBlue;
   .panel {
     z-index: -3;
   }
@@ -26,6 +28,21 @@
       text-align: center;
       padding: 20px 0px 20px 0px;
     }
+
+  }
+
+  .report-list-container {
+    padding-right: 8px;
+    padding-left: 8px;
+
+    h2 {
+      padding-top: 20px;
+      padding-bottom: 20px;
+    }
+  }
+
+  .submit-comment-container, .additional-discussion-container {
+    padding-top: 20px;
   }
 
   .report-form-container {
@@ -39,6 +56,25 @@
     .submit-button-container {
           padding: 30px 0px 10px 0px !important;
         }
+  }
+
+  .vote-container {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 20px;
+    padding-top: 20px;
+
+    p {
+      align-self: center;
+    }
+
+    .bottom-container {
+      padding-left: 20px;
+    }
+
+    .after-voting {
+      padding-left: 20px;
+    }
   }
 }
 
@@ -57,6 +93,54 @@
   }
 }
 
+@media only screen and (max-width: 516px) {
+  .report-page-container {
+    background-color: transparent;
+
+    .panel {
+      z-index: 1;
+    }
+  }
+}
+
+@media only screen and (max-width: 407px) {
+
+.minigametype-dropdown-container, .problem-dropdown-container {
+  .dropdown select{
+    min-height: 3.75rem;
+  }
+}
+
+.dropdown .effect-20 ~ label {
+  width: 70%;
+}
+
+}
+
+@media only screen and (max-width: 491px) {
+
+.question-text-container {
+  .effect-20{
+      padding: 19px 14px !important;
+    }
+}
+
+}
+
+
+@media only screen and (max-width: 337px) {
+
+.minigametype-dropdown-container, .problem-dropdown-container {
+.dropdown .has-content.effect-20 ~ label {
+    top: -31px;
+}
+}
+}
+
+
+
+
+
 @media only screen and (max-width: 911px) {
   .report-page-container {
     .heading-container {
@@ -65,17 +149,7 @@
   }
 }
 
-@media only screen and (max-width: 703px) {
-  .report-page-container {
 
-.report-form-container {
-    .row:nth-child(1), .row:nth-child(2){
-
-      text-align: center;
-    }
-}
-}
-}
 
 @media only screen and (max-width: 560px) {
   .report-page-container {

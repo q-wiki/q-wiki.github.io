@@ -86,7 +86,7 @@ export const cardsDataContributePage = [
 } ,
 { icon:"add",
   heading: "Create new\nSPARQL Queries",
-  link:"/contribute/create-new-sparql-queries",
+  link:"/contribute/create-new-queries",
   text: "Help us create more  SPARQL queries and check out what others already submited!"
 } ,
 ]

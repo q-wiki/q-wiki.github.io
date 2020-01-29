@@ -26,13 +26,13 @@ const tabsContent = [
       <Row>
         <Col {...colSize}>
           <Heading type='H1'>{reportPageInfo[1].heading}</Heading>
-          <Paragraph>{reportPageInfo[1].text}</Paragraph>
+          <Paragraph textAlign='left'>{reportPageInfo[1].text}</Paragraph>
         </Col>
       </Row>
       <Row>
         <Col {...colSize}>
           <Heading type='H2'>{reportPageInfo[1].heading2}</Heading>
-          <Paragraph>{reportPageInfo[1].text2}</Paragraph>
+          <Paragraph textAlign='left'>{reportPageInfo[1].text2}</Paragraph>
         </Col>
       </Row>
       <Row>
@@ -76,12 +76,12 @@ export default function ReportPage ({ page, showOpenIssues }) {
     ? 0 : 1 // (showOpenIssues ? 1 : 2)
 
   return <div className="report-page-container">
-    <Container75>
       <div className="report-header">
-        <Heading className="report-heading" pallete="white" type="H1">{reportPageInfo[0].heading}</Heading>
+        <Heading className="report-heading" pallete="qwikiOrange" type="H1">{reportPageInfo[0].heading}</Heading>
         <Heading className="report-heading" pallete="white" type="H2">{reportPageInfo[0].text}</Heading>
         <Heading className="report-heading" pallete="white" type="H2">{reportPageInfo[0].text2}</Heading>
       </div>
+      <Container75>
       <Tabs
         showMore={false}
         items={getTabs()}
