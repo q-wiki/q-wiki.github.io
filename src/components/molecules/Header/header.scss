@@ -1,27 +1,50 @@
 @import "../../../../src/assets/variables.scss";
 
-.header-container{
-  .header-first{
+.header-container {
+  .header-first {
     padding: 15px;
-    background-color:$qwikiGreen;
+    background-color: $qwikiGreen;
 
-    .content-left, .content-right {
+    .content-left,
+    .content-right {
       display: flex;
       flex-direction: row;
 
-    p {
+      p {
         margin-left: 5px;
       }
-
     }
   }
 }
 
-@media only screen and (max-width: 791px) {
-.header-last{
-  .between-xs  {
-    justify-content: center;
-  }
+
+.github-svg {
+  fill:url(#MyGradient);
+  color:$qwikiGreen;
+  position: absolute;
+  top: 0;
+  border: 0;
+  left: 0;
+  transform: scale(-1, 1)
+}
+.github-corner:hover
+.octo-arm{
+  transform-origin: 130px 106px;
+  animation:octocat-wave 560ms ease-in-out
 }
 
+  @keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}
+
+@media (max-width:500px){
+  .github-corner:hover, .octo-arm{animation:none}
+
+}
+
+
+@media only screen and (max-width: 791px) {
+  .header-last {
+    .between-xs {
+      justify-content: center;
+    }
+  }
 }

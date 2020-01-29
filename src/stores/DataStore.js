@@ -7,10 +7,10 @@ export default class DataStore {
 
 
 	@action initialise(){
-        this.stats.stats.push({number:"Loading", title:"Questions", icon:"question"})
-        this.stats.stats.push({number:"Loading", title:"Categories", icon:"categories"})
-        this.stats.stats.push({number:"Loading", title:"Matches", icon:"matches"})
-        this.stats.stats.push({number:"Loading", title:"Minigames", icon:"minigame"})
+        this.stats.stats.push({number:"Loading", title:"Question templates", icon:"question"})
+        this.stats.stats.push({number:"Loading", title:"Different categories", icon:"categories"})
+        this.stats.stats.push({number:"Loading", title:"Matches played", icon:"matches"})
+        this.stats.stats.push({number:"Loading", title:"Minigames played", icon:"minigames"})
     }
 
 	@observable stats = {

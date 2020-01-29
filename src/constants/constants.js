@@ -1,5 +1,18 @@
 
 
+
+import screen1 from "../assets/images/screen2.png"
+import screen2 from "../assets/images/screen10.png"
+
+
+export const screenshots= [
+  { src:screen2,
+  } ,
+{ src:screen1,
+} ,
+]
+
+
 export const cardsDataLandingPage= [
   { icon:"wikidata-logo",
     heading: "About\nWikidata",
@@ -33,7 +46,7 @@ export const headerContributePage = [
 export const headerImplemenetedPage = [
     {
         heading: "Check out our in-game SPARQL Queries!",
-        text: "Choose a minigame type and category and try them out Yourself!"
+        text: "Choose a minigame type and category and try them out yourself!"
     }
 ]
 
@@ -73,27 +86,8 @@ export const minigameTypes=[
     {title:"Multiple Choice", id:2},
 ]
 
-export const numberDisplay= [
-  { icon:"question",
-    heading1:"30000000000",
-    heading2:"Questions",
-  },
-  { icon:"categories",
-    heading1:"7",
-    heading2:"Categories",
-  } ,
-{ icon:"matches",
-  heading1:"30000",
-  heading2:"Matches",
-} ,
-{ icon:"contributions",
-  heading1:"750",
-  heading2:"Contributions",
-} ,
-]
-
 import infoScreenshot from "../assets/images/screenshot-1.jpg"
-import infoQrCode from "../assets/images/qr-code.jpg"
+import infoQrCode from "../assets/images/qr-code.svg"
 
 
 export const qWikiInfo= [
@@ -101,13 +95,18 @@ export const qWikiInfo= [
     heading1: "We are ",
     heading2:"Q-Wiki",
     text: "Q-Wiki is a strategy game for two players. The aim of the game is to conquer as much territory as you can in a limited time. The game pulls its data directly from wikidata. Generating millions of different questions in many categories from Geography to History. Do you have what it takes to conquer the map?",
-    downloadText:"Download the game from the google play store now!",
+    downloadText:"Download the game from the Google Play Store now!",
     screenshotSrc: infoScreenshot,
     qrCode: infoQrCode,
   }
 ]
 
 import aboutUsMemberOne from "../assets/images/member-1.jpg"
+import werkmeister from "../assets/images/Werkmeister.png"
+import strippgen from "../assets/images/Strippgen.png"
+import weberWulff from "../assets/images/Weber-Wulff.jpg"
+import schlueter from "../assets/images/schlueter.jpeg"
+import mueller from "../assets/images/mueller.jpg"
 
 export const aboutUsData = [
 {
@@ -115,78 +114,73 @@ export const aboutUsData = [
     {
       heading: "Antonia Berger",
       link:"https://github.com/AntoniaBe",
-      text: "Frontend Developer",
+      text: "Frontend",
       image: aboutUsMemberOne,
     },
     {
       heading: "Jennifer Lindner",
       link:"https://github.com/JennyLin1995",
-      text: "Frontend Developer",
+      text: "Frontend",
       image: aboutUsMemberOne,
     } ,
   {
     heading:"Malte Götz",
-    link:"https://github.com/maltegoetz",
-    text: "Backend Developer",
+    link:"http://maltegoetz.com ",
+    text: "Backend",
     image: aboutUsMemberOne,
   } ,
   {
     heading:"Eko Supardjo",
     link:"https://github.com/EkoSHtw",
-    text: "Backend Developer",
+    text: "Backend",
     image: aboutUsMemberOne,
   },
   {
     heading: "Jonas Fichtmüller",
     link:"https://github.com/golemmoja",
-    text: "Backend Developer",
+    text: "Backend",
     image: aboutUsMemberOne,
   },
   {
     heading: "David Müller",
     link:"https://github.com/davidmllr",
-    text: "Frontend Developer",
-    image: aboutUsMemberOne,
+    text: "Frontend",
+    image: mueller,
   },
   {
     heading: "Arne Schlüter",
     link:"https://github.com/heyarne",
-    text: "Backend/Frontend Developer",
-    image: aboutUsMemberOne,
+    text: "Backend/Frontend",
+    image: schlueter,
   },
   {
     heading: "Laura Wölbeling",
     link:"https://github.com/chibbs",
-    text: "Backend Developer",
+    text: "Backend",
     image: aboutUsMemberOne,
   },
 ],
 wikidata:[
   {
     heading: "Lucas Werkmeister",
-    link:"",
-    text: "Full Stack Developer",
-    image: aboutUsMemberOne,
+    link:"https://lucaswerkmeister.de",
+    image: werkmeister,
   },
   {
     heading: "Alaa Sarhan",
-    link:"",
-    text: "Full Stack Developer",
     image: aboutUsMemberOne,
   }
 ],
 htw:[
   {
     heading: "Prof. Dr. Debora Weber-Wulff",
-    link:"",
     text: "",
-    image: aboutUsMemberOne,
+    image: weberWulff,
   },
   {
     heading: "Prof. Dr.-Ing. David Strippgen",
-    link:"http://home.htw-berlin.de/~strippg/",
     text: "",
-    image: aboutUsMemberOne,
+    image: strippgen,
   }
 ],
 }
