@@ -12,6 +12,16 @@
     justify-content: center;
     align-items: center;
     align-content: center;
+
+    .contribute-header-container {
+      padding: 20px;
+      text-align: center;
+
+      h2, p {
+        padding: 10px;
+        text-align: center;
+      }
+    }
   }
 
   .contribute-content {

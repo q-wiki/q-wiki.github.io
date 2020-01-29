@@ -114,6 +114,8 @@ import weberWulff from "../assets/images/Weber-Wulff.jpg"
 import schlueter from "../assets/images/schlueter.jpeg"
 import mueller from "../assets/images/mueller.jpg"
 import sarhan from "../assets/images/sarhan.jpg"
+import supardjo from "../assets/images/supardjo.jpg"
+import woelbeling from "../assets/images/woelbeling.jpg"
 
 
 export const aboutUsData = [
@@ -141,7 +143,7 @@ export const aboutUsData = [
     heading:"Eko Supardjo",
     link:"https://github.com/EkoSHtw",
     text: "Backend",
-    image: aboutUsMemberOne,
+    image: supardjo,
   },
   {
     heading: "Jonas Fichtmüller",
@@ -165,7 +167,7 @@ export const aboutUsData = [
     heading: "Laura Wölbeling",
     link:"https://github.com/chibbs",
     text: "Backend",
-    image: aboutUsMemberOne,
+    image: woelbeling,
   },
 ],
 wikidata:[

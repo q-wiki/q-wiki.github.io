@@ -101,9 +101,11 @@ export default class ImplementedQueriesPage extends React.Component{
         this.filterQuestions();
         return (
             <div className="implemented-queries">
-                <div className="implemented-queries-header ">
+                <div className="implemented-queries-header">
+                  <div className="implemented-queries-header-container">
                     <Heading type="H1">{headerImplemenetedPage[0].heading}</Heading>
                     <Paragraph textAlign="justify">{headerImplemenetedPage[0].text}</Paragraph>
+                    </div>
                 </div>
                 <Container75 className="filter">
                     {!dataStore.categories.isLoading ?
