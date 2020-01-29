@@ -3,6 +3,21 @@ import YASQE from 'yasgui-yasqe'
 
 import 'yasgui-yasqe/dist/yasqe.css'
 
+const prettifySparql = sparql => {
+  // find first line with non-zero-whitespace and count how much that is
+  window.sparql = sparql
+  const lines = sparql.split('\n')
+  const whitespace = lines.filter(line => line.match(/^\s+/))
+
+  if (whitespace.length) {
+    const numberOfSpaces = whitespace[0].match(/^\s+/)[0].length
+    const re = new RegExp(`^\\s{${numberOfSpaces}}`)
+    return lines.map(line => line.replace(re, '')).join('\n')
+  }
+
+  return sparql
+}
+
 const SparqlEditor = React.forwardRef(({ children, yasqeConfig }, ref) => {
   const textareaRef = useRef(null)
 
@@ -14,8 +29,12 @@ const SparqlEditor = React.forwardRef(({ children, yasqeConfig }, ref) => {
     }
   })
 
+  const prettifiedSparql = typeof children === 'string'
+    ? prettifySparql(children)
+    : children
+
   return <>
-    <textarea ref={textareaRef} defaultValue={children} />
+    <textarea ref={textareaRef} defaultValue={prettifiedSparql} />
   </>
 })
 

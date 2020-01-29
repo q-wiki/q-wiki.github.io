@@ -18,28 +18,72 @@ import SparqlEditor from '../../atoms/SparqlEditor/SparqlEditor';
 const pickQuestion = (questions, minigame) =>
   sample(questions.filter(q => q.miniGameType === minigame.id))
 
-const MinigamePanel = ({ questions, minigame }) => {
-  if (questions == null) return <Paragraph>Waiting for the server to load questions…</Paragraph>
+const SparqlResultTable = ({ sparqlResults }) =>
+  <table className='adding-questions-page--sparql-results'>
+    <thead>
+      <tr>
+        {sparqlResults.head.vars.map((sparqlVar, idx) => <th key={'result-head-' + idx}>{'?' + sparqlVar}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {sparqlResults.results.bindings.map((binding, idx) =>
+        <tr key={'result-row-' + idx}>
+          {sparqlResults.head.vars.map((sparqlVar, jdx) =>
+            <td key={'result-cell-' + idx + '-' + jdx}>{binding[sparqlVar].value}</td>)}
+        </tr>
+      )}
+    </tbody>
+  </table>
 
-  const questionData = pickQuestion(questions, minigame)
-  return <>
-    <div className='question-template-tutorial--query-editor'>
-      <Heading type='H2'>SPARQL Query</Heading>
+// contains
+// - A Sparql editor
+// - The response returned by Wikidata
+// - The generated minigame
+const StepByStepPanel = ({ questions, minigame }) => {
+  const [sparqlResult, setSparqlResult] = useState(null)
+  const [questionData, setQuestionData] = useState(null)
+
+  useEffect(() => {
+    async function init () {
+      async function fetchWikidataResponse () {
+        const uri = `${window.location.protocol}//query.wikidata.org/sparql?query=${window.encodeURIComponent(questionData.sparqlQuery)}`
+        const headers = {
+          Accept: 'application/sparql-results+json;charset=utf-8'
+        }
+        const res = await fetch(uri, { headers })
+        setSparqlResult(await res.json())
+      }
+
+      const questionData = pickQuestion(questions, minigame)
+      setQuestionData(questionData)
+      fetchWikidataResponse()
+    }
+
+    if (questions != null && questionData == null) init()
+  })
+
+  console.log(sparqlResult)
+
+  return (questionData == null)
+    ? <Paragraph>Waiting for the server to load questions…</Paragraph>
+    : <>
+      <Paragraph>Given the following in-game query:</Paragraph>
       <SparqlEditor>
         {questionData.sparqlQuery}
       </SparqlEditor>
-    </div>
-    <div className='question-template-tutorial--minigame'>
-      <Heading type='H2'>Generated Minigame</Heading>
+      <Paragraph>The Wikidata SPARQL endpoint returns a result like this:</Paragraph>
+      {sparqlResult == null
+        ? <Paragraph>Waiting for the Wikidata server to respond…</Paragraph>
+        : <SparqlResultTable sparqlResults={sparqlResult} />}
+      <Paragraph>Which in turn generates the following minigame:</Paragraph>
       <Minigame questionData={questionData} />
-    </div>
-  </>
+    </>
 }
 
 function tutorialTabs (questions) {
   return minigameTypes.map(minigame => ({
     title: minigame.title,
-    getContent: () => <MinigamePanel questions={questions} minigame={minigame} />,
+    getContent: () => <StepByStepPanel questions={questions} minigame={minigame} />,
     key: minigame.id,
     tabClassName: 'tab',
     panelClassName: 'panel'
@@ -108,12 +152,6 @@ const AddingQuestionsPage = () => {
       <Tabs
         showMore={false}
         items={tutorialTabs(questions)} />
-      <ul style={{ color: 'red' }}>
-        <li><b><b>TAB FOR MINIGAME TYPES</b></b></li>
-        <li><b><b>SPARQL COMPONENT</b></b></li>
-        <li><b><b>DUMB RESULT VISUALIZATION</b></b></li>
-        <li><b><b>MINIGAME</b></b></li>
-      </ul>
 
       <Paragraph textAlign='justify'>
         Notice how the queries can get quite complex but don't worry. The process roughly looks like this:
