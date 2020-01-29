@@ -8,7 +8,7 @@ const SparqlEditor = React.forwardRef(({ children, yasqeConfig }, ref) => {
 
   useEffect(() => {
     const editor = YASQE.fromTextArea(textareaRef.current, yasqeConfig)
-    ref.current = editor
+    if (ref != null) ref.current = editor
     return () => {
       editor.toTextArea()
     }
@@ -18,5 +18,7 @@ const SparqlEditor = React.forwardRef(({ children, yasqeConfig }, ref) => {
     <textarea ref={textareaRef} defaultValue={children} />
   </>
 })
+
+SparqlEditor.displayName = 'SparqlEditor'
 
 export default SparqlEditor

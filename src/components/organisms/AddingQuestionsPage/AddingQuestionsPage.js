@@ -1,34 +1,63 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 
 import Tabs from 'react-responsive-tabs';
+
+import sample from 'lodash/sample'
+
+import config from '../../../config'
+import { minigameTypes } from '../../../constants/constants'
 
 import Heading from '../../atoms/Heading/Heading'
 import Paragraph from '../../atoms/Paragraph/Paragraph'
 import Container75 from '../../atoms/Container75/Container75'
+import Minigame from '../../molecules/Minigame/Minigame'
+import SparqlEditor from '../../atoms/SparqlEditor/SparqlEditor';
 
-// This is used for the tabs
-const minigames = [
-  { name: 'Multiple Choice', slug: 'multipleChoice' },
-  { name: 'Sorting', slug: 'sorting' },
-  { name: 'Guess The Image', slug: 'guessTheImage' }
-]
+const pickQuestion = (questions, minigame) =>
+  sample(questions.filter(q => q.miniGameType === minigame.id))
 
-const MinigamePanel = ({ minigameType }) => <p>{ minigameType }</p>
+const MinigamePanel = ({ questions, minigame }) => {
+  if (questions == null) return <Paragraph>Waiting for the server to load questions…</Paragraph>
 
-function tutorialTabs () {
-  return minigames.map(minigame => ({
-    title: minigame.name,
-    getContent: () => <MinigamePanel minigameType={minigame.slug} />,
-    key: minigame.slug,
+  const questionData = pickQuestion(questions, minigame)
+  return <>
+    <div className='question-template-tutorial--query-editor'>
+      <Heading type='H2'>SPARQL Query</Heading>
+      <SparqlEditor>
+        {questionData.sparqlQuery}
+      </SparqlEditor>
+    </div>
+    <div className='question-template-tutorial--minigame'>
+      <Heading type='H2'>Generated Minigame</Heading>
+      <Minigame questionData={questionData} />
+    </div>
+  </>
+}
+
+function tutorialTabs (questions) {
+  return minigameTypes.map(minigame => ({
+    title: minigame.title,
+    getContent: () => <MinigamePanel questions={questions} minigame={minigame} />,
+    key: minigame.id,
     tabClassName: 'tab',
     panelClassName: 'panel'
   }))
 }
 
-const AddingQuestionsPage = () =>
-  <>
+const AddingQuestionsPage = () => {
+  // fetch all questions from the server to generate minigames
+  const [questions, setQuestions] = useState(null)
+  useEffect(() => {
+    async function fetchQuestions () {
+      const res = await fetch(config.API_URL + '/api/Platform/Question')
+      setQuestions(await res.json())
+    }
+    if (questions == null) fetchQuestions()
+  })
+
+  return <>
     <Container75>
       <Heading type='H1'>Writing Question Templates</Heading>
       <Paragraph textAlign='justify'>
@@ -76,9 +105,9 @@ const AddingQuestionsPage = () =>
         You can try different queries below:
       </Paragraph>
 
-
       <Tabs
-        items={tutorialTabs()} />
+        showMore={false}
+        items={tutorialTabs(questions)} />
       <ul style={{ color: 'red' }}>
         <li><b><b>TAB FOR MINIGAME TYPES</b></b></li>
         <li><b><b>SPARQL COMPONENT</b></b></li>
@@ -126,6 +155,7 @@ const AddingQuestionsPage = () =>
       </Paragraph>
     </Container75>
   </>
+}
 
 AddingQuestionsPage.displayName = 'AddingQuestionsPage'
 
