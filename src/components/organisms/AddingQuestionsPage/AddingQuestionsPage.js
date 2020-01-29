@@ -59,23 +59,21 @@ const StepByStepPanel = ({ questions, minigame }) => {
       fetchWikidataResponse()
     }
 
-    if (questions != null && questionData == null) init()
-  })
-
-  console.log(sparqlResult)
+    if (questions != null) init()
+  }, [questions])
 
   return (questionData == null)
     ? <Paragraph>Waiting for the server to load questions…</Paragraph>
     : <>
-      <Paragraph>Given the following in-game query:</Paragraph>
+      <Paragraph>With a question labeled <em>{questionData.taskDescription}</em>, given the following in-game query:</Paragraph>
       <SparqlEditor>
         {questionData.sparqlQuery}
       </SparqlEditor>
-      <Paragraph>The Wikidata SPARQL endpoint returns a result like this:</Paragraph>
+      <Paragraph>…the Wikidata SPARQL endpoint returns a result like this:</Paragraph>
       {sparqlResult == null
         ? <Paragraph>Waiting for the Wikidata server to respond…</Paragraph>
         : <SparqlResultTable sparqlResults={sparqlResult} />}
-      <Paragraph>Which in turn generates the following minigame:</Paragraph>
+      <Paragraph>…which in turn generates the following minigame:</Paragraph>
       <Minigame questionData={questionData} />
     </>
 }
