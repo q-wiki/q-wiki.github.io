@@ -42,7 +42,7 @@ export default class MinigameOption extends React.Component{
 
         return(
             <div id={this.props.id} onClick={this.props.onClick} className={this.state.classNames.join("")} >
-                <p id={this.props.id}>{this.props.children}</p>
+                {this.props.children}
             </div>
         );
     }

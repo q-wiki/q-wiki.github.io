@@ -48,24 +48,15 @@ class GithubAuthStore {
       headers['Authorization'] = `Bearer ${this.bearerToken}`
     }
 
-    // merge custom headers
-    if (opts.headers) Object.keys(opts.headers).forEach(k => {
-      headers[k] = opts.headers[k]
-    })
-
     const method = (opts.method || 'get').toLowerCase()
     const request = method == 'get' || method == 'head'
-      ? { ...opts, ...{headers} }
-      : { ...opts, ...{headers}, ...{body} }
+      ? { ...{headers}, ...opts }
+      : { ...{headers}, ...{body}, ...opts }
 
     return fetch('https://api.github.com/' + endpoint, request)
-      .then(async res => {
-        const body = await res.json()
-        if (!res.ok) {
-          console.error('There is a problem with Github\'s response', res)
-          return { error: body }
-        }
-        return body 
+      .then(res => {
+        if (!res.ok) console.error('There is a problem with Github\'s response', res)
+        return res.json()
       })
   }
 

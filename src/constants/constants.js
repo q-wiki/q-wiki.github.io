@@ -1,18 +1,5 @@
 
 
-
-import screen1 from "../assets/images/screen2.png"
-import screen2 from "../assets/images/screen10.png"
-
-
-export const screenshots= [
-  { src:screen2,
-  } ,
-{ src:screen1,
-} ,
-]
-
-
 export const cardsDataLandingPage= [
   { icon:"wikidata-logo",
     heading: "About\nWikidata",
@@ -38,23 +25,9 @@ export const cardsDataLandingPage= [
 
 export const headerContributePage = [
   {
-    heading: "The World could always use more Heroes!",
-    text: "Join the community, learn how to write SPARQL queries and contribute to the game."
+    heading: "Contribute",
+    text: ""
   }
-]
-
-export const headerImplemenetedPage = [
-    {
-        heading: "Check out our in-game SPARQL Queries!",
-        text: "Choose a minigame type and category and try them out yourself!"
-    }
-]
-
-export const createNewPage = [
-    {
-        heading: "Create new SPRAQL Queries!",
-        text: "Help us extend our game with new queries and millions of possible questions!"
-    }
 ]
 
 export const cardsDataContributePage = [
@@ -81,13 +54,32 @@ export const cardsDataContributePage = [
 ]
 
 export const minigameTypes=[
-    {title:"Sorting", id:0},
-    {title:"Image Guess", id:1},
-    {title:"Multiple Choice", id:2},
+  {title:"Multiple Choice"},
+    {title:"Sorting"},
+    {title:"Image Guess"}
+]
+
+export const numberDisplay= [
+  { icon:"question",
+    heading1:"30000000000",
+    heading2:"Questions",
+  },
+  { icon:"categories",
+    heading1:"7",
+    heading2:"Categories",
+  } ,
+{ icon:"matches",
+  heading1:"30000",
+  heading2:"Matches",
+} ,
+{ icon:"contributions",
+  heading1:"750",
+  heading2:"Contributions",
+} ,
 ]
 
 import infoScreenshot from "../assets/images/screenshot-1.jpg"
-import infoQrCode from "../assets/images/qr-code.svg"
+import infoQrCode from "../assets/images/qr-code.jpg"
 
 
 export const qWikiInfo= [
@@ -95,7 +87,7 @@ export const qWikiInfo= [
     heading1: "We are ",
     heading2:"Q-Wiki",
     text: "Q-Wiki is a strategy game for two players. The aim of the game is to conquer as much territory as you can in a limited time. The game pulls its data directly from wikidata. Generating millions of different questions in many categories from Geography to History. Do you have what it takes to conquer the map?",
-    downloadText:"Download the game from the Google Play Store now!",
+    downloadText:"Download the game from the google play store now!",
     screenshotSrc: infoScreenshot,
     qrCode: infoQrCode,
   }
@@ -106,9 +98,6 @@ import werkmeister from "../assets/images/Werkmeister.png"
 import strippgen from "../assets/images/Strippgen.png"
 import weberWulff from "../assets/images/Weber-Wulff.jpg"
 import schlueter from "../assets/images/schlueter.jpeg"
-import mueller from "../assets/images/mueller.jpg"
-import sarhan from "../assets/images/sarhan.jpg"
-
 
 export const aboutUsData = [
 {
@@ -147,7 +136,7 @@ export const aboutUsData = [
     heading: "David Müller",
     link:"https://github.com/davidmllr",
     text: "Frontend",
-    image: mueller,
+    image: aboutUsMemberOne,
   },
   {
     heading: "Arne Schlüter",
@@ -170,8 +159,7 @@ wikidata:[
   },
   {
     heading: "Alaa Sarhan",
-    link:"https://alaasarhan.me",
-    image: sarhan,
+    image: aboutUsMemberOne,
   }
 ],
 htw:[
