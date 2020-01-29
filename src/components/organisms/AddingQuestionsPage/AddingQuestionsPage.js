@@ -94,7 +94,8 @@ const AddingQuestionsPage = () => {
   useEffect(() => {
     async function fetchQuestions () {
       const res = await fetch(config.API_URL + '/api/Platform/Question')
-      setQuestions(await res.json())
+      // take only questions which are merged into the game
+      setQuestions((await res.json()).filter(q => q.status === 2))
     }
     if (questions == null) fetchQuestions()
   })
