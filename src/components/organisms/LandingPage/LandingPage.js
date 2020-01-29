@@ -96,6 +96,7 @@ export default class LandingPage extends React.Component{
                         </Row>
                     </Container75>
                 </div>
+                <div className="activities-minigame-container">
                 <Row>
                     <div className="activities-container">
                         <Heading  pallete="qwikiLightBlue" type="H1">Current Activities</Heading>
@@ -133,7 +134,7 @@ export default class LandingPage extends React.Component{
                         }
                     </div>
                 </Row>
-
+</div>
             </div>
         );
     }
