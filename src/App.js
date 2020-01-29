@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 
 import {
   // NOTE: We use the hash router because it's easer to setup with gh-pages
@@ -19,6 +19,7 @@ import './App.css'
 // our routes 👩‍🔧
 
 import AboutPage from './components/organisms/AboutPage/AboutPage'
+import AddingQuestionsPage from './components/organisms/AddingQuestionsPage/AddingQuestionsPage'
 import LandingPage from './components/organisms/LandingPage/LandingPage'
 import ReportPage from './components/organisms/ReportPage/ReportPage'
 import SparqlPage from './components/organisms/SparqlPage/SparqlPage'
@@ -29,7 +30,7 @@ import GithubLoginSuccessfulPage from './components/organisms/GithubLoginSuccess
 
 // define app, start the router and we're good to go 👩‍🚀
 
-function App() {
+function App () {
   return (
     <Router>
       <Grid fluid>
@@ -55,10 +56,13 @@ function App() {
               <Route exact path='/contribute'>
                 <SparqlPage />
               </Route>
+              <Route path='/contribute/how-to-add-questions'>
+                <AddingQuestionsPage />
+              </Route>
               <Route path='/contribute/implemented-sparql-queries'>
                 <ImplementedQueriesPage />
               </Route>
-              <Route path='/contribute/create-new-sparql-queries'>
+              <Route path='/contribute/create-new-queries'>
                 <CreateNewQueriesPage />
               </Route>
               <Route path='/login'>

@@ -74,6 +74,11 @@ export const cardsDataContributePage = [
     link:"https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial",
     text: "Learn SPARQL with Wikidatas beginner-friendly course for SPARQL"
   } ,
+  { icon: "sparql-tutorial", // TODO: Use real (q-wiki?) icon
+    heading: "Writing Question Templates",
+    link: '/contribute/how-to-add-questions',
+    text: 'This tutorial will show you how questions are generated and help you with creating your own'
+  } ,
 { icon:"implemented-queries",
   heading:"Implemented\nSPARQL Queries",
   link:"/contribute/implemented-sparql-queries",
