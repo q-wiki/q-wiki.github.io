@@ -143,8 +143,10 @@ export default class CreateNewQueriesPage extends React.Component{
     return(
         <div className="create-new">
           <div className="create-new-header ">
+            <div className="create-new-header-content">
             <Heading type="H1">{createNewPage[0].heading}</Heading>
             <Paragraph textAlign="justify">{createNewPage[0].text}</Paragraph>
+            </div>
           </div>
           <Container75 className="create-new-container">
           {!dataStore.categories.isLoading?
