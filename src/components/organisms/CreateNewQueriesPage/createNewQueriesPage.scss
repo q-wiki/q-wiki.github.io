@@ -15,6 +15,15 @@
     align-items: center;
     align-content: center;
 
+    .create-new-header-content {
+      padding: 20px;
+      text-align: center;
+
+      p {
+        text-align: center;
+      }
+    }
+
       p{
         color: $white;
       }

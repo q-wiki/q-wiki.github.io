@@ -147,6 +147,7 @@ import woelbeling from "../assets/images/woelbeling.jpg"
 import lindner from "../assets/images/lindner.jpg"
 import goetz from "../assets/images/goetz.jpg"
 import fichtmueller from "../assets/images/fichtmueller.jpg"
+import berger from "../assets/images/berger.jpg"
 
 export const aboutUsData = [
 {
@@ -155,7 +156,7 @@ export const aboutUsData = [
       heading: "Antonia Berger",
       link:"https://github.com/AntoniaBe",
       text: "Design / Frontend",
-      image: aboutUsMemberOne,
+      image: berger,
     },
     {
       heading: "Jennifer Lindner",
