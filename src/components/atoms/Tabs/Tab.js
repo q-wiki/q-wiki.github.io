@@ -82,6 +82,7 @@ function getTabs() {
     key: index,
     tabClassName: 'tab',
     panelClassName: 'panel',
+    transformWidth: 516,
   }));
 }
 

@@ -24,12 +24,12 @@ function issueBody (form) {
 *This issue has been automatically created via the [report form](https://q-wiki.github.io/#/report).*
 
 **Minigame id:** ${form.minigameId || '*Empty*'}
-**Minigame type:** ${form.minigameType}  
-**What's wrong?** ${form.reportType}  
+**Minigame type:** ${form.minigameType}
+**What's wrong?** ${form.reportType}
 
-**Question / task given:** ${form.taskDescription}  
-**Answers:** ${(form.answerOptions && form.answerOptions.join(', ')) || '*Empty*'}  
-**Suggested correct answer:** ${form.correctAnswer || '*Empty*'}  
+**Question / task given:** ${form.taskDescription}
+**Answers:** ${(form.answerOptions && form.answerOptions.join(', ')) || '*Empty*'}
+**Suggested correct answer:** ${form.correctAnswer || '*Empty*'}
 
 **Additional information:** ${form.additionalInfo || '*Empty*'}`
 }
@@ -110,6 +110,7 @@ function ReportForm ({ githubStore }) {
           : (<>
             <Row>
               <Col xs>
+                <div className="minigametype-dropdown-container">
                 <ValidatedDropdown
                   name='minigameType'
                   placeholder='Minigame type *'
@@ -121,8 +122,10 @@ function ReportForm ({ githubStore }) {
                   defaultValue={defaultValues.minigameType}
                   ref={register({ required: 'Please tell us which game you were playing' })} />
                 {errors.minigameType && <Paragraph>{errors.minigameType.message}</Paragraph>}
+              </div>
               </Col>
               <Col xs>
+                <div className="problem-dropdown-container">
                 <ValidatedDropdown
                   name='reportType'
                   placeholder="What's wrong? *"
@@ -134,20 +137,24 @@ function ReportForm ({ githubStore }) {
                   onChange={e => setReportType(e.target.value)}
                   ref={register({ required: 'Please describe your problem' })} />
                 {errors.reportType && <Paragraph>{errors.reportType.message}</Paragraph>}
+                </div>
               </Col>
             </Row>
             <Row>
               <Col xs={12}>
+                <div className="question-text-container">
                 <TextField
                   name='taskDescription'
                   placeholder='What was the question / task given in the minigame *'
                   defaultValue={defaultValues.taskDescription}
                   ref={register({ required: 'We need this information to find out where to look' })} />
                 {errors.taskDescription && <Paragraph>{errors.taskDescription.message}</Paragraph>}
+              </div>
               </Col>
             </Row>
             <Row>
               <Col xs>
+                <div className="provided-answers-container">
                 <TagList
                   name='answerOptions'
                   placeholder='Provided answers'
@@ -155,6 +162,7 @@ function ReportForm ({ githubStore }) {
                   tags={defaultValues.answerOptions}
                   ref={register} />
                 {errors.answerOptions && <Paragraph>{errors.answerOptions.message}</Paragraph>}
+                </div>
               </Col>
             </Row>
             {reportType === 'wrongAnswer' &&
@@ -173,6 +181,7 @@ function ReportForm ({ githubStore }) {
             {params.minigameId ? <input type='hidden' name='minigameId' defaultValue={params.minigameId} ref={register} /> : null}
             <Row>
               <Col xs>
+                  <div className="additional-text-container">
                 <TextArea
                   name='additionalInfo'
                   placeholder={getValues().reportType === 'other'
@@ -182,6 +191,7 @@ function ReportForm ({ githubStore }) {
                     required: 'We need more information to understand your problem'
                   } : { required: false })} />
                 {errors.additionalInfo && <Paragraph>{errors.additionalInfo.message}</Paragraph>}
+              </div>
               </Col>
             </Row>
             <Row>

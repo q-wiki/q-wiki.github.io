@@ -18,6 +18,12 @@ const Slideshow = () => {
                 <div>
                     <img  src={screenshots[1].src} />
                 </div>
+                <div>
+                    <img  src={screenshots[2].src} />
+                </div>
+                <div>
+                    <img  src={screenshots[3].src} />
+                </div>
             </Carousel>
     )
 }

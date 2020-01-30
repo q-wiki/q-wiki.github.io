@@ -29,6 +29,13 @@
         flex-direction: row;
       }
 
+      .timeline-first-container{
+
+        .timeline-img {
+          width: 80%;
+        }
+      }
+
       .timeline-img {
         width: 100%;
       }
@@ -191,6 +198,9 @@
     .timeline-first-container,
     .timeline-second-container {
       flex-direction: column !important;
+      .timeline-img {
+        width: 100% !important;
+      }
     }
 
     .timeline-second-container {

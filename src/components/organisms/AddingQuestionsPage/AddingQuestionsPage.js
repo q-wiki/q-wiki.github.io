@@ -1,6 +1,7 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
+import './AddingQuestionsPage.scss';
 
 import Tabs from 'react-responsive-tabs';
 
@@ -101,8 +102,16 @@ const AddingQuestionsPage = () => {
   })
 
   return <>
+  <div className="tutorial-container">
+  <div className="tutorial-header">
+      <div className="tutorial-header-container ">
+    <Heading  pallete="qwikiOrange" type="H1">Writing question templates</Heading>
+    <Paragraph pallete="white" textAlign="justify">Learn how questions are generated and how to create your own question templates!</Paragraph>
+    </div>
+</div>
+
     <Container75>
-      <Heading type='H1'>Writing Question Templates</Heading>
+      <div className="tutorial-content-container">
       <Paragraph textAlign='justify'>
         This tutorial is meant to show you how you can extend Q-Wiki by writing additional questions. The content for each minigame you play is pulled live from <a href="https://www.wikidata.org/">Wikidata</a> – anybody can change the underlying database and fix errors or provide additional information. Did some animal species recover and is no longer listed as endangered? Change it on Wikidata and the content is published to Q-Wiki and for everyone else to use freely!
       </Paragraph>
@@ -190,7 +199,9 @@ const AddingQuestionsPage = () => {
       <Paragraph textAlign='justify'>
         Sometimes, if the alternative answers you pick are too god, you end up with more than one answer that is correct. We do not have any minigame that asks for more that one correct answer so you will have to try and avoid that. A good approach for this has been described above: Query for all the correct answers and exclude them from the deceitful ones by using SPARQL's set operations such as <code>MINUS</code> or <code>FILTER</code>.
       </Paragraph>
+      </div>
     </Container75>
+    </div>
   </>
 }
 

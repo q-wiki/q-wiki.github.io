@@ -3,12 +3,18 @@
 
 import screen1 from "../assets/images/screen2.png"
 import screen2 from "../assets/images/screen10.png"
+import screen3 from "../assets/images/screen1.png"
+import screen4 from "../assets/images/screen3.png"
 
 
 export const screenshots= [
   { src:screen2,
   } ,
 { src:screen1,
+} ,
+{ src:screen3,
+} ,
+{ src:screen4,
 } ,
 ]
 
@@ -38,8 +44,8 @@ export const cardsDataLandingPage= [
 
 export const headerContributePage = [
   {
-    heading: "The World could always use more Heroes!",
-    text: "Join the community, learn how to write SPARQL queries and contribute to the game."
+    heading: "The world could always use more heroes!",
+    text: "Join the community, learn how to write SPARQL queries and contribute to the game!"
   }
 ]
 
@@ -68,20 +74,21 @@ export const cardsDataContributePage = [
     link:"https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial",
     text: "Learn SPARQL with Wikidatas beginner-friendly course for SPARQL"
   } ,
-  { icon: "sparql-tutorial", // TODO: Use real (q-wiki?) icon
-    heading: "Writing Question Templates",
+  { icon: "q-wiki-logo-black",
+    heading: "Question Templates",
     link: '/contribute/how-to-add-questions',
-    text: 'This tutorial will show you how questions are generated and help you with creating your own'
+    text: 'With this tutorial, you can learn how to create your own question templates!'
+
   } ,
 { icon:"implemented-queries",
-  heading:"Implemented\nSPARQL Queries",
+  heading:"In-Game Queries",
   link:"/contribute/implemented-sparql-queries",
-  text: "Check out our already implemented SPARQL queries and try them out!"
+  text: "Check out our in-game SPARQL queries and try them out!"
 } ,
 { icon:"add",
-  heading: "Create new\nSPARQL Queries",
-  link:"/contribute/create-new-sparql-queries",
-  text: "Help us create more  SPARQL queries and check out what others already submited!"
+  heading: "Create SPARQL Queries",
+  link:"/contribute/create-new-queries",
+  text: "Help us create SPARQL queries and check out what others already submited!"
 } ,
 ]
 
@@ -135,7 +142,10 @@ import weberWulff from "../assets/images/Weber-Wulff.jpg"
 import schlueter from "../assets/images/schlueter.jpeg"
 import mueller from "../assets/images/mueller.jpg"
 import sarhan from "../assets/images/sarhan.jpg"
-
+import supardjo from "../assets/images/supardjo.jpg"
+import woelbeling from "../assets/images/woelbeling.jpg"
+import lindner from "../assets/images/lindner.jpg"
+import goetz from "../assets/images/goetz.jpg"
 
 export const aboutUsData = [
 {
@@ -143,50 +153,50 @@ export const aboutUsData = [
     {
       heading: "Antonia Berger",
       link:"https://github.com/AntoniaBe",
-      text: "Frontend",
+      text: "Design / Frontend",
       image: aboutUsMemberOne,
     },
     {
       heading: "Jennifer Lindner",
       link:"https://github.com/JennyLin1995",
-      text: "Frontend",
-      image: aboutUsMemberOne,
+      text: "Design / Frontend",
+      image: lindner,
     } ,
   {
     heading:"Malte Götz",
     link:"http://maltegoetz.com ",
-    text: "Backend",
-    image: aboutUsMemberOne,
+    text: "RESTful API / Backend",
+    image: goetz,
   } ,
   {
     heading:"Eko Supardjo",
     link:"https://github.com/EkoSHtw",
-    text: "Backend",
-    image: aboutUsMemberOne,
+    text: "Query Design / Backend",
+    image: supardjo,
   },
   {
     heading: "Jonas Fichtmüller",
     link:"https://github.com/golemmoja",
-    text: "Backend",
+    text: "Game Design / Frontend",
     image: aboutUsMemberOne,
   },
   {
     heading: "David Müller",
     link:"https://github.com/davidmllr",
-    text: "Frontend",
+    text: "Game Design / Frontend",
     image: mueller,
   },
   {
     heading: "Arne Schlüter",
     link:"https://github.com/heyarne",
-    text: "Backend/Frontend",
+    text: "Query Design / Frontend",
     image: schlueter,
   },
   {
     heading: "Laura Wölbeling",
     link:"https://github.com/chibbs",
-    text: "Backend",
-    image: aboutUsMemberOne,
+    text: "Query Design / Backend",
+    image: woelbeling,
   },
 ],
 wikidata:[
@@ -216,8 +226,8 @@ htw:[
 }
 ];
 
-import screenshot2 from "../assets/images/screenshot-2.jpg"
-import screenshot3 from "../assets/images/screenshot-3.jpg"
+import screenshot2 from "../assets/images/screenshot-2.jpeg"
+import screenshot3 from "../assets/images/screenshot-3.png"
 
 export const qWikiHistory = [
 {

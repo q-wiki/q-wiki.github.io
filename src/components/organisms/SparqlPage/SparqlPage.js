@@ -17,8 +17,10 @@ export default function SparqlPage() {
   <div className="contribute-container">
   <div>
   <div className="contribute-header ">
-    <Heading  pallete="qwikiGreen" type="H1">{headerContributePage[0].heading}</Heading>
-    <Paragraph textAlign="justify">{headerContributePage[0].text}</Paragraph>
+      <div className="contribute-header-container ">
+    <Heading  pallete="qwikiOrange" type="H1">{headerContributePage[0].heading}</Heading>
+    <Paragraph pallete="white" textAlign="justify">{headerContributePage[0].text}</Paragraph>
+    </div>
 </div>
 
   <div className="contribute-content">

@@ -70,16 +70,17 @@ function ExtendedDetail ({ githubStore, report, issue, minigame }) {
     {minigame &&
       <Minigame questionData={minigame.question} />}
 
-    <div>
-      <Paragraph>
-        <strong className='report-label'>Is the reported problem valid?</strong>
+    <div className="vote-container">
+      <Paragraph fontWeight="bold">Is the reported problem valid?</Paragraph>
+
         {!hasVoted
           ? <>
+          <div className="bottom-container">
             <Button onClick={_ => voteValid(true)}>👍</Button>
             <Button onClick={_ => voteValid(false)}>👎</Button>
+          </div>
           </>
-          : <span className='report-content'> Thank you for your vote!</span>}
-      </Paragraph>
+        : <Paragraph className="after-voting" fontWeight="bold"> Thank you for your vote!</Paragraph>}
     </div>
 
     {minigame &&
@@ -96,13 +97,12 @@ function ExtendedDetail ({ githubStore, report, issue, minigame }) {
       ? <Paragraph>Thank you for your comment!</Paragraph>
       : <>
         <div>
-          <Paragraph>
-            <strong className='report-label'>Got an idea what is going wrong?</strong> Or any other comments you would like to make? You made changes to the query and now it works perfectly fine? Every tip or suggestion can help us solve the issue!
+          <Heading type='H1'>Got an idea what is going wrong?</Heading>
+          <Paragraph textAlign="left">Or any other comments you would like to make? You made changes to the query and now it works perfectly fine? Every tip or suggestion can help us solve the issue!
+            </Paragraph>
             <Textarea name='additionalComments' ref={register} />
-          </Paragraph>
         </div>
-
-        <div>
+        <div className="submit-comment-container">
           <Button onClick={_ => {
             const comment = getValues().additionalComments
             if (comment) {
@@ -116,7 +116,7 @@ function ExtendedDetail ({ githubStore, report, issue, minigame }) {
         </div>
       </>}
 
-    <div>You can see additional discussion of this issue <a href={'https://github.com/q-wiki/q-wiki-server/issues/' + issue.number}>here</a></div>
+    <div className="additional-discussion-container"><Paragraph>You can see additional discussion of this issue <a href={'https://github.com/q-wiki/q-wiki-server/issues/' + issue.number}>here</a></Paragraph></div>
   </>
 }
 
@@ -155,10 +155,8 @@ const ReportDetail = inject('githubStore')(observer(({ githubStore, report, issu
       .filter(k => report.content[k])
       // display all of it
       .map((k, idx) => <div key={'report-row-' + idx}>
-        <Paragraph>
-          <strong className='report-label'>{k}</strong>
-          <span className='report-content'> {formatContent(k)}</span>
-        </Paragraph>
+        <Paragraph textAlign='left' fontWeight="bold" className='report-label'>{k}:&nbsp;</Paragraph>
+        <Paragraph textAlign='left' className='report-content'>{formatContent(k)}</Paragraph>
       </div>)}
 
     {githubStore.isLoggedIn
@@ -235,7 +233,7 @@ export default function ReportList ({ openIssues = true }) {
     fetchData()
   }, [openIssues])
 
-  return <div>
+  return <div className="report-list-container">
     <Row>
       <Col x>
         <Heading type='H1'>{openIssues ? 'Open reports' : 'Closed reports'}</Heading>
@@ -246,7 +244,7 @@ export default function ReportList ({ openIssues = true }) {
         {apiResponse.map((issue, idx) => <SingleReport report={parseReportFromIssue(issue)} issue={issue} key={idx} />)}
       </Accordion>
       : 'Loading…'}
-</div>
+  </div>
 }
 
 ReportList.propTypes = {

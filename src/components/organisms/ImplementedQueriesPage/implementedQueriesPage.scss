@@ -1,7 +1,7 @@
 @import "../../../../src/assets/variables.scss";
 
 .implemented-queries{
-  background-color: $qwikiLightBlue;
+  background-color: $qwikiVeryLightBlue;
 
   .filter, .accordion-container {
     background-color: $qwikiGreen;
@@ -25,6 +25,16 @@
 
   h2{
     color: $qwikiOrange;
+  }
+
+  .implemented-queries-header-container {
+    padding: 20px;
+    text-align: center;
+
+    h2, p {
+      padding: 10px;
+      text-align: center;
+    }
   }
 }
   .dropdown-container{
