@@ -108,7 +108,7 @@ function ReportForm ({ githubStore }) {
             </Col>
           </>
           : (<>
-            <Row>
+            <div className="minigame-dropdown-master-container">
               <Col xs>
                 <div className="minigametype-dropdown-container">
                 <ValidatedDropdown
@@ -139,7 +139,7 @@ function ReportForm ({ githubStore }) {
                 {errors.reportType && <Paragraph>{errors.reportType.message}</Paragraph>}
                 </div>
               </Col>
-            </Row>
+            </div>
             <Row>
               <Col xs={12}>
                 <div className="question-text-container">
