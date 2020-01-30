@@ -70,6 +70,10 @@
 
     .input-container{
       margin: 2rem;
+
+      .textfield{
+        margin-bottom: 1rem;
+      }
     }
   }
 
@@ -77,10 +81,22 @@
     height: 20rem;
   }
 
+  .dropdown-container, .input-container{
+    p {
+      text-align: left;
+    }
+  }
+
   .dropdown-container{
     display: flex;
     justify-content: space-around;
-    margin: 1em 0 2em 0;
+    margin: 2rem;
+    flex-wrap: wrap;
+
+    p{
+      width: 100%;
+    }
+
     .dropdown{
       width: 45%;
 
@@ -169,7 +185,11 @@
   .dropdown-container{
     flex-wrap: wrap;
   }
-  .implemented-queries .dropdown-container dropdown{
-    width: 70%;
+
+  .dropdown-container {
+    .dropdown.input-effect{
+      width: 100%;
+      margin-right: 1.5rem;
+    }
   }
 }

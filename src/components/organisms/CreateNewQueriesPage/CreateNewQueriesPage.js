@@ -155,11 +155,14 @@ export default class CreateNewQueriesPage extends React.Component{
                 <Paragraph>Feel free to consult any of the tutorials or documentations at any time and return to complete your query.</Paragraph>
               </div>
               <div className="dropdown-container">
+                <Paragraph>Choose a minigame type and category so we can classify your query in our system!</Paragraph>
                 <Dropdown index={0} placeholder="Minigame Types *" options={minigameTypes} onChange={this.onChange}/>
                 <Dropdown index={1} placeholder="Minigame Categories *" options={JSON.parse(JSON.stringify(dataStore.categories.categories))} onChange={this.onChange}/>
               </div>
               <div className="input-container">
-                <TextField onChange={this.onTextChange.bind(this)} placeholder="Enter the minigame question. E.g.: Where is the character {0} from? *"></TextField>
+                <Paragraph>Enter a minigame question, if you are unsure how to put it check our tutorial. The format goes something like this: "Where is the character {"{0}"} from?"</Paragraph>
+                <TextField onChange={this.onTextChange.bind(this)} placeholder="Enter the minigame question"></TextField>
+                <Paragraph>Enter your query here or switch over to the official wikidata SPARQL editor.</Paragraph>
                 <TextArea onChange={this.onQueryChange.bind(this)} placeholder="Enter a query here *" defaultValue={exampleQuery}>
                 </TextArea>
                 <Row>
