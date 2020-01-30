@@ -28,6 +28,8 @@ export default class Minigame extends React.Component{
             licenseLoading: true,
             license: null,
             showLicense: false,
+            error: false,
+            errorMessage: "",
         }
         console.log(this.state.questionData);
         this.generateMinigame(this.state.questionData);
@@ -35,25 +37,33 @@ export default class Minigame extends React.Component{
 
     async generateMinigame(question){
         let minigameStore = new MinigameStore();
+        this.setState({minigameLoaded : false});
 
         await minigameStore.initializeMinigame(
             question.sparqlQuery, minigameTypes[question.miniGameType].title, question.taskDescription);
 
-        this.setState({correctAnswer : minigameStore.minigameAnswers});
-        this.setState({question : minigameStore.minigameQuestion});
+        if(!minigameStore.error){
+          this.setState({correctAnswer : minigameStore.minigameAnswers});
+          this.setState({question : minigameStore.minigameQuestion});
 
-        for(var i = 0; i < minigameStore.minigameOptions.length; i++){
-            const content = {};
-            content.text = minigameStore.minigameOptions[i]
-            content.active = false;
-            content.result = null;
-            this.state.options.push(content);
+          for(var i = 0; i < minigameStore.minigameOptions.length; i++){
+              const content = {};
+              content.text = minigameStore.minigameOptions[i]
+              content.active = false;
+              content.result = null;
+              this.state.options.push(content);
+          }
+          this.setState({minigameLoaded : true});
+          if(this.state.type == "Image Guess"){
+              this.loadLicense(this.state.correctAnswer[1]);
+          }
+        }else{
+          this.setState({minigameLoaded : false});
+          this.setState({error: true});
+          this.setState({errorMessage : minigameStore.errorMessage});
         }
-        console.log("Loading")
-        this.setState({minigameLoaded : true});
-        if(this.state.type == "Image Guess"){
-            this.loadLicense(this.state.correctAnswer[1]);
-        }
+
+
     }
 
     onClickHandler = (e) =>{
@@ -118,6 +128,8 @@ export default class Minigame extends React.Component{
     }
 
     resetMinigame = (e) => {
+        this.setState({error : false});
+        this.setState({errorMessage : ""});
         this.setState({question : ""});
         this.setState({options: []});
         this.setState({correctAnswer: []});
@@ -190,7 +202,8 @@ export default class Minigame extends React.Component{
     render() {
       return(
             <>
-                {!this.state.minigameLoaded ?
+                {!this.state.minigameLoaded || this.state.minigameLoaded && this.state.error?
+                  <div className="pre-load-container">
                     <div className="loading-container">
                         <div className="lds-grid">
                             <div></div>
@@ -203,6 +216,17 @@ export default class Minigame extends React.Component{
                             <div></div>
                             <div></div>
                         </div>
+                    </div>
+                    <Row>
+                      {this.state.error?
+                        <div className="error-container">
+                          <p>It appears an error has occurred, please try again!</p>
+                          <p>{this.state.errorMessage}</p>
+                          <Button disabled={this.state.checked} onClick={this.resetMinigame}>Retry</Button>
+                        </div>
+                        : null
+                      }
+                    </Row>
                     </div>
                     :
                     <div className="minigame_container">

@@ -12,6 +12,7 @@ export default class MinigameStore {
     @observable minigameAnswers = [];
     @observable isLoading = true;
     @observable error;
+    @observable errorMessage;
     @observable minigameRaw;
     @observable imgData;
     @observable licenseLoading = true;
@@ -33,7 +34,7 @@ export default class MinigameStore {
     }
 
     @action async recieveLicense(url){
-        this.error = "";
+        this.error = null;
         let fetchURL = this.licenseURL + url;
         await fetch(fetchURL)
             .then(response => response.json())
@@ -48,7 +49,7 @@ export default class MinigameStore {
     }
 
     @action async recieveMinigame() {
-        this.error = "";
+        this.error = false;
         this.minigame = null;
         await fetch(this.minigameURL, {
             headers: {'Accept': 'application/sparql-results+json,*/*;q=0.9'}
@@ -60,7 +61,8 @@ export default class MinigameStore {
                 this.processMinigameRaw();
             })
             .catch((error) => {
-                this.error = error;
+                this.error = true;
+                this.errorMessage = error;
                 this.isLoading = false;
             })
     }

@@ -150,7 +150,7 @@ export default class CreateNewQueriesPage extends React.Component{
           {!dataStore.categories.isLoading?
             <div>
               <div className="create-new-text">
-                <Heading type="H2">Let Your Imagination Run Wild!</Heading>
+                <Heading type="H2">Let your imagination run wild!</Heading>
                 <Paragraph>Fill out the form below and submit your query, we will review and approve it asap! You can test your query any time and try the resulting minigame. Note! The minigame will only work properly when all fields are present!</Paragraph>
                 <Paragraph>Feel free to consult any of the tutorials or documentations at any time and return to complete your query.</Paragraph>
               </div>
