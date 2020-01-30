@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 
+import { Link } from 'react-router-dom'
+
 import MainLogo from "../../atoms/MainLogo/MainLogo";
-import Icon from "../../atoms/Icon/Icon";
 import Paragraph from "../../atoms/Paragraph/Paragraph";
 import Menu from "../../molecules/Menu/Menu";
 import Container75 from "../../atoms/Container75/Container75";
@@ -10,7 +11,7 @@ import githubStore from "../../../stores/GithubStore";
 import GithubLoginButton from "../../molecules/GithubLoginButton/GithubLoginButton";
 
 import "./header.scss";
-import { Row, Col } from "react-flexbox-grid";
+import { Row } from "react-flexbox-grid";
 
 const Header = () => (
   <div className="header-container">
@@ -44,9 +45,9 @@ const Header = () => (
     <Container75>
       <div className="header-last">
         <Row between="xs">
-          <a href="/" title="Q-Wiki Landingpage">
-          <MainLogo />
-          </a>
+          <Link to="/" title="Q-Wiki Landingpage">
+            <MainLogo />
+          </Link>
           <Menu />
         </Row>
       </div>

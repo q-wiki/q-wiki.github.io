@@ -27,6 +27,8 @@ import NotFoundPage from './components/organisms/NotFoundPage/NotFoundPage'
 import CreateNewQueriesPage from './components/organisms/CreateNewQueriesPage/CreateNewQueriesPage'
 import ImplementedQueriesPage from './components/organisms/ImplementedQueriesPage/ImplementedQueriesPage'
 import GithubLoginSuccessfulPage from './components/organisms/GithubLoginSuccessful/GithubLoginSuccessfulPage'
+import ContactPage from './components/organisms/ContactPage/ContactPage'
+import PrivacyPolicyPage from './components/organisms/PrivacyPolicyPage/PrivacyPolicyPage'
 
 // define app, start the router and we're good to go 👩‍🚀
 
@@ -67,6 +69,12 @@ function App () {
               </Route>
               <Route path='/login'>
                 <GithubLoginSuccessfulPage />
+              </Route>
+              <Route exact path='/contact'>
+                <ContactPage />
+              </Route>
+              <Route exact path='/privacy-policy'>
+                <PrivacyPolicyPage />
               </Route>
               <Route path='*'>
                 <NotFoundPage />
