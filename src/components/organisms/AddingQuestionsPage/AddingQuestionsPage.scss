@@ -35,9 +35,19 @@
 
   .tutorial-content-container {
     background-color:$qwikiGreen;
-    padding-right: 8px;
-    padding-left: 8px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 40px 28px 40px 28px;
+
+    .tutorial-text {
+      padding-top: 15px;
+    }
+
+    .tutorial-table-container {
+      padding-top: 15px;
+
+      th, td {
+        padding: 10px;
+      }
+
+    }
   }
 }

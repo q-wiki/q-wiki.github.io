@@ -112,13 +112,15 @@ const AddingQuestionsPage = () => {
 
     <Container75>
       <div className="tutorial-content-container">
-      <Paragraph textAlign='justify'>
+      <Paragraph className="tutorial-text" textAlign='justify'>
         This tutorial is meant to show you how you can extend Q-Wiki by writing additional questions. The content for each minigame you play is pulled live from <a href="https://www.wikidata.org/">Wikidata</a> – anybody can change the underlying database and fix errors or provide additional information. Did some animal species recover and is no longer listed as endangered? Change it on Wikidata and the content is published to Q-Wiki and for everyone else to use freely!
       </Paragraph>
-      <Paragraph textAlign='justify'>
+      <div></div>
+      <Paragraph className="tutorial-text" textAlign='justify'>
         The information is queried using the SPARQL query language. Check out the SPARQL links on <a href="/#/contribute">our <i>Contribute</i> page</a> if you are new to SPARQL. The exact SPARQL queries are all different depending on the information queried and the type of the minigame, but the response looks like this in principle:
       </Paragraph>
 
+      <div className="tutorial-table-container">
       <table border="2">
         <thead>
           <tr>
@@ -148,12 +150,13 @@ const AddingQuestionsPage = () => {
           </tr>
         </tbody>
       </table>
+      </div>
 
-      <Paragraph textAlign='justify'>
+      <Paragraph className="tutorial-text" textAlign='justify'>
         This response is interpreted by the server and the minigame is constructed. For our <i>multiple choice</i> minigame the structure is given above. For the sorting minigame the server expects to receive the answers in sorted order and will check if the answer given by a user matches is identical to that. Of course we don't tell you the order of this result when you play the game on your phone - that would make it way too easy to cheat. :) When you play <i>Guess the Image</i> the label will be replaced with the URL to an image
       </Paragraph>
 
-      <Paragraph textAlign='justify'>
+      <Paragraph className="tutorial-text" textAlign='justify'>
         You can try different queries below:
       </Paragraph>
 
@@ -161,14 +164,14 @@ const AddingQuestionsPage = () => {
         showMore={false}
         items={tutorialTabs(questions)} />
 
-      <Paragraph textAlign='justify'>
+      <Paragraph className="tutorial-text" textAlign='justify'>
         Notice how the queries can get quite complex but don't worry. The process roughly looks like this:
       </Paragraph>
 
       <ol>
-        <li>Depending on the question, set the label and fetch possible correct answers.</li>
-        <li>Fetch other answers which you think are plausible but not correct</li>
-        <li>Take one correct answer at random and some incorrect ones. Put them together in a result and return it so the game server understands it</li>
+        <li><Paragraph className="tutorial-text" textAlign='justify'>Depending on the question, set the label and fetch possible correct answers.</Paragraph></li>
+        <li><Paragraph className="tutorial-text" textAlign='justify'>Fetch other answers which you think are plausible but not correct</Paragraph></li>
+        <li><Paragraph className="tutorial-text" textAlign='justify'>Take one correct answer at random and some incorrect ones. Put them together in a result and return it so the game server understands it</Paragraph></li>
       </ol>
 
       <Paragraph textAlign='justify'>

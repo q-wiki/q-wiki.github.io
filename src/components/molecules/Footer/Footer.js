@@ -12,7 +12,7 @@ const Footer = () => (
           <Container75>
             <Row between="xs">
     <Heading type="H2" pallete="white">
-      Copyrights © 2020 Wikidata
+      Copyrights © 2020 Q-Wiki Team
     </Heading>
     <div>
       <Paragraph pallete="white"><a href="/" target="_blank">Privacy Policy</a></Paragraph>
