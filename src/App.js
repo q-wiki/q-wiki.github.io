@@ -62,7 +62,7 @@ function App () {
               <Route path='/contribute/implemented-sparql-queries'>
                 <ImplementedQueriesPage />
               </Route>
-              <Route path='/contribute/create-new-queries'>
+              <Route path='/contribute/create-new-sparql-queries'>
                 <CreateNewQueriesPage />
               </Route>
               <Route path='/login'>

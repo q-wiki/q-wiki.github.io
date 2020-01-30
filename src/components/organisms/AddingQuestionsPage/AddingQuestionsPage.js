@@ -1,11 +1,106 @@
-import React from 'react'
+/* eslint-disable react/display-name */
+/* eslint-disable react/prop-types */
+import React, { useState, useEffect } from 'react'
+
+import Tabs from 'react-responsive-tabs';
+
+import sample from 'lodash/sample'
+
+import config from '../../../config'
+import { minigameTypes } from '../../../constants/constants'
 
 import Heading from '../../atoms/Heading/Heading'
 import Paragraph from '../../atoms/Paragraph/Paragraph'
 import Container75 from '../../atoms/Container75/Container75'
+import Minigame from '../../molecules/Minigame/Minigame'
+import SparqlEditor from '../../atoms/SparqlEditor/SparqlEditor';
 
-const AddingQuestionsPage = () =>
-  <>
+const pickQuestion = (questions, minigame) =>
+  sample(questions.filter(q => q.miniGameType === minigame.id))
+
+const SparqlResultTable = ({ sparqlResults }) =>
+  <table className='adding-questions-page--sparql-results'>
+    <thead>
+      <tr>
+        {sparqlResults.head.vars.map((sparqlVar, idx) => <th key={'result-head-' + idx}>{'?' + sparqlVar}</th>)}
+      </tr>
+    </thead>
+    <tbody>
+      {sparqlResults.results.bindings.map((binding, idx) =>
+        <tr key={'result-row-' + idx}>
+          {sparqlResults.head.vars.map((sparqlVar, jdx) =>
+            <td key={'result-cell-' + idx + '-' + jdx}>{binding[sparqlVar].value}</td>)}
+        </tr>
+      )}
+    </tbody>
+  </table>
+
+// contains
+// - A Sparql editor
+// - The response returned by Wikidata
+// - The generated minigame
+const StepByStepPanel = ({ questions, minigame }) => {
+  const [sparqlResult, setSparqlResult] = useState(null)
+  const [questionData, setQuestionData] = useState(null)
+
+  useEffect(() => {
+    async function init () {
+      async function fetchWikidataResponse () {
+        const uri = `${window.location.protocol}//query.wikidata.org/sparql?query=${window.encodeURIComponent(questionData.sparqlQuery)}`
+        const headers = {
+          Accept: 'application/sparql-results+json;charset=utf-8'
+        }
+        const res = await fetch(uri, { headers })
+        setSparqlResult(await res.json())
+      }
+
+      const questionData = pickQuestion(questions, minigame)
+      setQuestionData(questionData)
+      fetchWikidataResponse()
+    }
+
+    if (questions != null) init()
+  }, [questions])
+
+  return (questionData == null)
+    ? <Paragraph>Waiting for the server to load questions…</Paragraph>
+    : <>
+      <Paragraph>With a question labeled <em>{questionData.taskDescription}</em>, given the following in-game query:</Paragraph>
+      <SparqlEditor>
+        {questionData.sparqlQuery}
+      </SparqlEditor>
+      <Paragraph>…the Wikidata SPARQL endpoint returns a result like this:</Paragraph>
+      {sparqlResult == null
+        ? <Paragraph>Waiting for the Wikidata server to respond…</Paragraph>
+        : <SparqlResultTable sparqlResults={sparqlResult} />}
+      <Paragraph>…which in turn generates the following minigame:</Paragraph>
+      <Minigame questionData={questionData} />
+    </>
+}
+
+function tutorialTabs (questions) {
+  return minigameTypes.map(minigame => ({
+    title: minigame.title,
+    getContent: () => <StepByStepPanel questions={questions} minigame={minigame} />,
+    key: minigame.id,
+    tabClassName: 'tab',
+    panelClassName: 'panel'
+  }))
+}
+
+const AddingQuestionsPage = () => {
+  // fetch all questions from the server to generate minigames
+  const [questions, setQuestions] = useState(null)
+  useEffect(() => {
+    async function fetchQuestions () {
+      const res = await fetch(config.API_URL + '/api/Platform/Question')
+      // take only questions which are merged into the game
+      setQuestions((await res.json()).filter(q => q.status === 2))
+    }
+    if (questions == null) fetchQuestions()
+  })
+
+  return <>
     <Container75>
       <Heading type='H1'>Writing Question Templates</Heading>
       <Paragraph textAlign='justify'>
@@ -53,12 +148,9 @@ const AddingQuestionsPage = () =>
         You can try different queries below:
       </Paragraph>
 
-      <ul style={{ color: 'red' }}>
-        <li><b><b>TAB FOR MINIGAME TYPES</b></b></li>
-        <li><b><b>SPARQL COMPONENT</b></b></li>
-        <li><b><b>DUMB RESULT VISUALIZATION</b></b></li>
-        <li><b><b>MINIGAME</b></b></li>
-      </ul>
+      <Tabs
+        showMore={false}
+        items={tutorialTabs(questions)} />
 
       <Paragraph textAlign='justify'>
         Notice how the queries can get quite complex but don't worry. The process roughly looks like this:
@@ -100,6 +192,7 @@ const AddingQuestionsPage = () =>
       </Paragraph>
     </Container75>
   </>
+}
 
 AddingQuestionsPage.displayName = 'AddingQuestionsPage'
 
