@@ -74,7 +74,7 @@ export const cardsDataContributePage = [
     link:"https://www.wikidata.org/wiki/Wikidata:SPARQL_tutorial",
     text: "Learn SPARQL with Wikidatas beginner-friendly course for SPARQL"
   } ,
-  { icon: "sparql-tutorial", // TODO: Use real (q-wiki?) icon
+  { icon: "q-wiki-logo-black",
     heading: "Question Templates",
     link: '/contribute/how-to-add-questions',
     text: 'With this tutorial, you can learn how to create your own question templates!'
@@ -152,43 +152,43 @@ export const aboutUsData = [
     {
       heading: "Antonia Berger",
       link:"https://github.com/AntoniaBe",
-      text: "Frontend",
+      text: "Design / Frontend",
       image: aboutUsMemberOne,
     },
     {
       heading: "Jennifer Lindner",
       link:"https://github.com/JennyLin1995",
-      text: "Frontend",
+      text: "Design / Frontend",
       image: aboutUsMemberOne,
     } ,
   {
     heading:"Malte Götz",
     link:"http://maltegoetz.com ",
-    text: "Backend",
+    text: "RESTful API / Backend",
     image: aboutUsMemberOne,
   } ,
   {
     heading:"Eko Supardjo",
     link:"https://github.com/EkoSHtw",
-    text: "Backend",
+    text: "Query Design / Backend",
     image: supardjo,
   },
   {
     heading: "Jonas Fichtmüller",
     link:"https://github.com/golemmoja",
-    text: "Backend",
+    text: "Game Design / Frontend",
     image: aboutUsMemberOne,
   },
   {
     heading: "David Müller",
     link:"https://github.com/davidmllr",
-    text: "Frontend",
+    text: "Game Design / Frontend",
     image: mueller,
   },
   {
     heading: "Arne Schlüter",
     link:"https://github.com/heyarne",
-    text: "Backend/Frontend",
+    text: "Query Design / Frontend",
     image: schlueter,
   },
   {
