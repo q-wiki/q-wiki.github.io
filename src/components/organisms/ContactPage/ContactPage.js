@@ -2,37 +2,29 @@ import React from 'react'
 
 import Container75 from '../../atoms/Container75/Container75'
 import Heading from '../../atoms/Heading/Heading'
-import Paragraph from '../../atoms/Paragraph/Paragraph'
 
-const ContactPage = () => <Container75>
-  <Heading type='H1'>Contact</Heading>
-  <div>
-    <Paragraph>
+import './ContactPage.scss'
+
+const ContactPage = () => <div className='contact-page'>
+  <Container75 className='contact-page--container'>
+    <Heading type='H1'>Contact</Heading>
+    <p>
       Malte Götz
-    </Paragraph>
-  </div>
-  <div>
-    <Paragraph>
+    </p>
+    <p>
       Tannenhofweg 101
-    </Paragraph>
-  </div>
-  <div>
-    <Paragraph>
+    </p>
+    <p>
       40627 Düsseldorf, Germany
-    </Paragraph>
-  </div>
-  <div>
-    <Paragraph>
+    </p>
+    <p>
       Phone: +49 176 - 71712069
-    </Paragraph>
-  </div>
-  <div>
-    <Paragraph>
+    </p>
+    <p>
       playstore@maltegoetz.com
-    </Paragraph>
-  </div>
-</Container75>
-
+    </p>
+  </Container75>
+</div>
 ContactPage.displayName = 'ContactPage'
 
 export default ContactPage
