@@ -75,19 +75,20 @@ export const cardsDataContributePage = [
     text: "Learn SPARQL with Wikidatas beginner-friendly course for SPARQL"
   } ,
   { icon: "sparql-tutorial", // TODO: Use real (q-wiki?) icon
-    heading: "Writing Question Templates",
+    heading: "Question Templates",
     link: '/contribute/how-to-add-questions',
-    text: 'This tutorial will show you how questions are generated and help you with creating your own'
+    text: 'With this tutorial, you can learn how to create your own question templates!'
+
   } ,
 { icon:"implemented-queries",
-  heading:"Implemented\nSPARQL Queries",
+  heading:"In-Game Queries",
   link:"/contribute/implemented-sparql-queries",
-  text: "Check out our already implemented SPARQL queries and try them out!"
+  text: "Check out our in-game SPARQL queries and try them out!"
 } ,
 { icon:"add",
-  heading: "Create new\nSPARQL Queries",
+  heading: "Create SPARQL Queries",
   link:"/contribute/create-new-queries",
-  text: "Help us create more  SPARQL queries and check out what others already submited!"
+  text: "Help us create SPARQL queries and check out what others already submited!"
 } ,
 ]
 

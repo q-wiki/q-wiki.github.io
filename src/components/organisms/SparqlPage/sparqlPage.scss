@@ -3,7 +3,12 @@
 .contribute-container {
   .contribute-header {
     height: 280px;
-    background: linear-gradient(to bottom, rgba(3, 93 ,93, 0.75), rgba(3, 93 ,93, 0.75)), url("../../../../src/assets/images/screen10.png");
+    background: linear-gradient(
+        to bottom,
+        rgba(3, 93, 93, 0.75),
+        rgba(3, 93, 93, 0.75)
+      ),
+      url("../../../../src/assets/images/screen10.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -17,7 +22,8 @@
       padding: 20px;
       text-align: center;
 
-      h2, p {
+      h2,
+      p {
         padding: 10px;
         text-align: center;
       }
@@ -25,13 +31,80 @@
   }
 
   .contribute-content {
-
-
-    .contribute_cards-container{
-
+    .contribute_cards-container {
+      margin: 40px 0px 40px 0px;
       .contribute-cards {
-        margin: 40px 0px 40px 0px;
         padding: 10px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 1617px) {
+  .contribute-content {
+    .col-md-8 {
+      flex-basis: 100% !important;
+      max-width: 100% !important;
+      width: 100% !important;
+    }
+
+    .between-xs {
+      justify-content: center;
+    }
+  }
+}
+
+@media only screen and (max-width: 435px) {
+  .contribute_cards-container {
+    .contribute-cards {
+      padding: 2px !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 403px) {
+  .contribute_cards-container {
+    .contribute-cards {
+      .card-container{
+      width: 140px;
+      height: 228px;
+      padding: 2px 15px 2px 15px;
+}
+
+      h2 {
+        font-size: 16px;
+      }
+      span {
+        height: 72px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 363px) {
+  .contribute_cards-container {
+    .contribute-cards {
+      .card-container{
+        width: 131px;
+        height: 208px;
+
+        p {
+          padding-top: 2px;
+        }
+        span {
+          height: 52px;
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 345px) {
+  .contribute_cards-container {
+    .contribute-cards {
+      .card-container{
+        width: 118px;
+        height: 222px;
       }
     }
   }
