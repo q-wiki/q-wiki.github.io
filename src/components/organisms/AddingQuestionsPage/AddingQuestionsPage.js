@@ -1,7 +1,7 @@
 /* eslint-disable react/display-name */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react'
-import './addingQuestionsPage.scss';
+import './AddingQuestionsPage.scss';
 
 import Tabs from 'react-responsive-tabs';
 
