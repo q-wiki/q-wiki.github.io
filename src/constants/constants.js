@@ -44,8 +44,8 @@ export const cardsDataLandingPage= [
 
 export const headerContributePage = [
   {
-    heading: "The World could always use more Heroes!",
-    text: "Join the community, learn how to write SPARQL queries and contribute to the game."
+    heading: "The world could always use more heroes!",
+    text: "Join the community, learn how to write SPARQL queries and contribute to the game!"
   }
 ]
 
@@ -144,7 +144,8 @@ import mueller from "../assets/images/mueller.jpg"
 import sarhan from "../assets/images/sarhan.jpg"
 import supardjo from "../assets/images/supardjo.jpg"
 import woelbeling from "../assets/images/woelbeling.jpg"
-
+import lindner from "../assets/images/lindner.jpg"
+import goetz from "../assets/images/goetz.jpg"
 
 export const aboutUsData = [
 {
@@ -159,13 +160,13 @@ export const aboutUsData = [
       heading: "Jennifer Lindner",
       link:"https://github.com/JennyLin1995",
       text: "Design / Frontend",
-      image: aboutUsMemberOne,
+      image: lindner,
     } ,
   {
     heading:"Malte Götz",
     link:"http://maltegoetz.com ",
     text: "RESTful API / Backend",
-    image: aboutUsMemberOne,
+    image: goetz,
   } ,
   {
     heading:"Eko Supardjo",
@@ -194,7 +195,7 @@ export const aboutUsData = [
   {
     heading: "Laura Wölbeling",
     link:"https://github.com/chibbs",
-    text: "Backend",
+    text: "Query Design / Backend",
     image: woelbeling,
   },
 ],
