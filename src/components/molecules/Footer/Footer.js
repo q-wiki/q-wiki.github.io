@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
+
+import { Link } from 'react-router-dom'
 
 import Paragraph from "../../atoms/Paragraph/Paragraph";
 import Heading from "../../atoms/Heading/Heading";
@@ -15,9 +17,8 @@ const Footer = () => (
       Copyrights © 2020 Q-Wiki Team
     </Heading>
     <div>
-      <Paragraph pallete="white"><a href="/" target="_blank">Privacy Policy</a></Paragraph>
-      <Paragraph pallete="white"><a href="/" target="_blank">Contact</a></Paragraph>
-      <Paragraph pallete="white"><a href="/" target="_blank">Terms of Use</a></Paragraph>
+      <Paragraph pallete="white"><Link to="/privacy-policy">Privacy Policy</Link></Paragraph>
+      <Paragraph pallete="white"><Link to="/contact">Contact</Link></Paragraph>
     </div>
     </Row>
   </Container75>
