@@ -64,17 +64,17 @@ const StepByStepPanel = ({ questions, minigame }) => {
   }, [questions])
 
   return (questionData == null)
-    ? <Paragraph>Waiting for the server to load questions…</Paragraph>
+    ? <Paragraph className="tutorial-text" >Waiting for the server to load questions…</Paragraph>
     : <>
-      <Paragraph>With a question labeled <em>{questionData.taskDescription}</em>, given the following in-game query:</Paragraph>
+      <Paragraph className="tutorial-text" >With a question labeled <em>{questionData.taskDescription}</em>, given the following in-game query:</Paragraph>
       <SparqlEditor>
         {questionData.sparqlQuery}
       </SparqlEditor>
-      <Paragraph>…the Wikidata SPARQL endpoint returns a result like this:</Paragraph>
+      <Paragraph className="tutorial-text">…the Wikidata SPARQL endpoint returns a result like this:</Paragraph>
       {sparqlResult == null
-        ? <Paragraph>Waiting for the Wikidata server to respond…</Paragraph>
+        ? <Paragraph className="tutorial-text" >Waiting for the Wikidata server to respond…</Paragraph>
         : <SparqlResultTable sparqlResults={sparqlResult} />}
-      <Paragraph>…which in turn generates the following minigame:</Paragraph>
+      <Paragraph className="tutorial-text">…which in turn generates the following minigame:</Paragraph>
       <Minigame questionData={questionData} />
     </>
 }
@@ -168,40 +168,67 @@ const AddingQuestionsPage = () => {
         Notice how the queries can get quite complex but don't worry. The process roughly looks like this:
       </Paragraph>
 
-      <ol>
-        <li><Paragraph className="tutorial-text" textAlign='justify'>Depending on the question, set the label and fetch possible correct answers.</Paragraph></li>
-        <li><Paragraph className="tutorial-text" textAlign='justify'>Fetch other answers which you think are plausible but not correct</Paragraph></li>
-        <li><Paragraph className="tutorial-text" textAlign='justify'>Take one correct answer at random and some incorrect ones. Put them together in a result and return it so the game server understands it</Paragraph></li>
-      </ol>
+      <div className="process-points">
+        <Paragraph className="tutorial-text" textAlign='justify'>1. Depending on the question, set the label and fetch possible correct answers.</Paragraph>
+        <Paragraph className="tutorial-text" textAlign='justify'>2. Fetch other answers which you think are plausible but not correct</Paragraph>
+        <Paragraph className="tutorial-text" textAlign='justify'>3. Take one correct answer at random and some incorrect ones. Put them together in a result and return it so the game server understands it</Paragraph>
+      </div>
 
-      <Paragraph textAlign='justify'>
+      <Paragraph  className="tutorial-text" textAlign='justify'>
         There are some ingredients that make a good question which are explained below.
       </Paragraph>
 
+      <div className="tutorial-text-container">
       <Heading type='H2'>Randomization</Heading>
 
       <Paragraph textAlign='justify'>
         An important aspect of keeping the minigames enjoyable is making sure that the generated answers do not get repetitive. To do so, out of all possible correct or incorrect answers, you pick one at random. It turns out that this is not quite what the Wikidata query server usually does - it assumes there is some consistency to the query results and tries to reuse results it has given before. We trick it into thinking we are asking a new question. Shuffling and picking answers is done with another trick that you will see often:
       </Paragraph>
 
-      <pre>
-        <span style={{ color: '#56b4e9', fontWeight: 'bold' }}>ORDER</span> <span style={{ color: '#56b4e9', fontWeight: 'bold' }}>BY</span> MD5<span style={{ color: '#707183' }}>(</span>CONCAT<span style={{ color: '#7388d6' }}>(</span>STR<span style={{ color: '#909183' }}>(</span><span style={{ color: '#e69f00', fontWeight: 'bold' }}>?fieldInRow</span><span style={{ color: '#909183' }}>)</span>,  STR<span style={{ color: '#909183' }}>(</span>NOW<span style={{ color: '#709870' }}>()</span><span style={{ color: '#909183' }}>)</span><span style={{ color: '#7388d6' }}>)</span><span style={{ color: '#707183' }}>)</span><br />
-        <span style={{ color: '#56b4e9', fontWeight: 'bold' }}>LIMIT</span> <span style={{ color: '#d55e00', fontWeight: 'bold' }}>4</span>
-      </pre>
+      <div className="tutorial-text tutorial-text-code-container">
+        <Paragraph textAlign='left'>
+          <span style={{ color: '#56b4e9', fontWeight: 'bold' }}>ORDER</span>
+          <span style={{ color: '#56b4e9', fontWeight: 'bold' }}> BY</span>
+          &nbsp;MD5
+          <span style={{ color: '#707183' }}>(</span>
+          CONCAT
+          <span style={{ color: '#7388d6' }}>(</span>
+          STR
+          <span style={{ color: '#909183' }}>(</span>
+          <span style={{ color: '#e69f00', fontWeight: 'bold' }}>?fieldInRow</span>
+          <span style={{ color: '#909183' }}>)</span>
+          ,&nbsp;&nbsp;STR
+          <span style={{ color: '#909183' }}>(</span>
+          NOW
+          <span style={{ color: '#709870' }}>()</span>
+          <span style={{ color: '#909183' }}>)</span>
+          <span style={{ color: '#7388d6' }}>)</span>
+          <span style={{ color: '#707183' }}>)</span>
 
-      <Paragraph textAlign='justify'>
+        </Paragraph>
+        <Paragraph textAlign='left'>
+          <span style={{ color: '#56b4e9', fontWeight: 'bold' }}>LIMIT</span>
+           <span style={{ color: '#d55e00', fontWeight: 'bold' }}>&nbsp;4</span>
+         </Paragraph>
+      </div>
+      <Paragraph className="tutorial-text" textAlign='justify'>
         <code>MD5</code> is a cryptographic hash that computes a number that is very different as soon as you change its input just a little bit. The result of this will be different every time it is run because it is dependent on the execution time of the query (see the <code>STR(NOW())</code>). Because queries run very fast we have to make sure the hash returned for each row is different as well, which is why you concatenate the argument I just explained with the content of a field in the row which is unique to it (<code>CONCAT(STR(?fieldInRow), STR(NOW()))</code>).
       </Paragraph>
+      </div>
 
+      <div className="tutorial-text-container">
       <Heading type='H2'>Alternative Answers</Heading>
       <Paragraph textAlign='justify'>
         Unfortunately there is no recipe to providing good alternative answers. It requires some knowledge in the domain of the question and some flair as to what is wrong but could plausibly be correct. If you are asking a question which is answered with a specific country, maybe letting a user pick from its neighboring countries challenge a user into giving the wrong answers. Be careful: If all countries directly border the correct answer it might give away that you can choose the correct answer by picking the center. In general you will try to stay as close as possible to the correct answer while straying away just enough to not give a hint.
       </Paragraph>
+      </div>
 
+      <div className="tutorial-text-container">
       <Heading type='H2'>Excluding Correct Answers from the Alternative Answers</Heading>
       <Paragraph textAlign='justify'>
         Sometimes, if the alternative answers you pick are too god, you end up with more than one answer that is correct. We do not have any minigame that asks for more that one correct answer so you will have to try and avoid that. A good approach for this has been described above: Query for all the correct answers and exclude them from the deceitful ones by using SPARQL's set operations such as <code>MINUS</code> or <code>FILTER</code>.
       </Paragraph>
+      </div>
       </div>
     </Container75>
     </div>

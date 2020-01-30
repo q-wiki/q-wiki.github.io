@@ -18,7 +18,7 @@ const Footer = () => (
     </Heading>
     <div>
       <Paragraph pallete="white"><Link to="/privacy-policy">Privacy Policy</Link></Paragraph>
-      <Paragraph pallete="white"><Link to="/contact">Contact</Link></Paragraph>
+      <Paragraph pallete="white"><Link to="/lega-notice">Legal Notice</Link></Paragraph>
     </div>
     </Row>
   </Container75>

@@ -15,7 +15,6 @@ const PrivacyPolicyPage = () => <div className='privacy-policy-page'>
     <p><strong>Benennung der verantwortlichen Stelle</strong></p>
     <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
     <p>
-      <span id="s3-t-firma">Name der Firma</span><br />
       <span id="s3-t-ansprechpartner">Malte Götz</span><br />
       <span id="s3-t-strasse">Tannenhofweg 101</span><br />
       <span id="s3-t-plz">40627</span> <span id="s3-t-ort">Düsseldorf</span>
@@ -42,7 +41,7 @@ const PrivacyPolicyPage = () => <div className='privacy-policy-page'>
     <p>Beiträge und Kommentare sowie damit in Verbindung stehende Daten, wie beispielsweise IP-Adressen, werden gespeichert. Der Inhalt verbleibt auf unserer Website, bis er vollständig gelöscht wurde oder aus rechtlichen Gründen gelöscht werden musste.</p>
     <p>Die Speicherung der Beiträge und Kommentare erfolgt auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Ein Widerruf Ihrer bereits erteilten Einwilligung ist jederzeit möglich. Für den Widerruf genügt eine formlose Mitteilung per E-Mail. Die
       Rechtmäßigkeit bereits erfolgter Datenverarbeitungsvorgänge bleibt vom Widerruf unberührt.</p>
-                
+
     <p><strong>Cookies</strong></p>
     <p>Unsere Website verwendet Cookies. Das sind kleine Textdateien, die Ihr Webbrowser auf Ihrem Endgerät speichert. Cookies helfen uns dabei, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen. </p>
     <p>Einige Cookies sind “Session-Cookies.” Solche Cookies werden nach Ende Ihrer Browser-Sitzung von selbst gelöscht. Hingegen bleiben andere Cookies auf Ihrem Endgerät bestehen, bis Sie diese selbst löschen. Solche Cookies helfen uns, Sie bei Rückkehr auf
