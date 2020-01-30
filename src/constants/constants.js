@@ -146,6 +146,7 @@ import supardjo from "../assets/images/supardjo.jpg"
 import woelbeling from "../assets/images/woelbeling.jpg"
 import lindner from "../assets/images/lindner.jpg"
 import goetz from "../assets/images/goetz.jpg"
+import fichtmueller from "../assets/images/fichtmueller.jpg"
 
 export const aboutUsData = [
 {
@@ -178,7 +179,7 @@ export const aboutUsData = [
     heading: "Jonas Fichtmüller",
     link:"https://github.com/golemmoja",
     text: "Game Design / Frontend",
-    image: aboutUsMemberOne,
+    image: fichtmueller,
   },
   {
     heading: "David Müller",

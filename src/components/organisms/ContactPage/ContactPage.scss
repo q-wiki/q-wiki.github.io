@@ -6,6 +6,7 @@
     margin: 1.2em 0;
     padding: 1.2em 1.2em;
     background: #fff;
+    height: 66vh;
   }
 
   a {
@@ -19,5 +20,9 @@
   strong {
     display: inline-block;
     padding-top: 0.6em;
+  }
+
+  .made-by-container {
+    padding-top: 20px;
   }
 }
