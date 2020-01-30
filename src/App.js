@@ -70,7 +70,7 @@ function App () {
               <Route path='/login'>
                 <GithubLoginSuccessfulPage />
               </Route>
-              <Route exact path='/contact'>
+              <Route exact path='/legal-notice'>
                 <ContactPage />
               </Route>
               <Route exact path='/privacy-policy'>

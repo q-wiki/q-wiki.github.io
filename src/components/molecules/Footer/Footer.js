@@ -14,11 +14,11 @@ const Footer = () => (
           <Container75>
             <Row between="xs">
     <Heading type="H2" pallete="white">
-      Copyright © 2020 Wikidata
+      Copyrights © 2020 Q-Wiki Team
     </Heading>
     <div>
       <Paragraph pallete="white"><Link to="/privacy-policy">Privacy Policy</Link></Paragraph>
-      <Paragraph pallete="white"><Link to="/contact">Contact</Link></Paragraph>
+      <Paragraph pallete="white"><Link to="/legal-notice">Legal Notice</Link></Paragraph>
     </div>
     </Row>
   </Container75>
