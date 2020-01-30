@@ -124,7 +124,7 @@ const ReportDetail = inject('githubStore')(observer(({ githubStore, report, issu
   const [minigame, setMinigame] = useState(null)
   const minigameId = report.content['Minigame id']
   useEffect(() => {
-    if (minigameId) {
+    if (minigameId && minigame == null) {
       // TODO: Handle errors
       fetch(config.API_URL + '/api/Platform/Minigame/' + minigameId)
         .then(res => res.json())
@@ -229,7 +229,7 @@ export default function ReportList ({ openIssues = true }) {
         issues[idx].reactions = reactions
       })
 
-      setApiResponse(issues)
+      if (apiResponse == null) setApiResponse(issues)
     }
 
     fetchData()
