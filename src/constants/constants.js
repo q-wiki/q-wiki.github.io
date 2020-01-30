@@ -247,7 +247,7 @@ export const qWikiHistory = [
       text: "The original group consisted of 6 master Students. As part of our masters program in International Media and Programming at the HTW Berlin, we were tasked to create a game in collaboration with Wikidata. During the summer semester of 2019 we worked several months to realize the project.",
     },
     {
-      heading: "The Diffuculty",
+      heading: "The Difficulty",
       text: "A spezial focus was put on the vast amount data and information the platform offers. Using the SPARQL backend enpoint we created queries to fetch data from which we could generate questions.",
     } ,
   {
