@@ -5,7 +5,6 @@ import 'yasgui-yasqe/dist/yasqe.css'
 
 const prettifySparql = sparql => {
   // find first line with non-zero-whitespace and count how much that is
-  window.sparql = sparql
   const lines = sparql.split('\n')
   const whitespace = lines.filter(line => line.match(/^\s+/))
 
@@ -22,7 +21,7 @@ const SparqlEditor = React.forwardRef(({ children, yasqeConfig }, ref) => {
   const textareaRef = useRef(null)
 
   useEffect(() => {
-    const editor = YASQE.fromTextArea(textareaRef.current, yasqeConfig)
+    const editor = YASQE.fromTextArea(textareaRef.current, { ...{syntaxErrorCheck: false }, ...yasqeConfig })
     if (ref != null) ref.current = editor
     return () => {
       editor.toTextArea()
