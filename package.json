@@ -32,7 +32,7 @@
     "styled-components": "^4.4.1",
     "styled-theme": "^0.3.3",
     "styled-tools": "^1.7.1",
-    "svg-url-loader": "^3.0.2",
+    "svg-url-loader": "^8.0.0",
     "tabs": "^0.2.0",
     "url-loader": "^1.1.2",
     "yasgui-yasqe": "^2.11.22"
@@ -83,10 +83,10 @@
     "react-inlinesvg": "^1.1.7",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.0",
-    "svg-inline-loader": "^0.8.0",
+    "svg-inline-loader": "^0.8.2",
     "webpack": "^4.41.2",
     "webpack-bundle-analyzer": "^3.6.0",
-    "webpack-cli": "^3.3.10",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.9.0"
   }
 }
